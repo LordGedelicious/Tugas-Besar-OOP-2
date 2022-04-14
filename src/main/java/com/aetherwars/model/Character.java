@@ -1,24 +1,12 @@
 package com.aetherwars.model;
 
-public class Character {
-  private String name;
-  private String description;
-  private Type type;
+public class Character extends Card {
 
-  public Character() {
-    this.name = "";
-    this.description = "";
-    this.type = Type.OVERWORLD;
-  }
-
-  public Character(String name, String description, Type element) {
-    this.name = name;
-    this.description = description;
-    this.type = element;
-  }
-
-  @Override
-  public String toString() {
-    return "Name: " + this.name + "\nDescription: " + this.description + "\nType: " + this.type;
-  }
+    public TypeChar tipe;
+    public int Attack;
+    public int Health;
+    public int Exp;
+    public int Level;
+    public int AttackUp;
+    public int HealthUp;
 }
