@@ -39,7 +39,7 @@ public class AetherWars extends Application {
     Group root = new Group();
     root.getChildren().add(text);
 
-    Scene scene = new Scene(root, 1280, 720);
+    Scene scene = new Scene(root, 640, 360);
 
     stage.setTitle("Minecraft: Aether Wars");
     stage.setScene(scene);
