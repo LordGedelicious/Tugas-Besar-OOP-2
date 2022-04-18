@@ -6,8 +6,8 @@ public class Board implements IHand {
     private int Round;
     private Player Player1;
     private Player Player2;
-    private List<Card> Battleground1;
-    private List<Card> Battleground2;
+    private Battleground Battleground1;
+    private Battleground Battleground2;
     private boolean Turn1;
     private boolean Turn2;
     private TypePhase Phase;
@@ -16,8 +16,8 @@ public class Board implements IHand {
         this.Round = 1;
         this.Player1 = player1;
         this.Player2 = player2;
-        this.Battleground1 = new ArrayList<Card>();
-        this.Battleground2 = new ArrayList<Card>();
+        this.Battleground1 = new Battleground();
+        this.Battleground2 = new Battleground();
         this.Turn1 = true;
         this.Turn2 = false;
         this.Phase = TypePhase.DRAW;
@@ -41,26 +41,26 @@ public class Board implements IHand {
     }
 
     public boolean isPlayer1Full() {
-        return (this.Battleground1.size() == 5);
+        return Battleground1.isFull();
     }
 
     public boolean isPlayer2Full() {
-        return (this.Battleground2.size() == 5);
+        return Battleground2.isFull();
     }
 
     public void addCardPlayer1(Card c) {
-        this.Battleground1.add(c);
+        Battleground1.addCard(c);
     }
 
     public void addCardPlayer2(Card c) {
-        this.Battleground2.add(c);
+        Battleground2.addCard(c);
     }
 
     public void removeCardPlayer1(int i) {
-        this.Battleground1.remove(i);
+        Battleground1.removeCard(i);
     }
 
     public void removeCardPlayer2(int i) {
-        this.Battleground2.remove(i);
+        Battleground2.removeCard(i);
     }
 }
