@@ -34,10 +34,16 @@ public class SummonedChar {
         return Level;
     }
     public void addExp(int exp) {
-        this.Exp += exp;
+        if (this.Level != this.max_level) {
+            this.Exp += exp;
 
         // automate level up
-        levelUp();
+            while (this.Exp >= this.Exp_need) {
+                this.Exp -= Exp_need;
+                this.Exp_need += 2;
+                this.levelUp();
+            }
+        }
     }
 
     public void addSpell(Spell s) {
@@ -45,9 +51,7 @@ public class SummonedChar {
     }
 
     public void levelUp() {
-        while (this.Exp >= this.Exp_need && this.Level < this.max_level) {
-            this.Exp -= Exp_need;
-            this.Exp_need += 2;
+        if (this.Level < this.max_level) {
             this.Level += 1;
             this.baseAtk += c.getAttackUp();
             this.baseHp += c.getHealthUp();
@@ -55,7 +59,11 @@ public class SummonedChar {
     }
 
     public void levelDown() {
-        // TODO
+        if (this.Level > 1) {
+            this.Level -= 1;
+            this.baseAtk -= c.getAttackUp();
+            this.baseHp -= c.getHealthUp();
+        }
     }
 
     public boolean checkDie() {
@@ -93,7 +101,7 @@ public class SummonedChar {
         return attack;
     }
 
-    public void attack(SummonedChar sc) {
+    public void attackCharacter(SummonedChar sc) {
         this.baseHp -= sc.calcAttack(this);
         sc.baseHp -= this.calcAttack(sc);
         if (this.checkDie()) {
@@ -103,4 +111,9 @@ public class SummonedChar {
             this.addExp(sc.Level);
         }
     }
+
+    public void attackPlayer(Player p) {
+        p.takeDamage(this.baseAtk);
+    }
+
 }

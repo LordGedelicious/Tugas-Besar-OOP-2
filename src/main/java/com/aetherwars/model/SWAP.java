@@ -43,7 +43,4 @@ public class SWAP extends Spell {
         this.getUser().baseAtk = this.getUser().baseHp;
         this.getUser().baseHp = temp;
     }
-
-
-
 }
