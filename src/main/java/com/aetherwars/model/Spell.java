@@ -2,10 +2,11 @@ package com.aetherwars.model;
 
 public class Spell extends Card {
     public TypeSpell tipe;
-    public Character char_user;
+    public SummonedChar char_user;
 
-    Spell(int iD, String Nama, String ImagePath, String Deskripsi, int Mana, TypeSpell tipe) {
+    Spell(int ID, String Nama, String ImagePath, String Deskripsi, int Mana, TypeSpell tipe) {
         // super(ID, Nama, ImagePath, Deskripsi, Mana);
+        super(ID, Nama, Deskripsi, ImagePath, Mana);
         this.tipe = tipe;
     }
 
@@ -13,11 +14,11 @@ public class Spell extends Card {
         return this.tipe;
     }
 
-    public void setUser(Character char_user) {
+    public void setUser(SummonedChar char_user) {
         // set user character
         this.char_user = char_user;
     }
-    public Character getUser() {
+    public SummonedChar getUser() {
         return this.char_user;
     }
 

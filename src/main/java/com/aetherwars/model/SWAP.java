@@ -22,7 +22,7 @@ public class SWAP extends Spell {
 
     public void swap() {
 
-        if (getUser().Attack == 0) {
+        if (getUser().baseAtk == 0) {
             // { TODO } kill character
         }
 
@@ -39,9 +39,9 @@ public class SWAP extends Spell {
 
     public void swapAction() {
         int temp;
-        temp = this.getUser().Attack;
-        this.getUser().Attack = this.getUser().Health;
-        this.getUser().Health = temp;
+        temp = this.getUser().baseAtk;
+        this.getUser().baseAtk = this.getUser().baseHp;
+        this.getUser().baseHp = temp;
     }
 
 

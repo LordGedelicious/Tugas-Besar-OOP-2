@@ -45,6 +45,10 @@ public class SummonedChar {
         }
     }
 
+    public void levelDown() {
+        // TODO
+    }
+
     public boolean checkDie() {
         if (this.baseHp <= 0) {
             return true;

@@ -19,15 +19,12 @@ public class LVL extends Spell {
     public void level(String direction) {
         // level up
         if (direction == "UP") {
-            this.getUser().Level = Math.max(this.getUser().Level+getAmount(), 10);
+            this.getUser().levelUp();
         }
         // level down
         else {
-            this.getUser().Level = Math.min(this.getUser().Level-getAmount(), 1);
+            this.getUser().levelDown();
         }
-
-        // reset exp
-        this.getUser().Exp = 0;
     }
     
 }

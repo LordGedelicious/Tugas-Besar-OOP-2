@@ -38,7 +38,7 @@ public class PTN extends Spell {
         // Health : increase or reduce health temporarily
         // { TODO }
             // kill if HP effect + target HP <= 0
-            if (this.HP + this.getUser().Health <= 0) {
+            if (this.HP + this.getUser().baseHp <= 0) { // + temporary hp CHANGE WITH summonedchar function
                 // { TODO } kill character
             }
             
