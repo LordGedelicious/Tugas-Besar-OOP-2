@@ -1,5 +1,8 @@
 package com.aetherwars.model;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class SummonedChar {
     private Character c;
     private int Exp;
@@ -9,6 +12,7 @@ public class SummonedChar {
     public int baseAtk;
     public int baseHp;
     public boolean alreadyAttack;
+    private List<Spell> activeSpells;
 
     public SummonedChar(Character c) {
         this.c = c;
@@ -19,6 +23,7 @@ public class SummonedChar {
         this.Level = 1;
         this.max_level = 10;
         this.alreadyAttack = false;
+        this.activeSpells = new ArrayList<Spell>();
     }
 
     public int getExp() {
@@ -33,6 +38,10 @@ public class SummonedChar {
 
         // automate level up
         levelUp();
+    }
+
+    public void addSpell(Spell s) {
+        this.activeSpells.add(s);
     }
 
     public void levelUp() {
@@ -50,16 +59,43 @@ public class SummonedChar {
     }
 
     public boolean checkDie() {
-        if (this.baseHp <= 0) {
-            return true;
-        } else {
-            return false;
+        return (this.baseHp <= 0);
+    }
+
+    public int calcAttack(SummonedChar sc) {
+        int attack = this.baseAtk;
+        if (this.c.tipe == TypeChar.NETHER) {
+            if (sc.c.tipe == TypeChar.END) {
+                attack *= 0.5;
+            } else if (sc.c.tipe == TypeChar.OVERWORLD) {
+                attack *= 2;
+            } else if (sc.c.tipe == TypeChar.NETHER) {
+                attack *= 1;
+            }
+        } else if (this.c.tipe == TypeChar.END) {
+            if (sc.c.tipe == TypeChar.END) {
+                attack *= 1;
+            } else if (sc.c.tipe == TypeChar.OVERWORLD) {
+                attack *= 0.5;
+            } else if (sc.c.tipe == TypeChar.NETHER) {
+                attack *= 2;
+            }
+        } else if (this.c.tipe == TypeChar.OVERWORLD) {
+            if (sc.c.tipe == TypeChar.END) {
+                attack *= 2;
+            } else if (sc.c.tipe == TypeChar.OVERWORLD) {
+                attack *= 1;
+            } else if (sc.c.tipe == TypeChar.NETHER) {
+                attack *= 0.5;
+            }
         }
+
+        return attack;
     }
 
     public void attack(SummonedChar sc) {
-        this.baseHp -= sc.baseAtk;
-        sc.baseHp -= this.baseAtk;
+        this.baseHp -= sc.calcAttack(this);
+        sc.baseHp -= this.calcAttack(sc);
         if (this.checkDie()) {
             sc.addExp(this.Level);
         }
