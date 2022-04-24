@@ -28,7 +28,7 @@ public class Player {
         this.HP = 80;
         this.maxMana = 0;
         this.deck = new Deck(); //ntar random
-        this.hand = new Hand(this.deck.returnCard(0),this.deck.returnCard(1),this.deck.returnCard(2))
+        this.hand = new Hand(this.deck.returnCard(0),this.deck.returnCard(1),this.deck.returnCard(2));
         this.deckSize = deckSize;
     }
 

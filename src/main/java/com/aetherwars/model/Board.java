@@ -2,7 +2,7 @@ package com.aetherwars.model;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Board implements IHand {
+public class Board {
     private int Round;
     private Player Player1;
     private Player Player2;

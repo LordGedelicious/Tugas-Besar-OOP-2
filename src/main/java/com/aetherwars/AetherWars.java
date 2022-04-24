@@ -1,5 +1,6 @@
 package com.aetherwars;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -31,26 +32,67 @@ public class AetherWars extends Application {
 
   @Override
   public void start(Stage stage) {
-    Text text = new Text();
-    text.setText("Loading...");
-    text.setX(50);
-    text.setY(50);
+    Text title = new Text("Loading...");
+    title.setX(550);
+    title.setY(600);
+
+    Text maxHp1 = new Text("/80");
+    maxHp1.setX(100);
+    maxHp1.setY(50);
+
+    Text nowHp1 = new Text("80");
+    nowHp1.setX(85);
+    nowHp1.setY(50);
+
+    Text maxHp2 = new Text("/80");
+    maxHp2.setX(1180);
+    maxHp2.setY(50);
+
+    Text nowHp2 = new Text("80");
+    nowHp2.setX(1165);
+    nowHp2.setY(50);
+
+    Text draw = new Text("DRAW");
+    draw.setX(250);
+    draw.setY(300);
+
+    Text plan = new Text("PLAN");
+    plan.setX(500);
+    plan.setY(300);
+
+    Text attack = new Text("ATTACK");
+    attack.setX(750);
+    attack.setY(300);
+
+    Text end = new Text("END");
+    end.setX(1000);
+    end.setY(300);
 
     Group root = new Group();
-    root.getChildren().add(text);
+    root.getChildren().add(title);
+    root.getChildren().add(maxHp1);
+    root.getChildren().add(maxHp2);
+    root.getChildren().add(nowHp1);
+    root.getChildren().add(nowHp2);
+    root.getChildren().add(draw);
+    root.getChildren().add(plan);
+    root.getChildren().add(attack);
+    root.getChildren().add(end);
 
-    Scene scene = new Scene(root, 640, 360);
+    Scene scene = new Scene(root, 1280, 640);
 
-    stage.setTitle("Minecraft: Aether Wars");
+    stage.setTitle("Minecraft: Aether Wars - Monangisbeneran");
     stage.setScene(scene);
     stage.show();
 
     try {
       this.loadCards();
-      text.setText("Minecraft: Aether Wars!");
+      title.setText("Minecraft: Aether Wars!");
     } catch (Exception e) {
-      text.setText("Failed to load cards: " + e);
+      title.setText("Failed to load cards: " + e);
     }
+
+
   }
 
   public static void main(String[] args) {
