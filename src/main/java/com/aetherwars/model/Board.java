@@ -12,7 +12,7 @@ public class Board {
     private boolean Turn2;
     private TypePhase Phase;
 
-    Board(Player player1, Player player2) {
+    public Board(Player player1, Player player2) {
         this.Round = 1;
         this.Player1 = player1;
         this.Player2 = player2;
@@ -21,6 +21,14 @@ public class Board {
         this.Turn1 = true;
         this.Turn2 = false;
         this.Phase = TypePhase.DRAW;
+    }
+
+    public int getRound() {
+        return this.Round;
+    }
+
+    public TypePhase getPhase() {
+        return this.Phase;
     }
 
     public void nextPhase() {
