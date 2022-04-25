@@ -2,22 +2,26 @@ package com.aetherwars.model;
 
 import java.util.*;
 
-public class Battleground implements IHand{
-    private List<Card> ActiveCard;
+public class Battleground{
+    private List<SummonedChar> ActiveCard;
 
     public Battleground(){
-        ActiveCard = new ArrayList<Card>(5);
+        ActiveCard = new ArrayList<SummonedChar>(5);
     }
 
     public boolean isFull(){
         return ActiveCard.size() == 5;
     }
 
-    public void addCard(Card c){
+    public void addCard(SummonedChar c){
         this.ActiveCard.add(c);
     }
 
-    public void removeCard(int i){
+    public void removeChar(int i){
         this.ActiveCard.remove(i);
+    }
+
+    public SummonedChar getChar(int i){
+        return this.ActiveCard.get(i);
     }
 }

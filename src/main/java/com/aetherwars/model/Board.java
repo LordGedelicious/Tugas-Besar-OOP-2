@@ -56,19 +56,19 @@ public class Board {
         return Battleground2.isFull();
     }
 
-    public void addCardPlayer1(Card c) {
+    public void addCardPlayer1(SummonedChar c) {
         Battleground1.addCard(c);
     }
 
-    public void addCardPlayer2(Card c) {
+    public void addCardPlayer2(SummonedChar c) {
         Battleground2.addCard(c);
     }
 
     public void removeCardPlayer1(int i) {
-        Battleground1.removeCard(i);
+        Battleground1.removeChar(i);
     }
 
     public void removeCardPlayer2(int i) {
-        Battleground2.removeCard(i);
+        Battleground2.removeChar(i);
     }
 }

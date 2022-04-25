@@ -5,22 +5,12 @@ import java.util.*;
 
 public class Player {
     private String name;
-    //private String description;
     public Integer HP;
     public Integer maxMana;
     public Integer curMana;
     private Integer deckSize;
     private Deck deck;
     private Hand hand;
-    //private Type type;
-  
-    // public Player() {
-    //   this.name = "";
-    //   this.HP = 80;
-    //   this.maxMana = 0;
-    //   this.deck = new ArrayList<Integer>();
-    //   this.deckSize = 40;
-    // }
 
     public Player(String name, Integer deckSize){
         this.name = name;
@@ -44,10 +34,11 @@ public class Player {
         System.out.println("Mana: " + curMana + "/" + maxMana);
     }
 
-    public void depleteMana(Integer mana){
+    public void depleteMana(Integer mana) throws Exception{
         Integer tempMana = this.curMana - mana;
         if (tempMana < 0){
-            System.out.println("Not valid input");
+            //System.out.println("Not valid input");
+            throw new Exception();
         }
         else{
             this.curMana = tempMana;

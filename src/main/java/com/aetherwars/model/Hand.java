@@ -3,7 +3,7 @@ package com.aetherwars.model;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Hand implements IHand{
+public class Hand{
     private List<Card> inHand;
 
     public Hand(Card card1, Card card2, Card card3){
