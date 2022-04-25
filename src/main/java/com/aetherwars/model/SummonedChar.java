@@ -4,15 +4,17 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class SummonedChar {
-    private Character c;
-    private int Exp;
-    private int Level;
-    private int Exp_need;
-    private int max_level;
+    public Character c;
+    public int Exp;
+    public int Level;
+    public int Exp_need;
+    public int max_level;
     public int baseAtk;
     public int baseHp;
+    public int max_Atk;
+    public int max_Hp;
     public boolean alreadyAttack;
-    private List<Spell> activeSpells;
+    public List<TempSpell> activeSpells;
 
     public SummonedChar(Character c) {
         this.c = c;
@@ -20,10 +22,12 @@ public class SummonedChar {
         this.Exp_need = 1;
         this.baseAtk = c.getAttack();
         this.baseHp = c.getHealth();
+        this.max_Atk = c.getAttack();
+        this.max_Hp = c.getHealth();
         this.Level = 1;
         this.max_level = 10;
         this.alreadyAttack = false;
-        this.activeSpells = new ArrayList<Spell>();
+        this.activeSpells = new ArrayList<TempSpell>();
     }
 
     public int getExp() {
@@ -46,8 +50,12 @@ public class SummonedChar {
         }
     }
 
-    public void addSpell(Spell s) {
+    public void addSpell(TempSpell s) {
         this.activeSpells.add(s);
+    }
+
+    public void removeSpell(TempSpell s) {
+        this.activeSpells.remove(s);
     }
 
     public void levelUp() {
@@ -64,6 +72,10 @@ public class SummonedChar {
             this.baseAtk -= c.getAttackUp();
             this.baseHp -= c.getHealthUp();
         }
+    }
+
+    public void resetExp() {
+        this.Exp = 0;
     }
 
     public boolean checkDie() {

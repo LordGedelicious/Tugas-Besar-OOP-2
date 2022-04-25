@@ -1,36 +1,30 @@
 package com.aetherwars.model;
 
-public class MORPH extends Spell {
-    SummonedChar char_swap_target;
-    MORPH(int iD, String Nama, String ImagePath, String Deskripsi, int Mana, TypeSpell tipe) {
+import java.lang.ProcessBuilder.Redirect.Type;
+import java.util.*;
+
+public class MORPH extends PermSpell {
+    int id_swap_target;
+    MORPH(int iD, String Nama, String ImagePath, String Deskripsi, int Mana, TypeSpell tipe, int id_swap_target) {
         super(iD, Nama, ImagePath, Deskripsi, Mana, tipe);
     }
 
-    public void setTarget(SummonedChar target) {
-        this.char_swap_target = target;
-    }
-    public SummonedChar getTarget() {
-        return this.char_swap_target;
-    }
+    @Override
+    public void use() {
+        // find id of character
 
-    
-    public void morph() {
-        // copy attribute
-        // getUser().baseAtk = getTarget().baseAtk;
-        // getUser().c.AttackUp = getTarget().c.AttackUp;
-        // getUser().Deskripsi = getTarget().Deskripsi;
-        // getUser().Exp = getTarget().Exp;
-        // getUser().Health = getTarget().Health;
-        // getUser().HealthUp = getTarget().HealthUp;
-        // getUser().ImagePath = getTarget().ImagePath;
-        // getUser().Level = getTarget().Level;
-        // getUser().Mana = getTarget().Mana;
-        // getUser().Nama = getTarget().Nama;
-        // getUser().tipe = getTarget().tipe;
-
-        // reset lvel and exp
-        // getUser().Level = 1;
-        // getUser().Exp = 0;
+        Character c = new Character(999, "-", TypeChar.END, "-", "-", 0, 0, 0, 0, 0); // change with
         
+        getUser().c = c;
+        getUser().Exp = 0;
+        getUser().Exp_need = 1;
+        getUser().baseAtk = c.getAttack();
+        getUser().baseHp = c.getHealth();
+        getUser().max_Atk = c.getAttack();
+        getUser().max_Hp = c.getHealth();
+        getUser().Level = 1;
+        getUser().max_level = 10;
+        getUser().alreadyAttack = false;
+        getUser().activeSpells = new ArrayList<TempSpell>();
     }
 }

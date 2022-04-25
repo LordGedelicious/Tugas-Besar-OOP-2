@@ -1,40 +1,30 @@
 package com.aetherwars.model;
 
-public class SWAP extends Spell {
-    int Duration; // Duration left
+public class SWAP extends TempSpell {
     SWAP(int iD, String Nama, String ImagePath, String Deskripsi, int Mana, TypeSpell tipe, int Duration) {
-        super(iD, Nama, ImagePath, Deskripsi, Mana, tipe);
-        this.Duration = Duration;
+        super(iD, Nama, ImagePath, Deskripsi, Mana, tipe, Duration);
     }
 
-    public int getDuration() {
-        return this.Duration;
-    }
-
-    public void DecreaseDuration() {
-        this.Duration -= 1;
-        if (this.Duration < 0) {
-            // { TODO } remove from active spell
-            // swap back
-            this.swapAction();
-        }
-    }
-
-    public void swap() {
+    @Override
+    public void use() {
 
         if (getUser().baseAtk == 0) {
             // { TODO } kill character
         }
-
-        if (true) { // { TODO } check if in active spell
-            // swap action
-            swapAction();
-            // { TODO } add to active spell
+        // find matching spell
+        for (TempSpell s : getUser().activeSpells) {
+            if (s.ID == this.ID) {
+                s.duration += this.duration;
+                return;
+            }
         }
-        else {
-            // { TODO } add duration to active spell
-        }
+        // no match
+        swapAction();
 
+    }
+    @Override
+    public void revert() {
+        swapAction();
     }
 
     public void swapAction() {
