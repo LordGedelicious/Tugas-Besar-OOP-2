@@ -1,5 +1,6 @@
 package com.aetherwars.model;
 import java.util.*;
+import java.io.File;
 
 
 public class Deck {
@@ -20,8 +21,14 @@ public class Deck {
         }
     }
 
-    public void fillDeck() {
+    public void fillDeck(String filename, CardLibrary lib) {
         // ini buat ngefill deck pertama kali sampe isinya 60, cuma blm tau gmn cara baca filenya
+        ImportDeck importDeck = new ImportDeck(new File(filename));
+        try{
+            importDeck.readDeck(this, lib);
+        }
+        catch(Exception e){
+        }
     }
 
     public Card returnCard(int position) {
