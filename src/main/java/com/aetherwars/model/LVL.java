@@ -1,22 +1,18 @@
 package com.aetherwars.model;
 
-public class LVL extends Spell {
-    int Amount;
-    LVL(int iD, String Nama, String ImagePath, String Deskripsi, int Mana, TypeSpell tipe) {
+public class LVL extends PermSpell {
+    private String direction; // up or down
+    LVL(int iD, String Nama, String ImagePath, String Deskripsi, int Mana, TypeSpell tipe, String direction) {
         super(iD, Nama, ImagePath, Deskripsi, Mana, tipe);
-        this.Amount = 1;
+        this.direction = direction;
     }
 
-    public int getAmount() {
-        return this.Amount;
+    public String getDirection() {
+        return this.direction;
     }
 
-    // @Override
-    // public void use(Character target) {
-        
-    // }
-
-    public void level(String direction) {
+    @Override
+    public void use() {
         // level up
         if (direction == "UP") {
             this.getUser().levelUp();
@@ -25,6 +21,8 @@ public class LVL extends Spell {
         else {
             this.getUser().levelDown();
         }
+        this.getUser().resetExp();
+
     }
     
 }

@@ -1,36 +1,21 @@
 package com.aetherwars.model;
 
-public class PTN extends Spell {
+public class PTN extends TempSpell {
     int Attack;
     int HP;
     int Duration; // Duration left
     PTN(int iD, String Nama, String ImagePath, String Deskripsi, int Mana, TypeSpell tipe, int Attack, int HP, int Duration) {
-        super(iD, Nama, ImagePath, Deskripsi, Mana, tipe);
+        super(iD, Nama, ImagePath, Deskripsi, Mana, tipe, Duration);
         this.Attack = Attack;
         this.HP = HP;
-        this.Duration = Duration;
     }
 
     // @Override
     // public void use(Character target) {
         
     // }
-
-    public int getDuration() {
-        return this.Duration;
-    }
-
-    public void DecreaseDuration() {
-        this.Duration -= 1;
-        if (this.Duration < 0) {
-            // { TODO } remove from active spell
-            // { TODO } remove extra health and attack
-        }
-    }
-
-    public void potion() {
-        // add character target to attribute
-
+    @Override
+    public void use() {
 
         // Attack : increase or reduce attack temporarily
         // { TODO }
@@ -43,6 +28,10 @@ public class PTN extends Spell {
             }
             
         // Add to active spell
-        // { TODO }
+        getUser().addSpell(this);
+    }
+    @Override
+    public void revert() {
+        // { TODO } remove health or atk effect
     }
 }

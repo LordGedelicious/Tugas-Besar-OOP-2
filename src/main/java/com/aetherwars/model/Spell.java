@@ -1,6 +1,6 @@
 package com.aetherwars.model;
 
-public class Spell extends Card {
+public abstract class Spell extends Card {
     public TypeSpell tipe;
     public SummonedChar char_user;
 
@@ -22,9 +22,9 @@ public class Spell extends Card {
         return this.char_user;
     }
 
-    // public void use(Character target) { // virtual
-    //     System.out.println("Spell used");
-    // }
+    public void use() {
+        
+    }
 
 
 }
