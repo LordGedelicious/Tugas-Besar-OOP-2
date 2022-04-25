@@ -20,6 +20,8 @@ import com.aetherwars.util.CSVReader;
 public class AetherWars extends Application implements EventHandler<ActionEvent> {
   private static final String CHARACTER_CSV_FILE_PATH = "card/data/character.csv";
 
+  private static CardLibrary cLib;
+
   private static Text turn;
   private static Text draw;
   private static Text plan;
@@ -28,15 +30,18 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
   private static Board board;
 
-  public void loadCards() throws IOException, URISyntaxException {
-    File characterCSVFile = new File(getClass().getResource(CHARACTER_CSV_FILE_PATH).toURI());
-    CSVReader characterReader = new CSVReader(characterCSVFile, "\t");
-    characterReader.setSkipHeader(true);
-    List<String[]> characterRows = characterReader.read();
-    for (String[] row : characterRows) {
-      // Character c = new Character(row[1], row[3], TypeChar.valueOf(row[2]));
-      // System.out.println(c);
-    }
+  //public void loadCards() throws IOException, URISyntaxException {
+    public void loadCards(){
+    cLib = new CardLibrary();
+    cLib.fillLibrary();
+    // File characterCSVFile = new File(getClass().getResource(CHARACTER_CSV_FILE_PATH).toURI());
+    // CSVReader characterReader = new CSVReader(characterCSVFile, "\t");
+    // characterReader.setSkipHeader(true);
+    // List<String[]> characterRows = characterReader.read();
+    // for (String[] row : characterRows) {
+    //   // Character c = new Character(row[1], row[3], TypeChar.valueOf(row[2]));
+    //   // System.out.println(c);
+    // }
   }
 
   @Override
@@ -111,13 +116,13 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     stage.setScene(scene);
     stage.show();
 
-    try {
-      this.loadCards();
-    } catch (Exception e) {
-      turn.setText("Failed to load cards: " + e);
-    }
+    // try {
+    //   this.loadCards();
+    // } catch (Exception e) {
+    //   turn.setText("Failed to load cards: " + e);
+    // }
 
-
+    this.loadCards();
   }
 
   public static void main(String[] args) {

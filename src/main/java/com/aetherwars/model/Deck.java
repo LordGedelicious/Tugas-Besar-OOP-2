@@ -7,7 +7,7 @@ public class Deck {
     private List<Card> cards;
     private int currentSize;
     private final int maxSize = 60;
-    private final int minSize = 0;
+    //private final int minSize = 0;
 
     Deck() {
         this.cards = new ArrayList<>(maxSize);

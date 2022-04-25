@@ -1,24 +1,22 @@
 package com.aetherwars.model;
 
 import java.lang.Math;
-import java.util.*;
 
 public class Player {
     private String name;
     public Integer HP;
-    public Integer maxMana;
+    private Integer maxMana;
     public Integer curMana;
-    private Integer deckSize;
     private Deck deck;
-    private Hand hand;
+    public Hand hand;
 
-    public Player(String name, Integer deckSize){
+    public Player(String name, String filename, CardLibrary lib){
         this.name = name;
         this.HP = 80;
         this.maxMana = 0;
-        this.deck = new Deck(); //ntar random
-        //this.hand = new Hand(this.deck.returnCard(0),this.deck.returnCard(1),this.deck.returnCard(2));
-        this.deckSize = deckSize;
+        this.deck = new Deck();
+        this.deck.fillDeck(filename, lib);
+        this.hand = new Hand(this.deck.returnCard(0),this.deck.returnCard(1),this.deck.returnCard(2));
     }
 
     //MANA
@@ -37,7 +35,6 @@ public class Player {
     public void depleteMana(Integer mana) throws Exception{
         Integer tempMana = this.curMana - mana;
         if (tempMana < 0){
-            //System.out.println("Not valid input");
             throw new Exception();
         }
         else{

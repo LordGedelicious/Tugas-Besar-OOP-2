@@ -9,6 +9,15 @@ public class CardLibrary {
         this.library = new HashMap<Integer,Card>();
     }
 
+    public void fillLibrary(){
+        CardReader reader = new CardReader();
+        reader.readCharacter(this);
+        reader.readLvl(this);
+        reader.readPTN(this);
+        reader.readMorph(this);
+        reader.readSwap(this);
+    }
+
     public void addCard(Card c) throws Exception{
         if (this.library.containsKey(c.ID)){
             throw new Exception(); //masukan ID kartu salah

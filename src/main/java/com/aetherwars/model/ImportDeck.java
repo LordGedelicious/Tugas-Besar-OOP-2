@@ -20,5 +20,6 @@ public class ImportDeck {
             Card card = lib.getCardByID(Integer.parseInt(line));
             deck.addCard(card);
         }
+        br.close();
     }
 }
