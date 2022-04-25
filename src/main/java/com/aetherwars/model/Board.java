@@ -1,11 +1,9 @@
 package com.aetherwars.model;
-import java.util.List;
-import java.util.ArrayList;
 
 public class Board {
     private int Round;
-    private Player Player1;
-    private Player Player2;
+    public Player Player1;
+    public Player Player2;
     private Battleground Battleground1;
     private Battleground Battleground2;
     private boolean Turn1;
