@@ -7,7 +7,6 @@ public class Deck {
     private List<Card> cards;
     private int currentSize;
     private final int maxSize = 60;
-    //private final int minSize = 0;
 
     Deck() {
         this.cards = new ArrayList<>(maxSize);
@@ -38,13 +37,19 @@ public class Deck {
         }
     }
 
+    public Card getCard(int position){
+        return this.cards.get(position);
+    }
+
     public Card returnCard(int position) {
+        currentSize--;
         return this.cards.remove(position);
     }
 
     public List<Card> showTopThreeCards() {
-        List<Card> shownCards = new ArrayList<>(3);
-        for (int i = 0; i < 3; i++) {
+        List<Card> shownCards = new ArrayList<>();
+        Integer tersisa = Math.min(currentSize, 3);
+        for (int i = 0; i < tersisa; i++) {
             shownCards.add(this.cards.get(i));
         }
         return shownCards;
@@ -52,5 +57,9 @@ public class Deck {
 
     public void shuffleCards() {
         Collections.shuffle(this.cards);
+    }
+
+    public boolean isEmpty(){
+        return this.cards.size() == 0;
     }
 }

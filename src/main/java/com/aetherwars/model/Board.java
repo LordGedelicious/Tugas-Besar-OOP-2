@@ -6,8 +6,8 @@ public class Board {
     public Player Player2;
     private Battleground Battleground1;
     private Battleground Battleground2;
-    private boolean Turn1;
-    private boolean Turn2;
+    public boolean Turn1;
+    public boolean Turn2;
     private TypePhase Phase;
 
     public Board(Player player1, Player player2) {

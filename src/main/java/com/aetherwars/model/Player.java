@@ -7,7 +7,7 @@ public class Player {
     public Integer HP;
     private Integer maxMana;
     public Integer curMana;
-    private Deck deck;
+    public Deck deck;
     private Integer deckSize;
     public Hand hand;
 

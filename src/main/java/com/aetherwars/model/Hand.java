@@ -11,9 +11,9 @@ public class Hand{
     }
 
     public void getThreeFirst(Deck deck){
-        inHand.set(0, deck.returnCard(0));
-        inHand.set(1, deck.returnCard(1));
-        inHand.set(2, deck.returnCard(2));
+        inHand.add(deck.returnCard(0));
+        inHand.add(deck.returnCard(1));
+        inHand.add(deck.returnCard(2));
     }
 
     public boolean isFull(){

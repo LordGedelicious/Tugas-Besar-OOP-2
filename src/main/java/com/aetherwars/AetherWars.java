@@ -51,8 +51,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
   private static Board board;
 
+  private static Player player1;
+  private static Player player2;
+
   public void loadCards() throws IOException, URISyntaxException {
-  //public void loadCards(){
     cLib = new CardLibrary();
     File characterCSVFile = new File(getClass().getResource(CHARACTER_CSV_FILE_PATH).toURI());
     File lvlCSVFile = new File(getClass().getResource(LVL_CSV_FILE_PATH).toURI());
@@ -71,9 +73,18 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
   @Override
   public void start(Stage stage) throws FileNotFoundException {
+
+    try {
+      this.loadCards();
+    } catch (Exception e) {
+      //turn.setText("Failed to load cards: " + e);
+    }
+
     // Player untuk tes board 
-    Player player1 = new Player("Steve", 40);
-    Player player2 = new Player("Alex", 40);
+    player1 = new Player("Steve", 40);
+    player2 = new Player("Alex", 40);
+    player1.randomDeck(cLib);
+    player2.randomDeck(cLib);
     board = new Board(player1, player2);
 
     // Player setup
@@ -84,6 +95,18 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     turn = new Text("1");
     turn.setX(640);
     turn.setY(50);
+
+    Text tes1 = new Text(player2.hand.getCard(0).Nama);
+    tes1.setX(640);
+    tes1.setY(10);
+
+    Text tes2 = new Text(player2.hand.getCard(1).Nama);
+    tes2.setX(640);
+    tes2.setY(20);
+
+    Text tes3 = new Text(player2.hand.getCard(2).Nama);
+    tes3.setX(640);
+    tes3.setY(30);
 
     Text maxHp1 = new Text("/80");
     maxHp1.setX(100);
@@ -220,20 +243,18 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     root.getChildren().add(end);
     root.getChildren().add(next);
 
+    root.getChildren().add(tes1);
+    root.getChildren().add(tes2);
+    root.getChildren().add(tes3);
+
     Scene scene = new Scene(root, 1280, 700);
 
     stage.setTitle("Minecraft: Aether Wars - Monangisbeneran");
     stage.setScene(scene);
     stage.show();
 
-    try {
-      this.loadCards();
-    } catch (Exception e) {
-      turn.setText("Failed to load cards: " + e);
-    }
-
     //this.loadCards();
-    turn.setText(cLib.getCardByID(402).Nama);
+    //turn.setText(cLib.getCardByID(402).Nama);
     //turn.setText(String.valueOf(characterCSVFile.exists()));
     //turn.setText(String.valueOf(cLib.test));
     //turn.setText(cLib.file.getPath());
@@ -245,16 +266,36 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
   public void handle(ActionEvent event) {
     board.nextPhase();
-    if (board.getPhase() == TypePhase.DRAW) {
+    if (board.getPhase() == TypePhase.DRAW) {//DRAW
       draw.setFill(Color.ORANGE);
+      if (board.Turn1){
+        if (player1.deck.isEmpty()){
+          //player pertama kalah
+          System.out.println("PLayer 1 kalah");
+        }
+        else{
+          List<Card> drawCard = player1.deck.showTopThreeCards();
+          //ntar pilih kartu
+        }
+      }
+      else{
+        if (player2.deck.isEmpty()){
+          //player pertama kalah
+          System.out.println("PLayer 2 kalah");
+        }
+        else{
+          List<Card> drawCard = player2.deck.showTopThreeCards();
+          //ntar pilih kartu
+        }
+      }
       end.setFill(Color.BLACK);
-    } else if (board.getPhase() == TypePhase.PLANNING) {
+    } else if (board.getPhase() == TypePhase.PLANNING) { //PLAN
       plan.setFill(Color.ORANGE);
       draw.setFill(Color.BLACK);
-    } else if (board.getPhase() == TypePhase.ATTACK) {
+    } else if (board.getPhase() == TypePhase.ATTACK) { //ATTACK
       attack.setFill(Color.ORANGE);
       plan.setFill(Color.BLACK);
-    } else {
+    } else { //END
       end.setFill(Color.ORANGE);
       attack.setFill(Color.BLACK);
     }
