@@ -19,6 +19,10 @@ public class Player {
         //this.hand = new Hand(this.deck.returnCard(0),this.deck.returnCard(1),this.deck.returnCard(2));
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     //MANA
     public void increaseMana(){
         this.maxMana = Math.min(this.maxMana += 1, 10);
