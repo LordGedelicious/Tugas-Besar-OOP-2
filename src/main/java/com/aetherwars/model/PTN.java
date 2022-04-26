@@ -21,17 +21,21 @@ public class PTN extends TempSpell {
         // { TODO }
 
         // Health : increase or reduce health temporarily
-        // { TODO }
-            // kill if HP effect + target HP <= 0
-            if (this.HP + this.getUser().baseHp <= 0) { // + temporary hp CHANGE WITH summonedchar function
-                // { TODO } kill character
-            }
             
         // Add to active spell
         getUser().addSpell(this);
+
+        // if negative
+        if (this.HP < 0) {
+            getUser().baseHp -= this.HP;
+        }
+
+        
     }
     @Override
     public void revert() {
         // { TODO } remove health or atk effect
+        getUser().baseHp -= this.HP;
+        getUser().baseAtk -= this.Attack;
     }
 }
