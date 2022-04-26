@@ -1,3 +1,3 @@
-id	name	description	imagepath	direction mana
-401	Level Up	Level up any character by 1	-	2	UP 1
-402	Level down	Level down any character by 1	-	DOWN 1
+id	name	description	imagepath	direction	mana
+401	Airmata Gatotkaca	Increase the level of any character by 1	-	UP	1
+402	Racun Dunia	Decrease the level of any character by 1	-	DOWN	1

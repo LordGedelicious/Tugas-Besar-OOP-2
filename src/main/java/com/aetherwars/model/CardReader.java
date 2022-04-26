@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import com.aetherwars.util.CSVReader;
 
 public class CardReader {
-    public void readCharacter(CardLibrary lib){
-        CSVReader csv = new CSVReader(new File("../card/data/character.csv"),"\t");
+    public void readCharacter(CardLibrary lib, File characterCSVFile){
+        CSVReader csv = new CSVReader(characterCSVFile,"\t");
         csv.setSkipHeader(true);
         List<String[]> data = new ArrayList<String[]>();
         try{
@@ -26,8 +26,8 @@ public class CardReader {
         }
     }
 
-    public void readPTN(CardLibrary lib){
-        CSVReader csv = new CSVReader(new File("../card/data/spell_ptn.csv"),"\t");
+    public void readPTN(CardLibrary lib, File ptnCSVFile){
+        CSVReader csv = new CSVReader(ptnCSVFile,"\t");
         csv.setSkipHeader(true);
         List<String[]> data = new ArrayList<String[]>();
         try{
@@ -46,8 +46,8 @@ public class CardReader {
         }
     }
 
-    public void readSwap(CardLibrary lib){
-        CSVReader csv = new CSVReader(new File("../card/data/spell_swap.csv"),"\t");
+    public void readSwap(CardLibrary lib, File swapCSVFile){
+        CSVReader csv = new CSVReader(swapCSVFile,"\t");
         csv.setSkipHeader(true);
         List<String[]> data = new ArrayList<String[]>();
         try{
@@ -66,8 +66,8 @@ public class CardReader {
         }
     }
 
-    public void readMorph(CardLibrary lib){
-        CSVReader csv = new CSVReader(new File("../card/data/spell_morph.csv"),"\t");
+    public void readMorph(CardLibrary lib, File morphCSVFile){
+        CSVReader csv = new CSVReader(morphCSVFile,"\t");
         csv.setSkipHeader(true);
         List<String[]> data = new ArrayList<String[]>();
         try{
@@ -86,16 +86,16 @@ public class CardReader {
         }
     }
 
-    public void readLvl(CardLibrary lib){
-        CSVReader csv = new CSVReader(new File("../card/data/spell_lvl.csv"),"\t");
+    public void readLvl(CardLibrary lib, File lvlCSVFile){
+        CSVReader csv = new CSVReader(lvlCSVFile,"\t");
         csv.setSkipHeader(true);
         List<String[]> data = new ArrayList<String[]>();
         try{
             data = csv.read();
             System.out.println(data);
             for (String[] isi : data){
-                Card kartu = new LVL(Integer.parseInt(isi[0]), isi[1], isi[3], isi[2], Integer.parseInt(isi[4]), 
-                TypeSpell.valueOf("LVL"), isi[5]);
+                Card kartu = new LVL(Integer.parseInt(isi[0]), isi[1], isi[3], isi[2], Integer.parseInt(isi[5]), 
+                TypeSpell.valueOf("LVL"), isi[4]);
                 try{
                     lib.addCard(kartu);
                 }

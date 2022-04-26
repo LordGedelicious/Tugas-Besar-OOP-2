@@ -19,6 +19,10 @@ import com.aetherwars.util.CSVReader;
 
 public class AetherWars extends Application implements EventHandler<ActionEvent> {
   private static final String CHARACTER_CSV_FILE_PATH = "card/data/character.csv";
+  private static final String PTN_CSV_FILE_PATH = "card/data/spell_ptn.csv";
+  private static final String MORPH_CSV_FILE_PATH = "card/data/spell_morph.csv";
+  private static final String SWAP_CSV_FILE_PATH = "card/data/spell_swap.csv";
+  private static final String LVL_CSV_FILE_PATH = "card/data/spell_lvl.csv";
 
   private static CardLibrary cLib;
 
@@ -30,11 +34,15 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
   private static Board board;
 
-  //public void loadCards() throws IOException, URISyntaxException {
-  public void loadCards(){
+  public void loadCards() throws IOException, URISyntaxException {
+  //public void loadCards(){
     cLib = new CardLibrary();
-    cLib.fillLibrary();
-    // File characterCSVFile = new File(getClass().getResource(CHARACTER_CSV_FILE_PATH).toURI());
+    File characterCSVFile = new File(getClass().getResource(CHARACTER_CSV_FILE_PATH).toURI());
+    File lvlCSVFile = new File(getClass().getResource(LVL_CSV_FILE_PATH).toURI());
+    File morphCSVFile = new File(getClass().getResource(MORPH_CSV_FILE_PATH).toURI());
+    File ptnCSVFile = new File(getClass().getResource(PTN_CSV_FILE_PATH).toURI());
+    File swapCSVFile = new File(getClass().getResource(SWAP_CSV_FILE_PATH).toURI());
+    cLib.fillLibrary(characterCSVFile, lvlCSVFile, morphCSVFile, ptnCSVFile, swapCSVFile);
     // CSVReader characterReader = new CSVReader(characterCSVFile, "\t");
     // characterReader.setSkipHeader(true);
     // List<String[]> characterRows = characterReader.read();
@@ -116,13 +124,17 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     stage.setScene(scene);
     stage.show();
 
-    // try {
-    //   this.loadCards();
-    // } catch (Exception e) {
-    //   turn.setText("Failed to load cards: " + e);
-    // }
+    try {
+      this.loadCards();
+    } catch (Exception e) {
+      turn.setText("Failed to load cards: " + e);
+    }
 
-    this.loadCards();
+    //this.loadCards();
+    turn.setText(cLib.getCardByID(402).Nama);
+    //turn.setText(String.valueOf(characterCSVFile.exists()));
+    //turn.setText(String.valueOf(cLib.test));
+    //turn.setText(cLib.file.getPath());
   }
 
   public static void main(String[] args) {

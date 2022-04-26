@@ -1,21 +1,23 @@
 package com.aetherwars.model;
 
 import java.util.HashMap;
+import java.io.File;
 
 public class CardLibrary {
     public HashMap<Integer, Card> library;
+    public File file;
 
     public CardLibrary(){
         this.library = new HashMap<Integer,Card>();
     }
 
-    public void fillLibrary(){
+    public void fillLibrary(File characterCSVFile, File lvlCSVFile, File morphCSVFile, File ptnCSVFile, File swapCSVFile){
         CardReader reader = new CardReader();
-        reader.readCharacter(this);
-        reader.readLvl(this);
-        reader.readPTN(this);
-        reader.readMorph(this);
-        reader.readSwap(this);
+        reader.readCharacter(this, characterCSVFile);
+        reader.readLvl(this, lvlCSVFile);
+        reader.readPTN(this, ptnCSVFile);
+        reader.readMorph(this, morphCSVFile);
+        reader.readSwap(this, swapCSVFile);
     }
 
     public void addCard(Card c) throws Exception{
