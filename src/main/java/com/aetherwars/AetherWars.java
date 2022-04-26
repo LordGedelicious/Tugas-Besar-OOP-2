@@ -16,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.event.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 import com.aetherwars.model.*;
 import com.aetherwars.util.CSVReader;
@@ -48,6 +49,14 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
   private static ImageView img2C;
   private static ImageView img2D;
   private static ImageView img2E;
+
+  private static ImageView hand1;
+  private static ImageView hand2;
+  private static ImageView hand3;
+  private static ImageView hand4;
+  private static ImageView hand5;
+
+  private static ImageView handHover;
 
   private static Board board;
 
@@ -133,61 +142,61 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     playerName2.setY(70);
 
     // Card image setup
-    this.setImage(1, "card/image/character/Creeper.png");
+    this.setImageBattleground(1, "card/image/character/Creeper.png");
     img1A.setX(225);
     img1A.setY(100);
     img1A.setFitWidth(50);
     img1A.setFitHeight(100);
 
-    this.setImage(2, "card/image/character/Creeper.png");
+    this.setImageBattleground(2, "card/image/character/Creeper.png");
     img1B.setX(350);
     img1B.setY(100);
     img1B.setFitWidth(50);
     img1B.setFitHeight(100);
 
-    this.setImage(3, "card/image/character/Creeper.png");
+    this.setImageBattleground(3, "card/image/character/Creeper.png");
     img1C.setX(225);
     img1C.setY(225);
     img1C.setFitWidth(50);
     img1C.setFitHeight(100);
 
-    this.setImage(4, "card/image/character/Creeper.png");
+    this.setImageBattleground(4, "card/image/character/Creeper.png");
     img1D.setX(350);
     img1D.setY(225);
     img1D.setFitWidth(50);
     img1D.setFitHeight(100);
 
-    this.setImage(5, "card/image/character/Creeper.png");
+    this.setImageBattleground(5, "card/image/character/Creeper.png");
     img1E.setX(475);
     img1E.setY(162.5);
     img1E.setFitWidth(50);
     img1E.setFitHeight(100);
 
-    this.setImage(6, "card/image/character/Creeper.png");
+    this.setImageBattleground(6, "card/image/character/Creeper.png");
     img2A.setX(1005);
     img2A.setY(100);
     img2A.setFitWidth(50);
     img2A.setFitHeight(100);
 
-    this.setImage(7, "card/image/character/Creeper.png");
+    this.setImageBattleground(7, "card/image/character/Creeper.png");
     img2B.setX(880);
     img2B.setY(100);
     img2B.setFitWidth(50);
     img2B.setFitHeight(100);
 
-    this.setImage(8, "card/image/character/Creeper.png");
+    this.setImageBattleground(8, "card/image/character/Creeper.png");
     img2C.setX(1005);
     img2C.setY(225);
     img2C.setFitWidth(50);
     img2C.setFitHeight(100);
 
-    this.setImage(9, "card/image/character/Creeper.png");
+    this.setImageBattleground(9, "card/image/character/Creeper.png");
     img2D.setX(880);
     img2D.setY(225);
     img2D.setFitWidth(50);
     img2D.setFitHeight(100);
 
-    this.setImage(10, "card/image/character/Creeper.png");
+    this.setImageBattleground(10, "card/image/character/Drowned.png");
     img2E.setX(755);
     img2E.setY(162.5);
     img2E.setFitWidth(50);
@@ -210,6 +219,61 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     end = new Text("END");
     end.setX(900);
     end.setY(400);
+
+    // Hand setups
+    this.setImageHand(1, player1.hand.getCard(0).ImagePath);
+    hand1.setX(100);
+    hand1.setY(500);
+    hand1.setFitWidth(50);
+    hand1.setFitHeight(100);
+    hand1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        image = new Image(getClass().getResourceAsStream(player1.hand.getCard(0).ImagePath));
+        handHover = new ImageView(image);
+      }
+    });
+
+    this.setImageHand(2, player1.hand.getCard(1).ImagePath);
+    hand2.setX(200);
+    hand2.setY(500);
+    hand2.setFitWidth(50);
+    hand2.setFitHeight(100);
+    hand2.setOnMouseEntered(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        image = new Image(getClass().getResourceAsStream(player1.hand.getCard(1).ImagePath));
+        handHover = new ImageView(image);
+      }
+    });
+
+    this.setImageHand(3, player1.hand.getCard(2).ImagePath);
+    hand3.setX(300);
+    hand3.setY(500);
+    hand3.setFitWidth(50);
+    hand3.setFitHeight(100);
+    hand3.setOnMouseEntered(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        image = new Image(getClass().getResourceAsStream(player1.hand.getCard(2).ImagePath));
+        handHover = new ImageView(image);
+      }
+    });
+
+    this.setImageHand(4, "card/image/character/Creeper.png");
+    hand4.setX(400);
+    hand4.setY(500);
+    hand4.setFitWidth(50);
+    hand4.setFitHeight(100);
+
+    this.setImageHand(5, "card/image/character/Creeper.png");
+    hand5.setX(500);
+    hand5.setY(500);
+    hand5.setFitWidth(50);
+    hand5.setFitHeight(100);
+
+    this.setImageHand(0, "card/image/character/Creeper.png");
+    handHover.setX(650);
+    handHover.setY(475);
+    handHover.setFitWidth(75);
+    handHover.setFitHeight(150);
 
     Button next = new Button(">>");
     next.setLayoutX(1100);
@@ -243,9 +307,12 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     root.getChildren().add(end);
     root.getChildren().add(next);
 
-    root.getChildren().add(tes1);
-    root.getChildren().add(tes2);
-    root.getChildren().add(tes3);
+    root.getChildren().add(hand1);
+    root.getChildren().add(hand2);
+    root.getChildren().add(hand3);
+    root.getChildren().add(hand4);
+    root.getChildren().add(hand5);
+    root.getChildren().add(handHover);
 
     Scene scene = new Scene(root, 1280, 700);
 
@@ -280,6 +347,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           //ntar pilih kartu
           //get card dari deck sesuai dengan pilihan player
           //kalo hand penuh yang paling kiri (index 0) buang
+
         }
       }
       else{
@@ -308,7 +376,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     turn.setText(Integer.toString(board.getRound()));
   }
 
-  public void setImage(int idx_card, String path) {
+  public void setImageBattleground(int idx_card, String path) {
     image = new Image(getClass().getResourceAsStream(path));
     if (idx_card == 1) {
       img1A = new ImageView(image);
@@ -330,6 +398,23 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
       img2D = new ImageView(image);
     } else if (idx_card == 10) {
       img2E = new ImageView(image);
+    }
+  }
+
+  public void setImageHand(int idx_card, String path) {
+    image = new Image(getClass().getResourceAsStream(path));
+    if (idx_card == 1) {
+      hand1 = new ImageView(image);
+    } else if (idx_card == 2) {
+      hand2 = new ImageView(image);
+    } else if (idx_card == 3) {
+      hand3 = new ImageView(image);
+    } else if (idx_card == 4) {
+      hand4 = new ImageView(image);
+    } else if (idx_card == 5) {
+      hand5 = new ImageView(image);
+    } else if (idx_card == 0) {
+      handHover = new ImageView(image);
     }
   }
 }
