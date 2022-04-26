@@ -20,8 +20,8 @@ public class Deck {
         }
     }
 
-    public void fillDeck(String filename, CardLibrary lib) {
-        ImportDeck importDeck = new ImportDeck(new File(filename));
+    public void fillDeck(File file, CardLibrary lib) {
+        ImportDeck importDeck = new ImportDeck(file);
         try{
             importDeck.readDeck(this, lib);
         }
@@ -60,6 +60,10 @@ public class Deck {
     }
 
     public boolean isEmpty(){
-        return this.cards.size() == 0;
+        return this.currentSize == 0;
+    }
+
+    public void setCurrentSize(int currentSize){
+        this.currentSize = currentSize;
     }
 }

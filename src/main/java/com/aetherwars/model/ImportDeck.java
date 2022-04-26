@@ -16,10 +16,13 @@ public class ImportDeck {
         String line;
         FileReader fileReader = new FileReader(this.importFile);
         BufferedReader br = new BufferedReader(fileReader);
+        int size = 0;
         while ((line = br.readLine()) != null){
             Card card = lib.getCardByID(Integer.parseInt(line));
             deck.addCard(card);
+            size++;
         }
+        deck.setCurrentSize(size);
         br.close();
     }
 }

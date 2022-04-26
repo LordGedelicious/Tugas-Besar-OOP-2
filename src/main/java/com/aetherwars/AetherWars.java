@@ -269,19 +269,25 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     if (board.getPhase() == TypePhase.DRAW) {//DRAW
       draw.setFill(Color.ORANGE);
       if (board.Turn1){
+        player1.increaseMana();
+        player1.resetMana();
         if (player1.deck.isEmpty()){
           //player pertama kalah
-          System.out.println("PLayer 1 kalah");
+          System.out.println("Player 1 kalah");
         }
         else{
           List<Card> drawCard = player1.deck.showTopThreeCards();
           //ntar pilih kartu
+          //get card dari deck sesuai dengan pilihan player
+          //kalo hand penuh yang paling kiri (index 0) buang
         }
       }
       else{
+        player2.increaseMana();
+        player2.resetMana();
         if (player2.deck.isEmpty()){
           //player pertama kalah
-          System.out.println("PLayer 2 kalah");
+          System.out.println("Player 2 kalah");
         }
         else{
           List<Card> drawCard = player2.deck.showTopThreeCards();

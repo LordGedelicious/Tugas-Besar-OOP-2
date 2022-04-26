@@ -1,6 +1,7 @@
 package com.aetherwars.model;
 
 import java.lang.Math;
+import java.io.File;
 
 public class Player {
     private String name;
@@ -20,8 +21,8 @@ public class Player {
         this.hand = new Hand();
     }
 
-    public void importCustomDeck(String filePath, CardLibrary lib){
-        this.deck.fillDeck(filePath, lib);
+    public void importCustomDeck(File file, CardLibrary lib){
+        this.deck.fillDeck(file, lib);
         this.initiateHand();
     }
 
