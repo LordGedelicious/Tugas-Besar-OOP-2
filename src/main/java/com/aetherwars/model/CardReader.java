@@ -7,7 +7,7 @@ import com.aetherwars.util.CSVReader;
 
 public class CardReader {
     public void readCharacter(CardLibrary lib){
-        CSVReader csv = new CSVReader(new File("card/data/character.csv"),"\t");
+        CSVReader csv = new CSVReader(new File("../card/data/character.csv"),"\t");
         csv.setSkipHeader(true);
         List<String[]> data = new ArrayList<String[]>();
         try{
@@ -27,7 +27,7 @@ public class CardReader {
     }
 
     public void readPTN(CardLibrary lib){
-        CSVReader csv = new CSVReader(new File("card/data/spell_ptn.csv"),"\t");
+        CSVReader csv = new CSVReader(new File("../card/data/spell_ptn.csv"),"\t");
         csv.setSkipHeader(true);
         List<String[]> data = new ArrayList<String[]>();
         try{
@@ -47,7 +47,7 @@ public class CardReader {
     }
 
     public void readSwap(CardLibrary lib){
-        CSVReader csv = new CSVReader(new File("card/data/spell_swap.csv"),"\t");
+        CSVReader csv = new CSVReader(new File("../card/data/spell_swap.csv"),"\t");
         csv.setSkipHeader(true);
         List<String[]> data = new ArrayList<String[]>();
         try{
@@ -67,7 +67,7 @@ public class CardReader {
     }
 
     public void readMorph(CardLibrary lib){
-        CSVReader csv = new CSVReader(new File("card/data/spell_morph.csv"),"\t");
+        CSVReader csv = new CSVReader(new File("../card/data/spell_morph.csv"),"\t");
         csv.setSkipHeader(true);
         List<String[]> data = new ArrayList<String[]>();
         try{
@@ -87,11 +87,12 @@ public class CardReader {
     }
 
     public void readLvl(CardLibrary lib){
-        CSVReader csv = new CSVReader(new File("card/data/spell_lvl.csv"),"\t");
+        CSVReader csv = new CSVReader(new File("../card/data/spell_lvl.csv"),"\t");
         csv.setSkipHeader(true);
         List<String[]> data = new ArrayList<String[]>();
         try{
             data = csv.read();
+            System.out.println(data);
             for (String[] isi : data){
                 Card kartu = new LVL(Integer.parseInt(isi[0]), isi[1], isi[3], isi[2], Integer.parseInt(isi[4]), 
                 TypeSpell.valueOf("LVL"), isi[5]);

@@ -22,12 +22,19 @@ public class Deck {
     }
 
     public void fillDeck(String filename, CardLibrary lib) {
-        // ini buat ngefill deck pertama kali sampe isinya 60, cuma blm tau gmn cara baca filenya
         ImportDeck importDeck = new ImportDeck(new File(filename));
         try{
             importDeck.readDeck(this, lib);
         }
         catch(Exception e){
+        }
+    }
+
+    public void fillRandom(CardLibrary lib, Integer deckSize){
+        List<Integer> keysAsArray = new ArrayList<Integer>(lib.library.keySet());
+        Random r = new Random();
+        for (int i = 0; i < deckSize; i++){
+            this.addCard(lib.library.get(keysAsArray.get(r.nextInt(keysAsArray.size()))));
         }
     }
 
