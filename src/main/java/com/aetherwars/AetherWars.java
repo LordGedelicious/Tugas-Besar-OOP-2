@@ -2,6 +2,7 @@ package com.aetherwars;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.util.List;
 
@@ -13,6 +14,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 import javafx.event.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import com.aetherwars.model.*;
 import com.aetherwars.util.CSVReader;
@@ -31,6 +34,20 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
   private static Text plan;
   private static Text attack;
   private static Text end;
+
+  private static Image image;
+
+  private static ImageView img1A;
+  private static ImageView img1B;
+  private static ImageView img1C;
+  private static ImageView img1D;
+  private static ImageView img1E;
+
+  private static ImageView img2A;
+  private static ImageView img2B;
+  private static ImageView img2C;
+  private static ImageView img2D;
+  private static ImageView img2E;
 
   private static Board board;
 
@@ -53,17 +70,18 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
   }
 
   @Override
-  public void start(Stage stage) {
+  public void start(Stage stage) throws FileNotFoundException {
     // Player untuk tes board 
     Player player1 = new Player("Steve", 40);
     Player player2 = new Player("Alex", 40);
     board = new Board(player1, player2);
 
+    // Player setup
     Text turn_text = new Text("Turn");
     turn_text.setX(600);
     turn_text.setY(50);
 
-    turn = new Text("");
+    turn = new Text("1");
     turn.setX(640);
     turn.setY(50);
 
@@ -75,6 +93,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     nowHp1.setX(85);
     nowHp1.setY(50);
 
+    Text playerName1 = new Text(player1.getName());
+    playerName1.setX(85);
+    playerName1.setY(70);
+
     Text maxHp2 = new Text("/80");
     maxHp2.setX(1180);
     maxHp2.setY(50);
@@ -83,26 +105,92 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     nowHp2.setX(1165);
     nowHp2.setY(50);
 
+    Text playerName2 = new Text(player2.getName());
+    playerName2.setX(1165);
+    playerName2.setY(70);
+
+    // Card image setup
+    this.setImage(1, "card/image/character/Creeper.png");
+    img1A.setX(225);
+    img1A.setY(100);
+    img1A.setFitWidth(50);
+    img1A.setFitHeight(100);
+
+    this.setImage(2, "card/image/character/Creeper.png");
+    img1B.setX(350);
+    img1B.setY(100);
+    img1B.setFitWidth(50);
+    img1B.setFitHeight(100);
+
+    this.setImage(3, "card/image/character/Creeper.png");
+    img1C.setX(225);
+    img1C.setY(225);
+    img1C.setFitWidth(50);
+    img1C.setFitHeight(100);
+
+    this.setImage(4, "card/image/character/Creeper.png");
+    img1D.setX(350);
+    img1D.setY(225);
+    img1D.setFitWidth(50);
+    img1D.setFitHeight(100);
+
+    this.setImage(5, "card/image/character/Creeper.png");
+    img1E.setX(475);
+    img1E.setY(162.5);
+    img1E.setFitWidth(50);
+    img1E.setFitHeight(100);
+
+    this.setImage(6, "card/image/character/Creeper.png");
+    img2A.setX(1005);
+    img2A.setY(100);
+    img2A.setFitWidth(50);
+    img2A.setFitHeight(100);
+
+    this.setImage(7, "card/image/character/Creeper.png");
+    img2B.setX(880);
+    img2B.setY(100);
+    img2B.setFitWidth(50);
+    img2B.setFitHeight(100);
+
+    this.setImage(8, "card/image/character/Creeper.png");
+    img2C.setX(1005);
+    img2C.setY(225);
+    img2C.setFitWidth(50);
+    img2C.setFitHeight(100);
+
+    this.setImage(9, "card/image/character/Creeper.png");
+    img2D.setX(880);
+    img2D.setY(225);
+    img2D.setFitWidth(50);
+    img2D.setFitHeight(100);
+
+    this.setImage(10, "card/image/character/Creeper.png");
+    img2E.setX(755);
+    img2E.setY(162.5);
+    img2E.setFitWidth(50);
+    img2E.setFitHeight(100);
+
+    // Phase setup
     draw = new Text("DRAW");
     draw.setX(150);
-    draw.setY(350);
+    draw.setY(400);
     draw.setFill(Color.ORANGE);
 
     plan = new Text("PLAN");
     plan.setX(400);
-    plan.setY(350);
+    plan.setY(400);
 
     attack = new Text("ATTACK");
     attack.setX(650);
-    attack.setY(350);
+    attack.setY(400);
 
     end = new Text("END");
     end.setX(900);
-    end.setY(350);
+    end.setY(400);
 
     Button next = new Button(">>");
     next.setLayoutX(1100);
-    next.setLayoutY(325);
+    next.setLayoutY(375);
     next.setOnAction(this);
 
     Group root = new Group();
@@ -112,13 +200,27 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     root.getChildren().add(maxHp2);
     root.getChildren().add(nowHp1);
     root.getChildren().add(nowHp2);
+    root.getChildren().add(playerName1);
+    root.getChildren().add(playerName2);
+
+    root.getChildren().add(img1A);
+    root.getChildren().add(img1B);
+    root.getChildren().add(img1C);
+    root.getChildren().add(img1D);
+    root.getChildren().add(img1E);
+    root.getChildren().add(img2A);
+    root.getChildren().add(img2B);
+    root.getChildren().add(img2C);
+    root.getChildren().add(img2D);
+    root.getChildren().add(img2E);
+
     root.getChildren().add(draw);
     root.getChildren().add(plan);
     root.getChildren().add(attack);
     root.getChildren().add(end);
     root.getChildren().add(next);
 
-    Scene scene = new Scene(root, 1280, 640);
+    Scene scene = new Scene(root, 1280, 700);
 
     stage.setTitle("Minecraft: Aether Wars - Monangisbeneran");
     stage.setScene(scene);
@@ -157,5 +259,30 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
       attack.setFill(Color.BLACK);
     }
     turn.setText(Integer.toString(board.getRound()));
+  }
+
+  public void setImage(int idx_card, String path) {
+    image = new Image(getClass().getResourceAsStream(path));
+    if (idx_card == 1) {
+      img1A = new ImageView(image);
+    } else if (idx_card == 2) {
+      img1B = new ImageView(image);
+    } else if (idx_card == 3) {
+      img1C = new ImageView(image);
+    } else if (idx_card == 4) {
+      img1D = new ImageView(image);
+    } else if (idx_card == 5) {
+      img1E = new ImageView(image);
+    } else if (idx_card == 6) {
+      img2A = new ImageView(image);
+    } else if (idx_card == 7) {
+      img2B = new ImageView(image);
+    } else if (idx_card == 8) {
+      img2C = new ImageView(image);
+    } else if (idx_card == 9) {
+      img2D = new ImageView(image);
+    } else if (idx_card == 10) {
+      img2E = new ImageView(image);
+    }
   }
 }

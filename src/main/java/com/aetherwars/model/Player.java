@@ -35,6 +35,10 @@ public class Player {
         this.hand.getThreeFirst(deck);
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     //MANA
     public void increaseMana(){
         this.maxMana = Math.min(this.maxMana += 1, 10);
