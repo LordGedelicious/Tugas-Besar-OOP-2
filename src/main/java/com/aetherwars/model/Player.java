@@ -10,13 +10,13 @@ public class Player {
     private Deck deck;
     public Hand hand;
 
-    public Player(String name, String filename, CardLibrary lib){
+    public Player(String name){
         this.name = name;
         this.HP = 80;
         this.maxMana = 0;
         this.deck = new Deck();
-        this.deck.fillDeck(filename, lib);
-        this.hand = new Hand(this.deck.returnCard(0),this.deck.returnCard(1),this.deck.returnCard(2));
+        //this.deck.fillDeck(filename, lib);
+        //this.hand = new Hand(this.deck.returnCard(0),this.deck.returnCard(1),this.deck.returnCard(2));
     }
 
     //MANA

@@ -47,8 +47,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
   @Override
   public void start(Stage stage) {
     // Player untuk tes board 
-    Player player1 = new Player("Steve", 40);
-    Player player2 = new Player("Alex", 40);
+    Player player1 = new Player("Steve");
+    Player player2 = new Player("Alex");
     board = new Board(player1, player2);
 
     Text turn_text = new Text("Turn");
