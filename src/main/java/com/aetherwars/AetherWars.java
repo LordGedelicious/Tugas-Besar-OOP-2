@@ -19,6 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import com.aetherwars.model.*;
+import com.aetherwars.model.Character;
 import com.aetherwars.util.CSVReader;
 
 public class AetherWars extends Application implements EventHandler<ActionEvent> {
@@ -57,6 +58,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
   private static ImageView hand5;
 
   private static ImageView handHover;
+  private static Text detailHand;
+  private static Card card;
 
   private static Board board;
 
@@ -104,18 +107,6 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     turn = new Text("1");
     turn.setX(640);
     turn.setY(50);
-
-    Text tes1 = new Text(player2.hand.getCard(0).Nama);
-    tes1.setX(640);
-    tes1.setY(10);
-
-    Text tes2 = new Text(player2.hand.getCard(1).Nama);
-    tes2.setX(640);
-    tes2.setY(20);
-
-    Text tes3 = new Text(player2.hand.getCard(2).Nama);
-    tes3.setX(640);
-    tes3.setY(30);
 
     Text maxHp1 = new Text("/80");
     maxHp1.setX(100);
@@ -220,7 +211,12 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     end.setX(900);
     end.setY(400);
 
-    // Hand setups
+    Button next = new Button(">>");
+    next.setLayoutX(1100);
+    next.setLayoutY(375);
+    next.setOnAction(this);
+
+    // Hand setup
     this.setImageHand(1, player1.hand.getCard(0).ImagePath);
     hand1.setX(100);
     hand1.setY(500);
@@ -228,8 +224,12 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     hand1.setFitHeight(100);
     hand1.setOnMouseEntered(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
-        image = new Image(getClass().getResourceAsStream(player1.hand.getCard(0).ImagePath));
-        handHover = new ImageView(image);
+        card = player1.hand.getCard(0);
+        image = new Image(getClass().getResourceAsStream(card.ImagePath));
+        handHover.setImage(image);
+        if (card.getClass().equals(Character.class)) {
+          // Masih hrus dilengkapin
+        }
       }
     });
 
@@ -240,8 +240,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     hand2.setFitHeight(100);
     hand2.setOnMouseEntered(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
-        image = new Image(getClass().getResourceAsStream(player1.hand.getCard(1).ImagePath));
-        handHover = new ImageView(image);
+        card = player1.hand.getCard(1);
+        image = new Image(getClass().getResourceAsStream(card.ImagePath));
+        handHover.setImage(image);
       }
     });
 
@@ -252,8 +253,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     hand3.setFitHeight(100);
     hand3.setOnMouseEntered(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
-        image = new Image(getClass().getResourceAsStream(player1.hand.getCard(2).ImagePath));
-        handHover = new ImageView(image);
+        card = player1.hand.getCard(2);
+        image = new Image(getClass().getResourceAsStream(card.ImagePath));
+        handHover.setImage(image);
       }
     });
 
@@ -269,17 +271,17 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     hand5.setFitWidth(50);
     hand5.setFitHeight(100);
 
-    this.setImageHand(0, "card/image/character/Creeper.png");
+    this.setImageHand(0, "card/image/Default.png");
     handHover.setX(650);
     handHover.setY(475);
     handHover.setFitWidth(75);
     handHover.setFitHeight(150);
 
-    Button next = new Button(">>");
-    next.setLayoutX(1100);
-    next.setLayoutY(375);
-    next.setOnAction(this);
+    detailHand = new Text("");
+    detailHand.setX(800);
+    detailHand.setY(500);
 
+    // Group setup
     Group root = new Group();
     root.getChildren().add(turn_text);
     root.getChildren().add(turn);
@@ -313,6 +315,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     root.getChildren().add(hand4);
     root.getChildren().add(hand5);
     root.getChildren().add(handHover);
+    root.getChildren().add(detailHand);
 
     Scene scene = new Scene(root, 1280, 700);
 
