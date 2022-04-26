@@ -6,11 +6,14 @@ import java.util.ArrayList;
 public class Hand{
     private List<Card> inHand;
 
-    public Hand(Card card1, Card card2, Card card3){
+    public Hand(){
         inHand = new ArrayList<Card>(5);
-        inHand.set(0, card1);
-        inHand.set(1, card2);
-        inHand.set(2, card3);
+    }
+
+    public void getThreeFirst(Deck deck){
+        inHand.set(0, deck.returnCard(0));
+        inHand.set(1, deck.returnCard(1));
+        inHand.set(2, deck.returnCard(2));
     }
 
     public boolean isFull(){

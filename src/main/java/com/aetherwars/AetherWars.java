@@ -64,8 +64,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
   @Override
   public void start(Stage stage) throws FileNotFoundException {
     // Player untuk tes board 
-    Player player1 = new Player("Steve");
-    Player player2 = new Player("Alex");
+    Player player1 = new Player("Steve", 40);
+    Player player2 = new Player("Alex", 40);
     board = new Board(player1, player2);
 
     // Player setup

@@ -8,15 +8,31 @@ public class Player {
     private Integer maxMana;
     public Integer curMana;
     private Deck deck;
+    private Integer deckSize;
     public Hand hand;
 
-    public Player(String name){
+    public Player(String name, Integer deckSize){
         this.name = name;
         this.HP = 80;
         this.maxMana = 0;
         this.deck = new Deck();
-        //this.deck.fillDeck(filename, lib);
-        //this.hand = new Hand(this.deck.returnCard(0),this.deck.returnCard(1),this.deck.returnCard(2));
+        this.deckSize = deckSize;
+        this.hand = new Hand();
+    }
+
+    public void importCustomDeck(String filePath, CardLibrary lib){
+        this.deck.fillDeck(filePath, lib);
+        this.initiateHand();
+    }
+
+    public void randomDeck(CardLibrary lib){
+        this.deck.fillRandom(lib, this.deckSize);
+        this.initiateHand();
+    }
+
+    public void initiateHand(){
+        this.deck.shuffleCards();
+        this.hand.getThreeFirst(deck);
     }
 
     public String getName() {

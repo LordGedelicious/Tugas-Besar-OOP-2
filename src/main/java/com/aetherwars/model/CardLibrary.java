@@ -3,7 +3,7 @@ package com.aetherwars.model;
 import java.util.HashMap;
 
 public class CardLibrary {
-    private HashMap<Integer, Card> library;
+    public HashMap<Integer, Card> library;
 
     public CardLibrary(){
         this.library = new HashMap<Integer,Card>();
