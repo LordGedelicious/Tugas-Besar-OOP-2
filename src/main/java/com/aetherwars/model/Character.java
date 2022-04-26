@@ -13,6 +13,7 @@ public class Character extends Card {
         this.Health = Health;
         this.AttackUp = AttackUp;
         this.HealthUp = HealthUp;
+        this.tipe = tipe;
     }
 
     public TypeChar getTipe() {

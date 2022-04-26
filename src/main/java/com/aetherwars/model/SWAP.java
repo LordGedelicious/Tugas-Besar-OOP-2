@@ -19,6 +19,7 @@ public class SWAP extends TempSpell {
             }
         }
         // no match
+        getUser().addSpell(this);
         swapAction();
 
     }

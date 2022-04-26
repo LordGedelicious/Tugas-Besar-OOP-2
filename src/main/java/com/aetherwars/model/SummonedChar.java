@@ -84,48 +84,128 @@ public class SummonedChar {
 
     public int calcAttack(SummonedChar sc) {
         int attack = this.baseAtk;
-        if (this.c.tipe == TypeChar.NETHER) {
-            if (sc.c.tipe == TypeChar.END) {
+        if (TypeChar.NETHER.equals(this.c.tipe)) {
+            if (TypeChar.END.equals(sc.c.tipe)) {
                 attack *= 0.5;
-            } else if (sc.c.tipe == TypeChar.OVERWORLD) {
+            } else if (TypeChar.OVERWORLD.equals(sc.c.tipe)) {
                 attack *= 2;
-            } else if (sc.c.tipe == TypeChar.NETHER) {
+            } else if (TypeChar.NETHER.equals(sc.c.tipe)) {
                 attack *= 1;
             }
-        } else if (this.c.tipe == TypeChar.END) {
-            if (sc.c.tipe == TypeChar.END) {
+        } else if (TypeChar.END.equals(this.c.tipe)) {
+            if (TypeChar.END.equals(sc.c.tipe)) {
                 attack *= 1;
-            } else if (sc.c.tipe == TypeChar.OVERWORLD) {
+            } else if (TypeChar.OVERWORLD.equals(sc.c.tipe)) {
                 attack *= 0.5;
-            } else if (sc.c.tipe == TypeChar.NETHER) {
+            } else if (TypeChar.NETHER.equals(sc.c.tipe)) {
                 attack *= 2;
             }
-        } else if (this.c.tipe == TypeChar.OVERWORLD) {
-            if (sc.c.tipe == TypeChar.END) {
+        } else if (TypeChar.OVERWORLD.equals(this.c.tipe)) {
+            if (TypeChar.END.equals(sc.c.tipe)) {
                 attack *= 2;
-            } else if (sc.c.tipe == TypeChar.OVERWORLD) {
+            } else if (TypeChar.OVERWORLD.equals(sc.c.tipe)) {
                 attack *= 1;
-            } else if (sc.c.tipe == TypeChar.NETHER) {
+            } else if (TypeChar.NETHER.equals(sc.c.tipe)) {
                 attack *= 0.5;
             }
         }
-
+        else {
+            System.out.println("here");
+        }
+       
         return attack;
     }
 
     public void attackCharacter(SummonedChar sc) {
-        this.baseHp -= sc.calcAttack(this);
-        sc.baseHp -= this.calcAttack(sc);
+        int enemyDmg = sc.calcAttack(this);
+        int allyDmg = this.calcAttack(sc);
+        int tempDmg;
+
+        for (TempSpell ts : this.activeSpells) {
+            if (ts instanceof PTN) {
+            PTN temp_ptn = (PTN) ts;
+            // only to + buff
+            if (temp_ptn.HP > 0) {
+                tempDmg = Math.min(temp_ptn.HP, enemyDmg);
+                temp_ptn.HP -= tempDmg;
+                enemyDmg -= tempDmg;
+            } 
+            if (enemyDmg == 0) {
+                break;
+            }
+        }
+        }
+        for (TempSpell ts : sc.activeSpells) {
+            if (ts instanceof PTN) {
+            PTN temp_ptn = (PTN) ts;
+            // only to + buff
+            if (temp_ptn.HP > 0) {
+                tempDmg = Math.min(temp_ptn.HP, allyDmg);
+                temp_ptn.HP -= tempDmg;
+                allyDmg -= tempDmg;
+            } 
+            if (allyDmg == 0) {
+                break;
+            }
+        }
+        }
+
+        this.baseHp -= enemyDmg;
+        
+        sc.baseHp -= allyDmg;
         if (this.checkDie()) {
             sc.addExp(this.Level);
         }
         if (sc.checkDie()) {
             this.addExp(sc.Level);
         }
+        this.alreadyAttack = true;
+
+
+
+
     }
+
+    public int getBuffedHealth() {
+        int ret = this.baseHp;
+        for (TempSpell ts : this.activeSpells) {
+            if (ts instanceof PTN) {
+            PTN temp_ptn = (PTN) ts;
+            if (temp_ptn.HP > 0) {
+            ret += temp_ptn.HP;
+            }
+            }
+
+        }
+        return ret;
+    }
+
 
     public void attackPlayer(Player p) {
         p.takeDamage(this.baseAtk);
     }
 
+    public void printInfo() {
+        System.out.println("=======PRINTINFO========");
+        System.out.println("c= " + c.Nama);
+        System.out.println("Exp= " + Exp);
+        System.out.println("Level= " + Level);
+        System.out.println("Exp_need= " + Exp_need);
+        System.out.println("max_level= " + max_level);
+        System.out.println("base_Atk= " + baseAtk);
+        System.out.println("baseHp= " + baseHp);
+        System.out.println("max_Atk= " + max_Atk);
+        System.out.println("max_hp= " + max_Hp);
+        System.out.println("already attack= " + alreadyAttack);
+
+        for (TempSpell t : activeSpells){
+            System.out.println(t.Nama);
+        }
+    }
+
+    public void DecreaseSpellDuration() {
+        for (TempSpell ts : activeSpells) {
+            ts.DecreaseDuration();
+        }
+    }
 }
