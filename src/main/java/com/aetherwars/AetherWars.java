@@ -28,6 +28,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
   private static final String MORPH_CSV_FILE_PATH = "card/data/spell_morph.csv";
   private static final String SWAP_CSV_FILE_PATH = "card/data/spell_swap.csv";
   private static final String LVL_CSV_FILE_PATH = "card/data/spell_lvl.csv";
+  private static final String DEFAULT_IMG_PATH = "card/image/Default.png";
 
   private static CardLibrary cLib;
 
@@ -81,6 +82,15 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
   private static Text deck;
   private static Text curDeck;
   private static Text maxDeck;
+
+  private static List<Card> drawCard;
+  private static Text drawText;
+  private static ImageView draw1;
+  private static ImageView draw2;
+  private static ImageView draw3;
+  private static Text drawMana1;
+  private static Text drawMana2;
+  private static Text drawMana3;
 
   private static Board board;
 
@@ -176,61 +186,61 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     playerImage2.setFitHeight(100);
 
     // Card image setup
-    this.setImageBattleground(1, "card/image/Default.png");
+    this.setImageBattleground(1, DEFAULT_IMG_PATH);
     img1A.setX(225);
     img1A.setY(100);
     img1A.setFitWidth(50);
     img1A.setFitHeight(100);
 
-    this.setImageBattleground(2, "card/image/Default.png");
+    this.setImageBattleground(2, DEFAULT_IMG_PATH);
     img1B.setX(350);
     img1B.setY(100);
     img1B.setFitWidth(50);
     img1B.setFitHeight(100);
 
-    this.setImageBattleground(3, "card/image/Default.png");
+    this.setImageBattleground(3, DEFAULT_IMG_PATH);
     img1C.setX(225);
     img1C.setY(225);
     img1C.setFitWidth(50);
     img1C.setFitHeight(100);
 
-    this.setImageBattleground(4, "card/image/Default.png");
+    this.setImageBattleground(4, DEFAULT_IMG_PATH);
     img1D.setX(350);
     img1D.setY(225);
     img1D.setFitWidth(50);
     img1D.setFitHeight(100);
 
-    this.setImageBattleground(5, "card/image/Default.png");
+    this.setImageBattleground(5, DEFAULT_IMG_PATH);
     img1E.setX(475);
     img1E.setY(162.5);
     img1E.setFitWidth(50);
     img1E.setFitHeight(100);
 
-    this.setImageBattleground(6, "card/image/Default.png");
+    this.setImageBattleground(6, DEFAULT_IMG_PATH);
     img2A.setX(1005);
     img2A.setY(100);
     img2A.setFitWidth(50);
     img2A.setFitHeight(100);
 
-    this.setImageBattleground(7, "card/image/Default.png");
+    this.setImageBattleground(7, DEFAULT_IMG_PATH);
     img2B.setX(880);
     img2B.setY(100);
     img2B.setFitWidth(50);
     img2B.setFitHeight(100);
 
-    this.setImageBattleground(8, "card/image/Default.png");
+    this.setImageBattleground(8, DEFAULT_IMG_PATH);
     img2C.setX(1005);
     img2C.setY(225);
     img2C.setFitWidth(50);
     img2C.setFitHeight(100);
 
-    this.setImageBattleground(9, "card/image/Default.png");
+    this.setImageBattleground(9, DEFAULT_IMG_PATH);
     img2D.setX(880);
     img2D.setY(225);
     img2D.setFitWidth(50);
     img2D.setFitHeight(100);
 
-    this.setImageBattleground(10, "card/image/Default.png");
+    this.setImageBattleground(10, DEFAULT_IMG_PATH);
     img2E.setX(755);
     img2E.setY(162.5);
     img2E.setFitWidth(50);
@@ -317,7 +327,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     handMana3.setX(300);
     handMana3.setY(625);
 
-    this.setImageHand(4, "card/image/Default.png");
+    this.setImageHand(4, DEFAULT_IMG_PATH);
     hand4.setX(400);
     hand4.setY(500);
     hand4.setFitWidth(50);
@@ -336,7 +346,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     handMana4.setX(400);
     handMana4.setY(625);
 
-    this.setImageHand(5, "card/image/Default.png");
+    this.setImageHand(5, DEFAULT_IMG_PATH);
     hand5.setX(500);
     hand5.setY(500);
     hand5.setFitWidth(50);
@@ -355,7 +365,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     handMana5.setX(500);
     handMana5.setY(625);
 
-    this.setImageHand(0, "card/image/Default.png");
+    this.setImageHand(0, DEFAULT_IMG_PATH);
     handHover.setX(650);
     handHover.setY(475);
     handHover.setFitWidth(75);
@@ -395,6 +405,82 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     maxDeck = new Text("/" + String.valueOf(player1.deckSize));
     maxDeck.setX(1165);
     maxDeck.setY(580);
+
+    // Draw setup
+    drawText = new Text("PICK A CARD");
+    drawText.setX(200);
+    drawText.setY(800);
+
+    drawCard = player1.deck.showTopThreeCards();
+    this.setImageDraw(1, drawCard.get(0).ImagePath);
+    draw1.setX(400);
+    draw1.setY(700);
+    draw1.setFitWidth(80);
+    draw1.setFitHeight(160);
+    draw1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (drawCard.size() > 0) {
+          card = drawCard.get(0);
+          image = new Image(getClass().getResourceAsStream(card.ImagePath));
+          handHover.setImage(image);
+          updateDetailHand();
+        }
+      }
+    });
+    draw1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (drawCard.size() > 0) {
+          card = drawCard.get(0);
+          if (board.Turn1) {
+            player1.hand.addCard(card);
+          } else {
+            player2.hand.addCard(card);
+          }
+        }
+        // Masih perlu ditambah
+      }
+    });
+    drawMana1 = new Text("Mana " + Integer.toString(drawCard.get(0).Mana));
+    drawMana1.setX(415);
+    drawMana1.setY(885);
+
+    this.setImageDraw(2, drawCard.get(1).ImagePath);
+    draw2.setX(600);
+    draw2.setY(700);
+    draw2.setFitWidth(80);
+    draw2.setFitHeight(160);
+    draw2.setOnMouseEntered(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (drawCard.size() > 1) {
+          card = drawCard.get(1);
+          image = new Image(getClass().getResourceAsStream(card.ImagePath));
+          handHover.setImage(image);
+          updateDetailHand();
+        }
+      }
+    });
+    drawMana2 = new Text("Mana " + Integer.toString(drawCard.get(1).Mana));
+    drawMana2.setX(615);
+    drawMana2.setY(885);
+
+    this.setImageDraw(3, drawCard.get(2).ImagePath);
+    draw3.setX(800);
+    draw3.setY(700);
+    draw3.setFitWidth(80);
+    draw3.setFitHeight(160);
+    draw3.setOnMouseEntered(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (drawCard.size() > 2) {
+          card = drawCard.get(2);
+          image = new Image(getClass().getResourceAsStream(card.ImagePath));
+          handHover.setImage(image);
+          updateDetailHand();
+        }
+      }
+    });
+    drawMana3 = new Text("Mana " + Integer.toString(drawCard.get(2).Mana));
+    drawMana3.setX(815);
+    drawMana3.setY(885);
 
     // Group setup
     Group root = new Group();
@@ -448,7 +534,15 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     root.getChildren().add(curDeck);
     root.getChildren().add(maxDeck);
 
-    Scene scene = new Scene(root, 1280, 700);
+    root.getChildren().add(drawText);
+    root.getChildren().add(draw1);
+    root.getChildren().add(draw2);
+    root.getChildren().add(draw3);
+    root.getChildren().add(drawMana1);
+    root.getChildren().add(drawMana2);
+    root.getChildren().add(drawMana3);
+
+    Scene scene = new Scene(root, 1280, 950);
 
     stage.setTitle("Minecraft: Aether Wars - Monangisbeneran");
     stage.setScene(scene);
@@ -483,7 +577,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           System.out.println("Player 1 kalah");
         }
         else{
-          List<Card> drawCard = player1.deck.showTopThreeCards();
+          drawCard = player1.deck.showTopThreeCards();
           //ntar pilih kartu
           //get card dari deck sesuai dengan pilihan player
           //kalo hand penuh yang paling kiri (index 0) buang
@@ -503,7 +597,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           System.out.println("Player 2 kalah");
         }
         else{
-          List<Card> drawCard = player2.deck.showTopThreeCards();
+          drawCard = player2.deck.showTopThreeCards();
           //ntar pilih kartu
         }
       }
@@ -561,6 +655,17 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     } else if (idx_card == 0) {
       handHover = new ImageView(image);
     }
+  }
+
+  public void setImageDraw(int idx_draw, String path) {
+    image = new Image(getClass().getResourceAsStream(path));
+    if (idx_draw == 1) {
+      draw1 = new ImageView(image);
+    } else if (idx_draw == 2) {
+      draw2 = new ImageView(image);
+    } else if (idx_draw == 3) {
+      draw3 = new ImageView(image);
+    } 
   }
 
   public static void updateDetailHand() {
