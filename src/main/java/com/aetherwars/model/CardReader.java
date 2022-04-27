@@ -33,8 +33,8 @@ public class CardReader {
         try{
             data = csv.read();
             for (String[] isi : data){
-                Card kartu = new PTN(Integer.parseInt(isi[0]), isi[1], isi[3], isi[2], Integer.parseInt(isi[4]), 
-                TypeSpell.valueOf("PTN"), Integer.parseInt(isi[5]), Integer.parseInt(isi[6]), Integer.parseInt(isi[7]));
+                Card kartu = new PTN(Integer.parseInt(isi[0]), isi[1], isi[3], isi[2], Integer.parseInt(isi[6]), 
+                TypeSpell.valueOf("PTN"), Integer.parseInt(isi[4]), Integer.parseInt(isi[5]), Integer.parseInt(isi[7]));
                 try{
                     lib.addCard(kartu);
                 }

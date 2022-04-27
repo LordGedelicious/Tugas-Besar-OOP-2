@@ -32,13 +32,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
   private static CardLibrary cLib;
 
   private static Text turn;
-  private static Text draw;
-  private static Text plan;
-  private static Text attack;
-  private static Text end;
-
   private static Text currentPlayer;
-
   private static Text nowHp1;
   private static Text nowHp2;
   
@@ -56,12 +50,21 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
   private static ImageView img2D;
   private static ImageView img2E;
 
+  private static Text draw;
+  private static Text plan;
+  private static Text attack;
+  private static Text end;
+
   private static ImageView hand1;
   private static ImageView hand2;
   private static ImageView hand3;
   private static ImageView hand4;
   private static ImageView hand5;
-
+  private static Text handMana1;
+  private static Text handMana2;
+  private static Text handMana3;
+  private static Text handMana4;
+  private static Text handMana5;
   private static ImageView handHover;
   private static Text handDetail;
   private static Text handDesc;
@@ -272,6 +275,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         }
       }
     });
+    handMana1 = new Text("Mana " + Integer.toString(player1.hand.getCard(0).Mana));
+    handMana1.setX(100);
+    handMana1.setY(625);
 
     this.setImageHand(2, player1.hand.getCard(1).ImagePath);
     hand2.setX(200);
@@ -288,6 +294,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         }
       }
     });
+    handMana2 = new Text("Mana " + Integer.toString(player1.hand.getCard(1).Mana));
+    handMana2.setX(200);
+    handMana2.setY(625);
 
     this.setImageHand(3, player1.hand.getCard(2).ImagePath);
     hand3.setX(300);
@@ -304,6 +313,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         }
       }
     });
+    handMana3 = new Text("Mana " + Integer.toString(player1.hand.getCard(2).Mana));
+    handMana3.setX(300);
+    handMana3.setY(625);
 
     this.setImageHand(4, "card/image/Default.png");
     hand4.setX(400);
@@ -320,6 +332,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         }
       }
     });
+    handMana4 = new Text();
+    handMana4.setX(400);
+    handMana4.setY(625);
 
     this.setImageHand(5, "card/image/Default.png");
     hand5.setX(500);
@@ -336,6 +351,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         }
       }
     });
+    handMana5 = new Text();
+    handMana5.setX(500);
+    handMana5.setY(625);
 
     this.setImageHand(0, "card/image/Default.png");
     handHover.setX(650);
@@ -414,6 +432,11 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     root.getChildren().add(hand3);
     root.getChildren().add(hand4);
     root.getChildren().add(hand5);
+    root.getChildren().add(handMana1);
+    root.getChildren().add(handMana2);
+    root.getChildren().add(handMana3);
+    root.getChildren().add(handMana4);
+    root.getChildren().add(handMana5);
     root.getChildren().add(handHover);
     root.getChildren().add(handDetail);
     root.getChildren().add(handDesc);
@@ -559,7 +582,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
       handDesc.setText(lvl.Deskripsi);
     } else if (card.getClass().equals(SWAP.class)) {
       swap = (SWAP) card;
-      handDetail.setText(swap.Nama);
+      handDetail.setText(swap.Nama + "\nATK <-> HP");
       handDesc.setText(swap.Deskripsi);
     }
   }
