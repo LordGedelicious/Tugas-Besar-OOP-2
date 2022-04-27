@@ -37,6 +37,15 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
   private static Text attack;
   private static Text end;
 
+  private static Text currentPlayer;
+
+  private static Text nowHp1;
+  private static Text nowHp2;
+  private static Text curMana1;
+  private static Text curMana2;
+  private static Text maxMana1;
+  private static Text maxMana2;
+  
   private static Image image;
 
   private static ImageView img1A;
@@ -67,6 +76,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
   private static Player player1;
   private static Player player2;
+
+  private static Integer ronde = 0;
 
   public void loadCards() throws IOException, URISyntaxException {
     cLib = new CardLibrary();
@@ -106,33 +117,71 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     turn_text.setX(600);
     turn_text.setY(50);
 
-    turn = new Text("1");
+    currentPlayer = new Text(player1.getName());
+    currentPlayer.setX(610);
+    currentPlayer.setY(100);
+
+    turn = new Text(String.valueOf(ronde));
     turn.setX(640);
     turn.setY(50);
 
+    //Player 1
     Text maxHp1 = new Text("/80");
     maxHp1.setX(100);
     maxHp1.setY(50);
 
-    Text nowHp1 = new Text("80");
+    nowHp1 = new Text(String.valueOf(player1.HP));
     nowHp1.setX(85);
     nowHp1.setY(50);
+
+    player1.increaseMana();
+    player1.resetMana();
+
+    maxMana1 = new Text("/"+String.valueOf(player1.maxMana));
+    maxMana1.setX(100);
+    maxMana1.setY(200);
+
+    curMana1 = new Text(String.valueOf(player1.curMana));
+    curMana1.setX(87);
+    curMana1.setY(200);
+
+    Text playerMana1 = new Text("Mana:");
+    playerMana1.setX(50);
+    playerMana1.setY(200);
 
     Text playerName1 = new Text(player1.getName());
     playerName1.setX(85);
     playerName1.setY(70);
 
+
+
+    //player 2
     Text maxHp2 = new Text("/80");
     maxHp2.setX(1180);
     maxHp2.setY(50);
 
-    Text nowHp2 = new Text("80");
+    nowHp2 = new Text(String.valueOf(player2.HP));
     nowHp2.setX(1165);
     nowHp2.setY(50);
+
+    player2.increaseMana();
+    player2.resetMana();
 
     Text playerName2 = new Text(player2.getName());
     playerName2.setX(1165);
     playerName2.setY(70);
+
+    maxMana2 = new Text("/"+String.valueOf(player2.maxMana));
+    maxMana2.setX(1180);
+    maxMana2.setY(200);
+
+    curMana2 = new Text(String.valueOf(player2.curMana));
+    curMana2.setX(1167);
+    curMana2.setY(200);
+
+    Text playerMana2 = new Text("Mana:");
+    playerMana2.setX(1130);
+    playerMana2.setY(200);
 
     // Card image setup
     this.setImageBattleground(1, "card/image/character/Creeper.png");
@@ -233,6 +282,18 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           if (card.getClass().equals(Character.class)) {
             updateDetailHand("Character");
           }
+          else if (card.getClass().equals(PTN.class)){
+            updateDetailHand("PTN");
+          }
+          else if (card.getClass().equals(MORPH.class)){
+            updateDetailHand("MOPRH");
+          }
+          else if (card.getClass().equals(LVL.class)){
+            updateDetailHand("LVL");
+          }
+          else if (card.getClass().equals(SWAP.class)){
+            updateDetailHand("SWAP");
+          }
         }
       }
     });
@@ -329,12 +390,19 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     Group root = new Group();
     root.getChildren().add(turn_text);
     root.getChildren().add(turn);
+    root.getChildren().add(currentPlayer);
     root.getChildren().add(maxHp1);
     root.getChildren().add(maxHp2);
     root.getChildren().add(nowHp1);
     root.getChildren().add(nowHp2);
     root.getChildren().add(playerName1);
     root.getChildren().add(playerName2);
+    root.getChildren().add(maxMana1);
+    root.getChildren().add(curMana1);
+    root.getChildren().add(maxMana2);
+    root.getChildren().add(curMana2);
+    root.getChildren().add(playerMana1);
+    root.getChildren().add(playerMana2);
 
     root.getChildren().add(img1A);
     root.getChildren().add(img1B);
@@ -384,8 +452,14 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     if (board.getPhase() == TypePhase.DRAW) {//DRAW
       draw.setFill(Color.ORANGE);
       if (board.Turn1){
+        ronde++;
+        turn.setText(String.valueOf(ronde));
         player1.increaseMana();
         player1.resetMana();
+        curMana1.setText(String.valueOf(player1.curMana));
+        maxMana1.setText("/"+String.valueOf(player1.maxMana));
+        currentPlayer.setText(player1.getName());
+
         if (player1.deck.isEmpty()){
           //player pertama kalah
           System.out.println("Player 1 kalah");
@@ -399,8 +473,13 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         }
       }
       else{
-        player2.increaseMana();
-        player2.resetMana();
+        if (!ronde.equals(0)){
+          player2.increaseMana();
+          player2.resetMana();
+          curMana2.setText(String.valueOf(player2.curMana));
+          maxMana2.setText("/"+String.valueOf(player2.maxMana));
+        }
+        currentPlayer.setText(player2.getName());
         if (player2.deck.isEmpty()){
           //player pertama kalah
           System.out.println("Player 2 kalah");

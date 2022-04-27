@@ -6,7 +6,7 @@ import java.io.File;
 public class Player {
     private String name;
     public Integer HP;
-    private Integer maxMana;
+    public Integer maxMana;
     public Integer curMana;
     public Deck deck;
     private Integer deckSize;
