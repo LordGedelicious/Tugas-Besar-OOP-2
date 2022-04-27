@@ -60,6 +60,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
   private static ImageView handHover;
   private static Text detailHand;
   private static Card card;
+  private static SummonedChar summon;
 
   private static Board board;
 
@@ -224,11 +225,14 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     hand1.setFitHeight(100);
     hand1.setOnMouseEntered(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
-        card = player1.hand.getCard(0);
-        image = new Image(getClass().getResourceAsStream(card.ImagePath));
-        handHover.setImage(image);
-        if (card.getClass().equals(Character.class)) {
-          // Masih hrus dilengkapin
+        if (board.Turn1 && player1.hand.getSize() > 0) {
+          card = player1.hand.getCard(0);
+          image = new Image(getClass().getResourceAsStream(card.ImagePath));
+          handHover.setImage(image);
+          if (card.getClass().equals(Character.class)) {
+            //summon = new SummonedChar(card);
+            //summon.printInfo();
+          }
         }
       }
     });
@@ -240,9 +244,14 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     hand2.setFitHeight(100);
     hand2.setOnMouseEntered(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
-        card = player1.hand.getCard(1);
-        image = new Image(getClass().getResourceAsStream(card.ImagePath));
-        handHover.setImage(image);
+        if (board.Turn1 && player1.hand.getSize() > 1) {
+          card = player1.hand.getCard(1);
+          image = new Image(getClass().getResourceAsStream(card.ImagePath));
+          handHover.setImage(image);
+          if (card.getClass().equals(Character.class)) {
+            // Masih hrus dilengkapin
+          }
+        }
       }
     });
 
@@ -253,9 +262,14 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     hand3.setFitHeight(100);
     hand3.setOnMouseEntered(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
-        card = player1.hand.getCard(2);
-        image = new Image(getClass().getResourceAsStream(card.ImagePath));
-        handHover.setImage(image);
+        if (board.Turn1 && player1.hand.getSize() > 2) {
+          card = player1.hand.getCard(2);
+          image = new Image(getClass().getResourceAsStream(card.ImagePath));
+          handHover.setImage(image);
+          if (card.getClass().equals(Character.class)) {
+            // Masih hrus dilengkapin
+          }
+        }
       }
     });
 
@@ -264,12 +278,36 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     hand4.setY(500);
     hand4.setFitWidth(50);
     hand4.setFitHeight(100);
+    hand4.setOnMouseEntered(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.Turn1 && player1.hand.getSize() > 3) {
+          card = player1.hand.getCard(3);
+          image = new Image(getClass().getResourceAsStream(card.ImagePath));
+          handHover.setImage(image);
+          if (card.getClass().equals(Character.class)) {
+            // Masih hrus dilengkapin
+          }
+        }
+      }
+    });
 
     this.setImageHand(5, "card/image/character/Creeper.png");
     hand5.setX(500);
     hand5.setY(500);
     hand5.setFitWidth(50);
     hand5.setFitHeight(100);
+    hand5.setOnMouseEntered(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.Turn1 && player1.hand.getSize() > 4) {
+          card = player1.hand.getCard(4);
+          image = new Image(getClass().getResourceAsStream(card.ImagePath));
+          handHover.setImage(image);
+          if (card.getClass().equals(Character.class)) {
+            // Masih hrus dilengkapin
+          }
+        }
+      }
+    });
 
     this.setImageHand(0, "card/image/Default.png");
     handHover.setX(650);
@@ -277,7 +315,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     handHover.setFitWidth(75);
     handHover.setFitHeight(150);
 
-    detailHand = new Text("");
+    detailHand = new Text();
     detailHand.setX(800);
     detailHand.setY(500);
 

@@ -23,6 +23,10 @@ public class Hand{
         return false;
     }
 
+    public int getSize() {
+        return this.inHand.size();
+    }
+
     public void addCard(Card s){
         if (isFull()){
             //getinput index
