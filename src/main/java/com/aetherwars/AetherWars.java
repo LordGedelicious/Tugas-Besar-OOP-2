@@ -67,6 +67,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
   private static Text handDesc;
   private static Card card;
   private static SummonedChar summon;
+  private static PTN ptn;
+  private static MORPH morph;
+  private static LVL lvl;
+  private static SWAP swap;
 
   private static Text mana;
   private static Text curMana;
@@ -264,21 +268,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           card = player1.hand.getCard(0);
           image = new Image(getClass().getResourceAsStream(card.ImagePath));
           handHover.setImage(image);
-          if (card.getClass().equals(Character.class)) {
-            updateDetailHand("Character");
-          }
-          else if (card.getClass().equals(PTN.class)){
-            updateDetailHand("PTN");
-          }
-          else if (card.getClass().equals(MORPH.class)){
-            updateDetailHand("MOPRH");
-          }
-          else if (card.getClass().equals(LVL.class)){
-            updateDetailHand("LVL");
-          }
-          else if (card.getClass().equals(SWAP.class)){
-            updateDetailHand("SWAP");
-          }
+          updateDetailHand();
         }
       }
     });
@@ -294,9 +284,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           card = player1.hand.getCard(1);
           image = new Image(getClass().getResourceAsStream(card.ImagePath));
           handHover.setImage(image);
-          if (card.getClass().equals(Character.class)) {
-            updateDetailHand("Character");
-          }
+          updateDetailHand();
         }
       }
     });
@@ -312,9 +300,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           card = player1.hand.getCard(2);
           image = new Image(getClass().getResourceAsStream(card.ImagePath));
           handHover.setImage(image);
-          if (card.getClass().equals(Character.class)) {
-            updateDetailHand("Character");
-          }
+          updateDetailHand();
         }
       }
     });
@@ -330,9 +316,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           card = player1.hand.getCard(3);
           image = new Image(getClass().getResourceAsStream(card.ImagePath));
           handHover.setImage(image);
-          if (card.getClass().equals(Character.class)) {
-            updateDetailHand("Character");
-          }
+          updateDetailHand();
         }
       }
     });
@@ -348,9 +332,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           card = player1.hand.getCard(4);
           image = new Image(getClass().getResourceAsStream(card.ImagePath));
           handHover.setImage(image);
-          if (card.getClass().equals(Character.class)) {
-            updateDetailHand("Character");
-          }
+          updateDetailHand();
         }
       }
     });
@@ -558,11 +540,27 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     }
   }
 
-  public static void updateDetailHand(String s) {
-    if (s == "Character") {
+  public static void updateDetailHand() {
+    if (card.getClass().equals(Character.class)) {
       summon = new SummonedChar((Character) card);
       handDetail.setText(summon.c.Nama + "\nATK : " + summon.baseAtk + "\nHP : " + summon.baseHp + "\nLevel : " + summon.Level + "\nEXP : " + summon.Exp + "/" + summon.Exp_need + "\nType : " + summon.c.tipe.toString());
       handDesc.setText(summon.c.Deskripsi);
+    } else if (card.getClass().equals(PTN.class)) {
+      ptn = (PTN) card;
+      handDetail.setText(ptn.Nama + "\nATK : " + Integer.toString(ptn.Attack) +  "\nHP : " + Integer.toString(ptn.HP) + "\nDuration : " + Integer.toString(((TempSpell) ptn).duration));
+      handDesc.setText(ptn.Deskripsi);
+    } else if (card.getClass().equals(MORPH.class)) {
+      morph = (MORPH) card;
+      handDetail.setText(morph.Nama + "\nTarget ID : " + Integer.toString(morph.id_swap_target));
+      handDesc.setText(morph.Deskripsi);
+    } else if (card.getClass().equals(LVL.class)) {
+      lvl = (LVL) card;
+      handDetail.setText(lvl.Nama + "\nLevel : " + lvl.direction);
+      handDesc.setText(lvl.Deskripsi);
+    } else if (card.getClass().equals(SWAP.class)) {
+      swap = (SWAP) card;
+      handDetail.setText(swap.Nama);
+      handDesc.setText(swap.Deskripsi);
     }
   }
 }

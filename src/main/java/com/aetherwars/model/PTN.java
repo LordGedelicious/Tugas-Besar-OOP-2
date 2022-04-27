@@ -1,9 +1,10 @@
 package com.aetherwars.model;
 
 public class PTN extends TempSpell {
-    int Attack;
-    int HP;
-    int Duration; // Duration left
+    public int Attack;
+    public int HP;
+    public int Duration; // Duration left
+
     PTN(int iD, String Nama, String ImagePath, String Deskripsi, int Mana, TypeSpell tipe, int Attack, int HP, int Duration) {
         super(iD, Nama, ImagePath, Deskripsi, Mana, tipe, Duration);
         this.Attack = Attack;
