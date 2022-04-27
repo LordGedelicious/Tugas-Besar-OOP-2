@@ -41,10 +41,6 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
   private static Text nowHp1;
   private static Text nowHp2;
-  private static Text curMana1;
-  private static Text curMana2;
-  private static Text maxMana1;
-  private static Text maxMana2;
   
   private static Image image;
 
@@ -71,6 +67,13 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
   private static Text handDesc;
   private static Card card;
   private static SummonedChar summon;
+
+  private static Text mana;
+  private static Text curMana;
+  private static Text maxMana;
+  private static Text deck;
+  private static Text curDeck;
+  private static Text maxDeck;
 
   private static Board board;
 
@@ -134,26 +137,16 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     nowHp1.setX(85);
     nowHp1.setY(50);
 
-    player1.increaseMana();
-    player1.resetMana();
-
-    maxMana1 = new Text("/"+String.valueOf(player1.maxMana));
-    maxMana1.setX(100);
-    maxMana1.setY(200);
-
-    curMana1 = new Text(String.valueOf(player1.curMana));
-    curMana1.setX(87);
-    curMana1.setY(200);
-
-    Text playerMana1 = new Text("Mana:");
-    playerMana1.setX(50);
-    playerMana1.setY(200);
-
     Text playerName1 = new Text(player1.getName());
     playerName1.setX(85);
     playerName1.setY(70);
 
-
+    image = new Image(getClass().getResourceAsStream("card/image/Steve.png"));
+    ImageView playerImage1 = new ImageView(image);
+    playerImage1.setX(50);
+    playerImage1.setY(162.5);
+    playerImage1.setFitWidth(100);
+    playerImage1.setFitHeight(100);
 
     //player 2
     Text maxHp2 = new Text("/80");
@@ -164,81 +157,73 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     nowHp2.setX(1165);
     nowHp2.setY(50);
 
-    player2.increaseMana();
-    player2.resetMana();
-
     Text playerName2 = new Text(player2.getName());
     playerName2.setX(1165);
     playerName2.setY(70);
 
-    maxMana2 = new Text("/"+String.valueOf(player2.maxMana));
-    maxMana2.setX(1180);
-    maxMana2.setY(200);
-
-    curMana2 = new Text(String.valueOf(player2.curMana));
-    curMana2.setX(1167);
-    curMana2.setY(200);
-
-    Text playerMana2 = new Text("Mana:");
-    playerMana2.setX(1130);
-    playerMana2.setY(200);
+    image = new Image(getClass().getResourceAsStream("card/image/Alex.png"));
+    ImageView playerImage2 = new ImageView(image);
+    playerImage2.setX(1140);
+    playerImage2.setY(162.5);
+    playerImage2.setFitWidth(100);
+    playerImage2.setFitHeight(100);
 
     // Card image setup
-    this.setImageBattleground(1, "card/image/character/Creeper.png");
+    this.setImageBattleground(1, "card/image/Default.png");
     img1A.setX(225);
     img1A.setY(100);
     img1A.setFitWidth(50);
     img1A.setFitHeight(100);
 
-    this.setImageBattleground(2, "card/image/character/Creeper.png");
+    this.setImageBattleground(2, "card/image/Default.png");
     img1B.setX(350);
     img1B.setY(100);
     img1B.setFitWidth(50);
     img1B.setFitHeight(100);
 
-    this.setImageBattleground(3, "card/image/character/Creeper.png");
+    this.setImageBattleground(3, "card/image/Default.png");
     img1C.setX(225);
     img1C.setY(225);
     img1C.setFitWidth(50);
     img1C.setFitHeight(100);
 
-    this.setImageBattleground(4, "card/image/character/Creeper.png");
+    this.setImageBattleground(4, "card/image/Default.png");
     img1D.setX(350);
     img1D.setY(225);
     img1D.setFitWidth(50);
     img1D.setFitHeight(100);
 
-    this.setImageBattleground(5, "card/image/character/Creeper.png");
+    this.setImageBattleground(5, "card/image/Default.png");
     img1E.setX(475);
     img1E.setY(162.5);
     img1E.setFitWidth(50);
     img1E.setFitHeight(100);
 
-    this.setImageBattleground(6, "card/image/character/Creeper.png");
+    this.setImageBattleground(6, "card/image/Default.png");
     img2A.setX(1005);
     img2A.setY(100);
     img2A.setFitWidth(50);
     img2A.setFitHeight(100);
 
-    this.setImageBattleground(7, "card/image/character/Creeper.png");
+    this.setImageBattleground(7, "card/image/Default.png");
     img2B.setX(880);
     img2B.setY(100);
     img2B.setFitWidth(50);
     img2B.setFitHeight(100);
 
-    this.setImageBattleground(8, "card/image/character/Creeper.png");
+    this.setImageBattleground(8, "card/image/Default.png");
     img2C.setX(1005);
     img2C.setY(225);
     img2C.setFitWidth(50);
     img2C.setFitHeight(100);
 
-    this.setImageBattleground(9, "card/image/character/Creeper.png");
+    this.setImageBattleground(9, "card/image/Default.png");
     img2D.setX(880);
     img2D.setY(225);
     img2D.setFitWidth(50);
     img2D.setFitHeight(100);
 
-    this.setImageBattleground(10, "card/image/character/Drowned.png");
+    this.setImageBattleground(10, "card/image/Default.png");
     img2E.setX(755);
     img2E.setY(162.5);
     img2E.setFitWidth(50);
@@ -264,7 +249,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
     Button next = new Button(">>");
     next.setLayoutX(1100);
-    next.setLayoutY(375);
+    next.setLayoutY(380);
     next.setOnAction(this);
 
     // Hand setup
@@ -386,6 +371,31 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     handDesc.setY(500);
     handDesc.setWrappingWidth(150);
 
+    // Mana & Deck
+    mana = new Text("Mana");
+    mana.setX(1150);
+    mana.setY(510);
+
+    curMana = new Text(String.valueOf(player1.curMana));
+    curMana.setX(1150);
+    curMana.setY(530);
+
+    maxMana = new Text("/" + String.valueOf(player1.maxMana));
+    maxMana.setX(1165);
+    maxMana.setY(530);
+
+    deck = new Text("Deck");
+    deck.setX(1150);
+    deck.setY(560);
+
+    curDeck = new Text(String.valueOf(player1.deckSize - 3));
+    curDeck.setX(1150);
+    curDeck.setY(580);
+
+    maxDeck = new Text("/" + String.valueOf(player1.deckSize));
+    maxDeck.setX(1165);
+    maxDeck.setY(580);
+
     // Group setup
     Group root = new Group();
     root.getChildren().add(turn_text);
@@ -397,12 +407,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     root.getChildren().add(nowHp2);
     root.getChildren().add(playerName1);
     root.getChildren().add(playerName2);
-    root.getChildren().add(maxMana1);
-    root.getChildren().add(curMana1);
-    root.getChildren().add(maxMana2);
-    root.getChildren().add(curMana2);
-    root.getChildren().add(playerMana1);
-    root.getChildren().add(playerMana2);
+    root.getChildren().add(playerImage1);
+    root.getChildren().add(playerImage2);
 
     root.getChildren().add(img1A);
     root.getChildren().add(img1B);
@@ -430,6 +436,13 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     root.getChildren().add(handDetail);
     root.getChildren().add(handDesc);
 
+    root.getChildren().add(mana);
+    root.getChildren().add(curMana);
+    root.getChildren().add(maxMana);
+    root.getChildren().add(deck);
+    root.getChildren().add(curDeck);
+    root.getChildren().add(maxDeck);
+
     Scene scene = new Scene(root, 1280, 700);
 
     stage.setTitle("Minecraft: Aether Wars - Monangisbeneran");
@@ -456,8 +469,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         turn.setText(String.valueOf(ronde));
         player1.increaseMana();
         player1.resetMana();
-        curMana1.setText(String.valueOf(player1.curMana));
-        maxMana1.setText("/"+String.valueOf(player1.maxMana));
+        curMana.setText(String.valueOf(player1.curMana));
+        maxMana.setText("/"+String.valueOf(player1.maxMana));
         currentPlayer.setText(player1.getName());
 
         if (player1.deck.isEmpty()){
@@ -476,8 +489,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         if (!ronde.equals(0)){
           player2.increaseMana();
           player2.resetMana();
-          curMana2.setText(String.valueOf(player2.curMana));
-          maxMana2.setText("/"+String.valueOf(player2.maxMana));
+          curMana.setText(String.valueOf(player2.curMana));
+          maxMana.setText("/"+String.valueOf(player2.maxMana));
         }
         currentPlayer.setText(player2.getName());
         if (player2.deck.isEmpty()){

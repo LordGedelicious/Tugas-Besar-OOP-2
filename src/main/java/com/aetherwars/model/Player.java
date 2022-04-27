@@ -9,13 +9,14 @@ public class Player {
     public Integer maxMana;
     public Integer curMana;
     public Deck deck;
-    private Integer deckSize;
+    public Integer deckSize;
     public Hand hand;
 
     public Player(String name, Integer deckSize){
         this.name = name;
         this.HP = 80;
-        this.maxMana = 0;
+        this.maxMana = 1;
+        this.curMana = 1;
         this.deck = new Deck();
         this.deckSize = deckSize;
         this.hand = new Hand();
