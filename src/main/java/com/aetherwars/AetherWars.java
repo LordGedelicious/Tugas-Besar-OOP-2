@@ -58,7 +58,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
   private static ImageView hand5;
 
   private static ImageView handHover;
-  private static Text detailHand;
+  private static Text handDetail;
+  private static Text handDesc;
   private static Card card;
   private static SummonedChar summon;
 
@@ -230,8 +231,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           image = new Image(getClass().getResourceAsStream(card.ImagePath));
           handHover.setImage(image);
           if (card.getClass().equals(Character.class)) {
-            //summon = new SummonedChar(card);
-            //summon.printInfo();
+            updateDetailHand("Character");
           }
         }
       }
@@ -249,7 +249,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           image = new Image(getClass().getResourceAsStream(card.ImagePath));
           handHover.setImage(image);
           if (card.getClass().equals(Character.class)) {
-            // Masih hrus dilengkapin
+            updateDetailHand("Character");
           }
         }
       }
@@ -267,13 +267,13 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           image = new Image(getClass().getResourceAsStream(card.ImagePath));
           handHover.setImage(image);
           if (card.getClass().equals(Character.class)) {
-            // Masih hrus dilengkapin
+            updateDetailHand("Character");
           }
         }
       }
     });
 
-    this.setImageHand(4, "card/image/character/Creeper.png");
+    this.setImageHand(4, "card/image/Default.png");
     hand4.setX(400);
     hand4.setY(500);
     hand4.setFitWidth(50);
@@ -285,13 +285,13 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           image = new Image(getClass().getResourceAsStream(card.ImagePath));
           handHover.setImage(image);
           if (card.getClass().equals(Character.class)) {
-            // Masih hrus dilengkapin
+            updateDetailHand("Character");
           }
         }
       }
     });
 
-    this.setImageHand(5, "card/image/spell/level/kena zonk.png");
+    this.setImageHand(5, "card/image/Default.png");
     hand5.setX(500);
     hand5.setY(500);
     hand5.setFitWidth(50);
@@ -303,7 +303,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           image = new Image(getClass().getResourceAsStream(card.ImagePath));
           handHover.setImage(image);
           if (card.getClass().equals(Character.class)) {
-            // Masih hrus dilengkapin
+            updateDetailHand("Character");
           }
         }
       }
@@ -315,9 +315,15 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     handHover.setFitWidth(75);
     handHover.setFitHeight(150);
 
-    detailHand = new Text(player1.hand.getCard(0).Deskripsi);
-    detailHand.setX(800);
-    detailHand.setY(500);
+    handDetail = new Text();
+    handDetail.setX(800);
+    handDetail.setY(500);
+    handDetail.setWrappingWidth(100);
+
+    handDesc = new Text();
+    handDesc.setX(925);
+    handDesc.setY(500);
+    handDesc.setWrappingWidth(150);
 
     // Group setup
     Group root = new Group();
@@ -353,7 +359,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     root.getChildren().add(hand4);
     root.getChildren().add(hand5);
     root.getChildren().add(handHover);
-    root.getChildren().add(detailHand);
+    root.getChildren().add(handDetail);
+    root.getChildren().add(handDesc);
 
     Scene scene = new Scene(root, 1280, 700);
 
@@ -456,6 +463,14 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
       hand5 = new ImageView(image);
     } else if (idx_card == 0) {
       handHover = new ImageView(image);
+    }
+  }
+
+  public static void updateDetailHand(String s) {
+    if (s == "Character") {
+      summon = new SummonedChar((Character) card);
+      handDetail.setText(summon.c.Nama + "\nATK : " + summon.baseAtk + "\nHP : " + summon.baseHp + "\nLevel : " + summon.Level + "\nEXP : " + summon.Exp + "/" + summon.Exp_need + "\nType : " + summon.c.tipe.toString());
+      handDesc.setText(summon.c.Deskripsi);
     }
   }
 }
