@@ -315,7 +315,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     handHover.setFitWidth(75);
     handHover.setFitHeight(150);
 
-    detailHand = new Text();
+    detailHand = new Text(player1.hand.getCard(0).Deskripsi);
     detailHand.setX(800);
     detailHand.setY(500);
 
