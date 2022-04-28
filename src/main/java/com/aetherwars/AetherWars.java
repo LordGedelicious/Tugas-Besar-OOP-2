@@ -107,7 +107,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
   private static Integer ronde = 0;
   private static boolean isDrawed = false;
-  private static Integer idHand = 5;
+  private static Integer idHand = new Integer(5);
 
   public void loadCards() throws IOException, URISyntaxException {
     cLib = new CardLibrary();
@@ -252,7 +252,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           if (board.Turn1) {
             summon = board.Battleground1.getChar("A");
           } else if (board.Turn2) {
-            summon.attackCharacter(board.Battleground1.getChar("A"));
+            if (!summon.alreadyAttack) {
+              summon.attackCharacter(board.Battleground1.getChar("A"));
+            }
           }
         }
       }
@@ -304,7 +306,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           if (board.Turn1) {
             summon = board.Battleground1.getChar("B");
           } else if (board.Turn2) {
-            summon.attackCharacter(board.Battleground1.getChar("B"));
+            if (!summon.alreadyAttack) {
+              summon.attackCharacter(board.Battleground1.getChar("B"));
+            }
           }
         } 
       }
@@ -352,7 +356,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
               updateDetailBattleground();
             }
           }
-        }
+        } 
       }
     });
 
@@ -540,7 +544,6 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
       }
     });
 
-
     setImageBattleground(8);
     img2C.setX(1005);
     img2C.setY(225);
@@ -713,7 +716,6 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
       public void handle(MouseEvent event) {
         if (board.getPhase() == TypePhase.PLANNING) {
           if (board.Turn1 && player1.hand.getSize() > 0) {
-            idHand = 0;
             card = player1.hand.getCard(0);
             image = new Image(getClass().getResourceAsStream(card.ImagePath));
             handHover.setImage(image);
