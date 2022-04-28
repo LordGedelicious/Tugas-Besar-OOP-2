@@ -203,12 +203,11 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     img1A.setOnMouseEntered(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
         if (board.Battleground1.ActiveCard.containsKey("A")) {
-          Card chover = card;
-          card = board.Battleground1.getChar("A").c;
-          image = new Image(getClass().getResourceAsStream(card.ImagePath));
+          summon = board.Battleground1.getChar("A");
+          Character c = summon.c;
+          image = new Image(getClass().getResourceAsStream(c.ImagePath));
           handHover.setImage(image);
-          updateDetailHand();
-          card = chover;
+          updateDetailBattleground();
         }
       }
     });
@@ -234,6 +233,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
               Spell s = (Spell) card;
               s.setUser(summon);
               s.use();
+              summon = s.getUser();
+              updateDetailBattleground();
             }
           }
         }
@@ -245,54 +246,415 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     img1B.setY(100);
     img1B.setFitWidth(50);
     img1B.setFitHeight(100);
+    img1B.setOnMouseEntered(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.Battleground1.ActiveCard.containsKey("B")) {
+          summon = board.Battleground1.getChar("B");
+          Character c = summon.c;
+          image = new Image(getClass().getResourceAsStream(c.ImagePath));
+          handHover.setImage(image);
+          updateDetailBattleground();
+        }
+      }
+    });
+    img1B.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.getPhase() == TypePhase.PLANNING) {
+          if (card.getClass().equals(Character.class)) { 
+            if (board.Turn1) {
+              if (!board.Battleground1.ActiveCard.containsKey("B")) {
+                summon = new SummonedChar((Character) card);
+                try {
+                  board.Battleground1.addCard(summon, "B");
+                } catch (Exception e) {
+                  // pass
+                }
+                image = new Image(getClass().getResourceAsStream(card.ImagePath));
+                img1B.setImage(image);
+              }
+            }
+          } else {
+            if (board.Battleground1.ActiveCard.containsKey("B")) {
+              summon = board.Battleground1.getChar("B");
+              Spell s = (Spell) card;
+              s.setUser(summon);
+              s.use();
+              summon = s.getUser();
+              updateDetailBattleground();
+            }
+          }
+        }
+      }
+    });
 
     setImageBattleground(3);
     img1C.setX(225);
     img1C.setY(225);
     img1C.setFitWidth(50);
     img1C.setFitHeight(100);
+    img1C.setOnMouseEntered(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.Battleground1.ActiveCard.containsKey("C")) {
+          summon = board.Battleground1.getChar("C");
+          Character c = summon.c;
+          image = new Image(getClass().getResourceAsStream(c.ImagePath));
+          handHover.setImage(image);
+          updateDetailBattleground();
+        }
+      }
+    });
+    img1C.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.getPhase() == TypePhase.PLANNING) {
+          if (card.getClass().equals(Character.class)) { 
+            if (board.Turn1) {
+              if (!board.Battleground1.ActiveCard.containsKey("C")) {
+                summon = new SummonedChar((Character) card);
+                try {
+                  board.Battleground1.addCard(summon, "C");
+                } catch (Exception e) {
+                  // pass
+                }
+                image = new Image(getClass().getResourceAsStream(card.ImagePath));
+                img1C.setImage(image);
+              }
+            }
+          } else {
+            if (board.Battleground1.ActiveCard.containsKey("C")) {
+              summon = board.Battleground1.getChar("C");
+              Spell s = (Spell) card;
+              s.setUser(summon);
+              s.use();
+              summon = s.getUser();
+              updateDetailBattleground();
+            }
+          }
+        }
+      }
+    });
 
     setImageBattleground(4);
     img1D.setX(350);
     img1D.setY(225);
     img1D.setFitWidth(50);
     img1D.setFitHeight(100);
+    img1D.setOnMouseEntered(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.Battleground1.ActiveCard.containsKey("D")) {
+          summon = board.Battleground1.getChar("D");
+          Character c = summon.c;
+          image = new Image(getClass().getResourceAsStream(c.ImagePath));
+          handHover.setImage(image);
+          updateDetailBattleground();
+        }
+      }
+    });
+    img1D.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.getPhase() == TypePhase.PLANNING) {
+          if (card.getClass().equals(Character.class)) { 
+            if (board.Turn1) {
+              if (!board.Battleground1.ActiveCard.containsKey("D")) {
+                summon = new SummonedChar((Character) card);
+                try {
+                  board.Battleground1.addCard(summon, "D");
+                } catch (Exception e) {
+                  // pass
+                }
+                image = new Image(getClass().getResourceAsStream(card.ImagePath));
+                img1D.setImage(image);
+              }
+            }
+          } else {
+            if (board.Battleground1.ActiveCard.containsKey("D")) {
+              summon = board.Battleground1.getChar("D");
+              Spell s = (Spell) card;
+              s.setUser(summon);
+              s.use();
+              summon = s.getUser();
+              updateDetailBattleground();
+            }
+          }
+        }
+      }
+    });
 
     setImageBattleground(5);
     img1E.setX(475);
     img1E.setY(162.5);
     img1E.setFitWidth(50);
     img1E.setFitHeight(100);
+    img1E.setOnMouseEntered(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.Battleground1.ActiveCard.containsKey("E")) {
+          summon = board.Battleground1.getChar("E");
+          Character c = summon.c;
+          image = new Image(getClass().getResourceAsStream(c.ImagePath));
+          handHover.setImage(image);
+          updateDetailBattleground();
+        }
+      }
+    });
+    img1E.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.getPhase() == TypePhase.PLANNING) {
+          if (card.getClass().equals(Character.class)) { 
+            if (board.Turn1) {
+              if (!board.Battleground1.ActiveCard.containsKey("E")) {
+                summon = new SummonedChar((Character) card);
+                try {
+                  board.Battleground1.addCard(summon, "E");
+                } catch (Exception e) {
+                  // pass
+                }
+                image = new Image(getClass().getResourceAsStream(card.ImagePath));
+                img1E.setImage(image);
+              }
+            }
+          } else {
+            if (board.Battleground1.ActiveCard.containsKey("E")) {
+              summon = board.Battleground1.getChar("E");
+              Spell s = (Spell) card;
+              s.setUser(summon);
+              s.use();
+              summon = s.getUser();
+              updateDetailBattleground();
+            }
+          }
+        }
+      }
+    });
 
     setImageBattleground(6);
     img2A.setX(1005);
     img2A.setY(100);
     img2A.setFitWidth(50);
     img2A.setFitHeight(100);
+    img2A.setOnMouseEntered(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.Battleground2.ActiveCard.containsKey("A")) {
+          summon = board.Battleground2.getChar("A");
+          Character c = summon.c;
+          image = new Image(getClass().getResourceAsStream(c.ImagePath));
+          handHover.setImage(image);
+          updateDetailBattleground();
+        }
+      }
+    });
+    img2A.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.getPhase() == TypePhase.PLANNING) {
+          if (card.getClass().equals(Character.class)) { 
+            if (board.Turn2) {
+              if (!board.Battleground2.ActiveCard.containsKey("A")) {
+                summon = new SummonedChar((Character) card);
+                try {
+                  board.Battleground2.addCard(summon, "A");
+                } catch (Exception e) {
+                  // pass
+                }
+                image = new Image(getClass().getResourceAsStream(card.ImagePath));
+                img2A.setImage(image);
+              }
+            }
+          } else {
+            if (board.Battleground2.ActiveCard.containsKey("A")) {
+              summon = board.Battleground2.getChar("A");
+              Spell s = (Spell) card;
+              s.setUser(summon);
+              s.use();
+              summon = s.getUser();
+              updateDetailBattleground();
+            }
+          }
+        }
+      }
+    });
 
     setImageBattleground(7);
     img2B.setX(880);
     img2B.setY(100);
     img2B.setFitWidth(50);
     img2B.setFitHeight(100);
+    img2B.setOnMouseEntered(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.Battleground2.ActiveCard.containsKey("B")) {
+          summon = board.Battleground2.getChar("B");
+          Character c = summon.c;
+          image = new Image(getClass().getResourceAsStream(c.ImagePath));
+          handHover.setImage(image);
+          updateDetailBattleground();
+        }
+      }
+    });
+    img2B.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.getPhase() == TypePhase.PLANNING) {
+          if (card.getClass().equals(Character.class)) { 
+            if (board.Turn2) {
+              if (!board.Battleground2.ActiveCard.containsKey("B")) {
+                summon = new SummonedChar((Character) card);
+                try {
+                  board.Battleground2.addCard(summon, "B");
+                } catch (Exception e) {
+                  // pass
+                }
+                image = new Image(getClass().getResourceAsStream(card.ImagePath));
+                img2B.setImage(image);
+              }
+            }
+          } else {
+            if (board.Battleground2.ActiveCard.containsKey("B")) {
+              summon = board.Battleground2.getChar("B");
+              Spell s = (Spell) card;
+              s.setUser(summon);
+              s.use();
+              summon = s.getUser();
+              updateDetailBattleground();
+            }
+          }
+        }
+      }
+    });
+
 
     setImageBattleground(8);
     img2C.setX(1005);
     img2C.setY(225);
     img2C.setFitWidth(50);
     img2C.setFitHeight(100);
+    img2C.setOnMouseEntered(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.Battleground2.ActiveCard.containsKey("C")) {
+          summon = board.Battleground2.getChar("C");
+          Character c = summon.c;
+          image = new Image(getClass().getResourceAsStream(c.ImagePath));
+          handHover.setImage(image);
+          updateDetailBattleground();
+        }
+      }
+    });
+    img2C.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.getPhase() == TypePhase.PLANNING) {
+          if (card.getClass().equals(Character.class)) { 
+            if (board.Turn2) {
+              if (!board.Battleground2.ActiveCard.containsKey("C")) {
+                summon = new SummonedChar((Character) card);
+                try {
+                  board.Battleground2.addCard(summon, "C");
+                } catch (Exception e) {
+                  // pass
+                }
+                image = new Image(getClass().getResourceAsStream(card.ImagePath));
+                img2C.setImage(image);
+              }
+            }
+          } else {
+            if (board.Battleground2.ActiveCard.containsKey("C")) {
+              summon = board.Battleground2.getChar("C");
+              Spell s = (Spell) card;
+              s.setUser(summon);
+              s.use();
+              summon = s.getUser();
+              updateDetailBattleground();
+            }
+          }
+        }
+      }
+    });
 
     setImageBattleground(9);
     img2D.setX(880);
     img2D.setY(225);
     img2D.setFitWidth(50);
     img2D.setFitHeight(100);
+    img2D.setOnMouseEntered(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.Battleground2.ActiveCard.containsKey("D")) {
+          summon = board.Battleground2.getChar("D");
+          Character c = summon.c;
+          image = new Image(getClass().getResourceAsStream(c.ImagePath));
+          handHover.setImage(image);
+          updateDetailBattleground();
+        }
+      }
+    });
+    img2D.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.getPhase() == TypePhase.PLANNING) {
+          if (card.getClass().equals(Character.class)) { 
+            if (board.Turn2) {
+              if (!board.Battleground2.ActiveCard.containsKey("D")) {
+                summon = new SummonedChar((Character) card);
+                try {
+                  board.Battleground2.addCard(summon, "D");
+                } catch (Exception e) {
+                  // pass
+                }
+                image = new Image(getClass().getResourceAsStream(card.ImagePath));
+                img2D.setImage(image);
+              }
+            }
+          } else {
+            if (board.Battleground2.ActiveCard.containsKey("D")) {
+              summon = board.Battleground2.getChar("D");
+              Spell s = (Spell) card;
+              s.setUser(summon);
+              s.use();
+              summon = s.getUser();
+              updateDetailBattleground();
+            }
+          }
+        }
+      }
+    });
 
     setImageBattleground(10);
     img2E.setX(755);
     img2E.setY(162.5);
     img2E.setFitWidth(50);
     img2E.setFitHeight(100);
+    img2E.setOnMouseEntered(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.Battleground2.ActiveCard.containsKey("E")) {
+          summon = board.Battleground2.getChar("E");
+          Character c = summon.c;
+          image = new Image(getClass().getResourceAsStream(c.ImagePath));
+          handHover.setImage(image);
+          updateDetailBattleground();
+        }
+      }
+    });
+    img2E.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.getPhase() == TypePhase.PLANNING) {
+          if (card.getClass().equals(Character.class)) { 
+            if (board.Turn2) {
+              if (!board.Battleground2.ActiveCard.containsKey("E")) {
+                summon = new SummonedChar((Character) card);
+                try {
+                  board.Battleground2.addCard(summon, "E");
+                } catch (Exception e) {
+                  // pass
+                }
+                image = new Image(getClass().getResourceAsStream(card.ImagePath));
+                img2E.setImage(image);
+              }
+            }
+          } else {
+            if (board.Battleground2.ActiveCard.containsKey("E")) {
+              summon = board.Battleground2.getChar("E");
+              Spell s = (Spell) card;
+              s.setUser(summon);
+              s.use();
+              summon = s.getUser();
+              updateDetailBattleground();
+            }
+          }
+        }
+      }
+    });
 
     // Phase setup
     draw = new Text("DRAW");
@@ -880,6 +1242,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           }
         }
         end.setFill(Color.BLACK);
+        isDrawed = false;
       } else if (board.getPhase() == TypePhase.PLANNING) { //PLAN
         plan.setFill(Color.ORANGE);
         draw.setFill(Color.BLACK);
@@ -993,6 +1356,11 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
       handDetail.setText(swap.Nama + "\nATK <-> HP");
       handDesc.setText(swap.Deskripsi);
     }
+  }
+
+  public static void updateDetailBattleground() {
+    handDetail.setText(summon.c.Nama + "\nATK : " + summon.baseAtk + "\nHP : " + summon.baseHp + "\nLevel : " + summon.Level + "\nEXP : " + summon.Exp + "/" + summon.Exp_need + "\nType : " + summon.c.tipe.toString());
+    handDesc.setText(summon.c.Deskripsi);
   }
 
   public static void clickOnDraw(int idx) {
