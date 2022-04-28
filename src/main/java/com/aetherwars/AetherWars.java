@@ -2,6 +2,7 @@ package com.aetherwars;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.ProcessBuilder.Redirect.Type;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -1313,8 +1314,13 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
     summoned1A.setOnMouseClicked(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
-        if (board.Battleground1.ActiveCard.containsKey("A") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK) && board.Turn1){
-          resetSelectBG();
+        if (board.Battleground1.ActiveCard.containsKey("A") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK)){
+          if (board.getPhase() == TypePhase.PLANNING){
+            resetSelectBG();
+          }
+          else if (board.getPhase() == TypePhase.ATTACK){
+            resetSelectBG1();
+          }
           summoned1A.setStyle("-fx-background-color: yellow;");
         }
       }
@@ -1322,8 +1328,13 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
     summoned1B.setOnMouseClicked(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
-        if (board.Battleground1.ActiveCard.containsKey("B") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK && board.Turn1)){
-          resetSelectBG();
+        if (board.Battleground1.ActiveCard.containsKey("B") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK)){
+          if (board.getPhase() == TypePhase.PLANNING){
+            resetSelectBG();
+          }
+          else if (board.getPhase() == TypePhase.ATTACK){
+            resetSelectBG1();
+          }
           summoned1B.setStyle("-fx-background-color: yellow;");
         }
       }
@@ -1331,8 +1342,13 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
     summoned1C.setOnMouseClicked(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
-        if (board.Battleground1.ActiveCard.containsKey("C") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK && board.Turn1)){
-          resetSelectBG();
+        if (board.Battleground1.ActiveCard.containsKey("C") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK)){
+          if (board.getPhase() == TypePhase.PLANNING){
+            resetSelectBG();
+          }
+          else if (board.getPhase() == TypePhase.ATTACK){
+            resetSelectBG1();
+          }
           summoned1C.setStyle("-fx-background-color: yellow;");
         }
       }
@@ -1340,8 +1356,13 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
     summoned1D.setOnMouseClicked(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
-        if (board.Battleground1.ActiveCard.containsKey("D") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK && board.Turn1)){
-          resetSelectBG();
+        if (board.Battleground1.ActiveCard.containsKey("D") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK)){
+          if (board.getPhase() == TypePhase.PLANNING){
+            resetSelectBG();
+          }
+          else if (board.getPhase() == TypePhase.ATTACK){
+            resetSelectBG1();
+          }
           summoned1D.setStyle("-fx-background-color: yellow;");
         }
       }
@@ -1349,8 +1370,13 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
     summoned1E.setOnMouseClicked(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
-        if (board.Battleground1.ActiveCard.containsKey("E") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK && board.Turn1)){
-          resetSelectBG();
+        if (board.Battleground1.ActiveCard.containsKey("E") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK)){
+          if (board.getPhase() == TypePhase.PLANNING){
+            resetSelectBG();
+          }
+          else if (board.getPhase() == TypePhase.ATTACK){
+            resetSelectBG1();
+          }
           summoned1E.setStyle("-fx-background-color: yellow;");
         }
       }
@@ -1399,8 +1425,13 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
     summoned2A.setOnMouseClicked(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
-        if (board.Battleground2.ActiveCard.containsKey("A") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK) && board.Turn2){
-          resetSelectBG();
+        if (board.Battleground2.ActiveCard.containsKey("A") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK)){
+          if (board.getPhase() == TypePhase.PLANNING){
+            resetSelectBG();
+          }
+          else if (board.getPhase() == TypePhase.ATTACK){
+            resetSelectBG2();
+          }
           summoned2A.setStyle("-fx-background-color: yellow;");
         }
       }
@@ -1408,8 +1439,13 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
     summoned2B.setOnMouseClicked(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
-        if (board.Battleground2.ActiveCard.containsKey("B") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK) && board.Turn2){
-          resetSelectBG();
+        if (board.Battleground2.ActiveCard.containsKey("B") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK)){
+          if (board.getPhase() == TypePhase.PLANNING){
+            resetSelectBG();
+          }
+          else if (board.getPhase() == TypePhase.ATTACK){
+            resetSelectBG2();
+          }
           summoned2B.setStyle("-fx-background-color: yellow;");
         }
       }
@@ -1417,8 +1453,13 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
     summoned2C.setOnMouseClicked(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
-        if (board.Battleground2.ActiveCard.containsKey("C") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK) && board.Turn2){
-          resetSelectBG();
+        if (board.Battleground2.ActiveCard.containsKey("C") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK)){
+          if (board.getPhase() == TypePhase.PLANNING){
+            resetSelectBG();
+          }
+          else if (board.getPhase() == TypePhase.ATTACK){
+            resetSelectBG2();
+          }
           summoned2C.setStyle("-fx-background-color: yellow;");
         }
       }
@@ -1426,8 +1467,13 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
     summoned2D.setOnMouseClicked(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
-        if (board.Battleground2.ActiveCard.containsKey("D") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK) && board.Turn2){
-          resetSelectBG();
+        if (board.Battleground2.ActiveCard.containsKey("D") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK)){
+          if (board.getPhase() == TypePhase.PLANNING){
+            resetSelectBG();
+          }
+          else if (board.getPhase() == TypePhase.ATTACK){
+            resetSelectBG2();
+          }
           summoned2D.setStyle("-fx-background-color: yellow;");
         }
       }
@@ -1435,8 +1481,13 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
     summoned2E.setOnMouseClicked(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
-        if (board.Battleground2.ActiveCard.containsKey("E") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK) && board.Turn2){
-          resetSelectBG();
+        if (board.Battleground2.ActiveCard.containsKey("E") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK)){
+          if (board.getPhase() == TypePhase.PLANNING){
+            resetSelectBG();
+          }
+          else if (board.getPhase() == TypePhase.ATTACK){
+            resetSelectBG2();
+          }
           summoned2E.setStyle("-fx-background-color: yellow;");
         }
       }
@@ -1755,5 +1806,21 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     summoned2C.setStyle("-fx-background-color: gray;");
     summoned2D.setStyle("-fx-background-color: gray;");
     summoned2E.setStyle("-fx-background-color: gray;");
+  }
+
+  public void resetSelectBG1(){
+    summoned1A.setStyle("-fx-background-color: gray;");
+    summoned1B.setStyle("-fx-background-color: gray;");
+    summoned1C.setStyle("-fx-background-color: gray;");
+    summoned1D.setStyle("-fx-background-color: gray;");
+    summoned1E.setStyle("-fx-background-color: gray;");
+  }
+
+  public void resetSelectBG2(){
+    summoned2A.setStyle("-fx-background-color: gray;");
+    summoned2B.setStyle("-fx-background-color: gray;");
+    summoned2C.setStyle("-fx-background-color: gray;");
+    summoned2D.setStyle("-fx-background-color: gray;");
+    summoned2E.setStyle("-fx-background-color: gray;"); 
   }
 }
