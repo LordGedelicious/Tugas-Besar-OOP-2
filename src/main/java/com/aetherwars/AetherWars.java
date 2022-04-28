@@ -99,6 +99,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
   private static Player player2;
 
   private static Integer ronde = 0;
+  private static boolean isDrawed = false;
 
   public void loadCards() throws IOException, URISyntaxException {
     cLib = new CardLibrary();
@@ -455,6 +456,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         }
         image = new Image(getClass().getResourceAsStream(DEFAULT_IMG_PATH));
         setDefaultDraw();
+        isDrawed = true;
       }
     });
     drawMana1 = new Text("Mana " + Integer.toString(drawCard.get(0).Mana));
@@ -499,6 +501,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         }
         image = new Image(getClass().getResourceAsStream(DEFAULT_IMG_PATH));
         setDefaultDraw();
+        isDrawed = true;
       }
     });
     drawMana2 = new Text("Mana " + Integer.toString(drawCard.get(1).Mana));
@@ -543,6 +546,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         }
         image = new Image(getClass().getResourceAsStream(DEFAULT_IMG_PATH));
         setDefaultDraw();
+        isDrawed = true;
       }
     });
     drawMana3 = new Text("Mana " + Integer.toString(drawCard.get(2).Mana));
@@ -622,56 +626,62 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
   }
 
   public void handle(ActionEvent event) {
-    board.nextPhase();
-    if (board.getPhase() == TypePhase.DRAW) {//DRAW
-      draw.setFill(Color.ORANGE);
-      if (board.Turn1){
-        ronde++;
-        turn.setText(String.valueOf(ronde));
-        player1.increaseMana();
-        player1.resetMana();
-        curMana.setText(String.valueOf(player1.getCurMana()));
-        maxMana.setText("/"+String.valueOf(player1.getMaxMana()));
-        currentPlayer.setText(player1.getName());
-
-        if (player1.deck.isEmpty()){
-          //player pertama kalah
-          System.out.println("Player 1 kalah");
+    if (isDrawed) {
+      board.nextPhase();
+      if (board.getPhase() == TypePhase.DRAW) {//DRAW
+        draw.setFill(Color.ORANGE);
+        if (board.Turn1){
+          ronde++;
+          turn.setText(String.valueOf(ronde));
+          player1.increaseMana();
+          player1.resetMana();
+          curMana.setText(String.valueOf(player1.getCurMana()));
+          maxMana.setText("/"+String.valueOf(player1.getMaxMana()));
+          currentPlayer.setText(player1.getName());
+  
+          if (player1.deck.isEmpty()){
+            //player pertama kalah
+            System.out.println("Player 1 kalah");
+          }
+          else{
+            drawCard = player1.deck.showTopThreeCards();
+            //ntar pilih kartu
+            //get card dari deck sesuai dengan pilihan player
+            //kalo hand penuh yang paling kiri (index 0) buang
+            Card kartu = player1.deck.getCard(0);
+            player1.hand.addCard(kartu);
+          }
         }
         else{
-          drawCard = player1.deck.showTopThreeCards();
-          Card kartu = player1.deck.getCard(0);
-          player1.hand.addCard(kartu);
+          player2.increaseMana();
+          player2.resetMana();
+          curMana.setText(String.valueOf(player2.getCurMana()));
+          maxMana.setText("/"+String.valueOf(player2.getMaxMana()));
+          currentPlayer.setText(player2.getName());
+          if (player2.deck.isEmpty()){
+            //player pertama kalah
+            System.out.println("Player 2 kalah");
+          }
+          else{
+            drawCard = player2.deck.showTopThreeCards();
+            //ntar pilih kartu
+            Card kartu = player2.deck.getCard(0);
+            player2.hand.addCard(kartu);
+          }
         }
+        end.setFill(Color.BLACK);
+      } else if (board.getPhase() == TypePhase.PLANNING) { //PLAN
+        plan.setFill(Color.ORANGE);
+        draw.setFill(Color.BLACK);
+      } else if (board.getPhase() == TypePhase.ATTACK) { //ATTACK
+        attack.setFill(Color.ORANGE);
+        plan.setFill(Color.BLACK);
+      } else { //END
+        end.setFill(Color.ORANGE);
+        attack.setFill(Color.BLACK);
       }
-      else{
-        player2.increaseMana();
-        player2.resetMana();
-        curMana.setText(String.valueOf(player2.getCurMana()));
-        maxMana.setText("/"+String.valueOf(player2.getMaxMana()));
-        currentPlayer.setText(player2.getName());
-        if (player2.deck.isEmpty()){
-          //player pertama kalah
-          System.out.println("Player 2 kalah");
-        }
-        else{
-          drawCard = player2.deck.showTopThreeCards();
-          Card kartu = player2.deck.getCard(0);
-          player2.hand.addCard(kartu);
-        }
-      }
-      end.setFill(Color.BLACK);
-    } else if (board.getPhase() == TypePhase.PLANNING) { //PLAN
-      plan.setFill(Color.ORANGE);
-      draw.setFill(Color.BLACK);
-    } else if (board.getPhase() == TypePhase.ATTACK) { //ATTACK
-      attack.setFill(Color.ORANGE);
-      plan.setFill(Color.BLACK);
-    } else { //END
-      end.setFill(Color.ORANGE);
-      attack.setFill(Color.BLACK);
+      turn.setText(Integer.toString(board.getRound()));      
     }
-    turn.setText(Integer.toString(board.getRound()));
   }
 
   public static void setImageBattleground(int idx_card) {
