@@ -4,8 +4,8 @@ public class Board {
     private int Round;
     public Player Player1;
     public Player Player2;
-    private Battleground Battleground1;
-    private Battleground Battleground2;
+    public Battleground Battleground1;
+    public Battleground Battleground2;
     public boolean Turn1;
     public boolean Turn2;
     private TypePhase Phase;
