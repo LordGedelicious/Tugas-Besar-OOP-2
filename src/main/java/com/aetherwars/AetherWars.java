@@ -18,6 +18,7 @@ import javafx.event.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 
 import com.aetherwars.model.*;
 import com.aetherwars.model.Character;
@@ -93,6 +94,12 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
   private static Text drawMana2;
   private static Text drawMana3;
 
+  private static Pane tangan1 = new Pane();
+  private static Pane tangan2 = new Pane();
+  private static Pane tangan3 = new Pane();
+  private static Pane tangan4 = new Pane();
+  private static Pane tangan5 = new Pane();
+
   private static Board board;
 
   private static Player player1;
@@ -119,7 +126,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     } catch (Exception e) {}
 
     // Player untuk tes board 
-    player1 = new Player("Steve", 40);
+    player1 = new Player("Steve", 60);
     player2 = new Player("Alex", 40);
     player1.randomDeck(cLib);
     player2.randomDeck(cLib);
@@ -274,8 +281,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     // Hand setup
     image = new Image(getClass().getResourceAsStream(player1.hand.getCard(0).ImagePath));
     setImageHand(1);
-    hand1.setX(100);
-    hand1.setY(500);
+    // hand1.setX(100);
+    // hand1.setY(500);
+    hand1.setX(15);
+    hand1.setY(10);
     hand1.setFitWidth(50);
     hand1.setFitHeight(100);
     hand1.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -294,8 +303,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
     image = new Image(getClass().getResourceAsStream(player1.hand.getCard(1).ImagePath));
     setImageHand(2);
-    hand2.setX(200);
-    hand2.setY(500);
+    // hand2.setX(200);
+    // hand2.setY(500);
+    hand2.setX(15);
+    hand2.setY(10);
     hand2.setFitWidth(50);
     hand2.setFitHeight(100);
     hand2.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -314,8 +325,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
     image = new Image(getClass().getResourceAsStream(player1.hand.getCard(2).ImagePath));
     setImageHand(3);
-    hand3.setX(300);
-    hand3.setY(500);
+    // hand3.setX(300);
+    // hand3.setY(500);
+    hand3.setX(15);
+    hand3.setY(10);
     hand3.setFitWidth(50);
     hand3.setFitHeight(100);
     hand3.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -334,8 +347,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
     image = new Image(getClass().getResourceAsStream(DEFAULT_IMG_PATH));
     setImageHand(4);
-    hand4.setX(400);
-    hand4.setY(500);
+    // hand4.setX(400);
+    // hand4.setY(500);
+    hand4.setX(15);
+    hand4.setY(10);
     hand4.setFitWidth(50);
     hand4.setFitHeight(100);
     hand4.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -353,8 +368,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     handMana4.setY(625);
 
     setImageHand(5);
-    hand5.setX(500);
-    hand5.setY(500);
+    // hand5.setX(500);
+    // hand5.setY(500);
+    hand5.setX(15);
+    hand5.setY(10);
     hand5.setFitWidth(50);
     hand5.setFitHeight(100);
     hand5.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -524,6 +541,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         }
       }
     });
+
     draw3.setOnMouseClicked(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
         clickOnDraw(2);
@@ -613,6 +631,68 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     root.getChildren().add(drawMana1);
     root.getChildren().add(drawMana2);
     root.getChildren().add(drawMana3);
+
+    tangan1.setStyle("-fx-background-color: gray;");
+    tangan1.setPrefHeight(150.0);
+    tangan1.setPrefWidth(90.0);
+    tangan1.setLayoutX(90);
+    tangan1.setLayoutY(500);
+    tangan1.getChildren().add(hand1);
+
+    tangan2.setStyle("-fx-background-color: gray;");
+    tangan2.setPrefHeight(150.0);
+    tangan2.setPrefWidth(90.0);
+    tangan2.setLayoutX(190);
+    tangan2.setLayoutY(500);
+    tangan2.getChildren().add(hand2);
+
+    tangan3.setStyle("-fx-background-color: gray;");
+    tangan3.setPrefHeight(150.0);
+    tangan3.setPrefWidth(90.0);
+    tangan3.setLayoutX(290);
+    tangan3.setLayoutY(500);
+    tangan3.getChildren().add(hand3);
+
+    tangan4.setStyle("-fx-background-color: gray;");
+    tangan4.setPrefHeight(150.0);
+    tangan4.setPrefWidth(90.0);
+    tangan4.setLayoutX(390);
+    tangan4.setLayoutY(500);
+    tangan4.getChildren().add(hand4);
+
+    tangan5.setStyle("-fx-background-color: gray;");
+    tangan5.setPrefHeight(150.0);
+    tangan5.setPrefWidth(90.0);
+    tangan5.setLayoutX(490);
+    tangan5.setLayoutY(500);
+    tangan5.getChildren().add(hand5);
+
+    hand1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        resetSelect();
+        tangan1.setStyle("-fx-background-color: yellow;");
+      }
+    });
+
+    hand2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        resetSelect();
+        tangan2.setStyle("-fx-background-color: yellow;");
+      }
+    });
+
+    hand3.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        resetSelect();
+        tangan3.setStyle("-fx-background-color: yellow;");
+      }
+    });
+
+    root.getChildren().add(tangan1);
+    root.getChildren().add(tangan2);
+    root.getChildren().add(tangan3);
+    root.getChildren().add(tangan4);
+    root.getChildren().add(tangan5);
 
     Scene scene = new Scene(root, 1280, 950);
 
@@ -800,5 +880,13 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         player2.hand.addCard(card);
       }
     }
+  }
+
+  public void resetSelect(){
+    tangan1.setStyle("-fx-background-color: gray;");
+    tangan2.setStyle("-fx-background-color: gray;");
+    tangan3.setStyle("-fx-background-color: gray;");
+    tangan4.setStyle("-fx-background-color: gray;");
+    tangan5.setStyle("-fx-background-color: gray;");
   }
 }
