@@ -200,19 +200,40 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     img1A.setY(100);
     img1A.setFitWidth(50);
     img1A.setFitHeight(100);
+    img1A.setOnMouseEntered(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.Battleground1.ActiveCard.containsKey("A")) {
+          Card chover = card;
+          card = board.Battleground1.getChar("A").c;
+          image = new Image(getClass().getResourceAsStream(card.ImagePath));
+          handHover.setImage(image);
+          updateDetailHand();
+          card = chover;
+        }
+      }
+    });
     img1A.setOnMouseClicked(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
         if (board.getPhase() == TypePhase.PLANNING) {
           if (card.getClass().equals(Character.class)) { 
-            if (!board.Battleground1.ActiveCard.containsKey("A")) {
-              summon = new SummonedChar((Character) card);
-              try {
-                board.Battleground1.addCard(summon, "A");
-              } catch (Exception e) {
-                // pass
+            if (board.Turn1) {
+              if (!board.Battleground1.ActiveCard.containsKey("A")) {
+                summon = new SummonedChar((Character) card);
+                try {
+                  board.Battleground1.addCard(summon, "A");
+                } catch (Exception e) {
+                  // pass
+                }
+                image = new Image(getClass().getResourceAsStream(card.ImagePath));
+                img1A.setImage(image);
               }
-              image = new Image(getClass().getResourceAsStream(card.ImagePath));
-              img1A.setImage(image);
+            }
+          } else {
+            if (board.Battleground1.ActiveCard.containsKey("A")) {
+              summon = board.Battleground1.getChar("A");
+              Spell s = (Spell) card;
+              s.setUser(summon);
+              s.use();
             }
           }
         }
