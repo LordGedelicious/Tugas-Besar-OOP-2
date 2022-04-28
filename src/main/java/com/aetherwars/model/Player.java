@@ -5,9 +5,9 @@ import java.io.File;
 
 public class Player {
     private String name;
-    public Integer HP;
-    public Integer maxMana;
-    public Integer curMana;
+    private Integer HP;
+    private Integer maxMana;
+    private Integer curMana;
     public Deck deck;
     public Integer deckSize;
     public Hand hand;
@@ -15,8 +15,8 @@ public class Player {
     public Player(String name, Integer deckSize){
         this.name = name;
         this.HP = 80;
-        this.maxMana = 1;
-        this.curMana = 1;
+        this.maxMana = 0;
+        this.curMana = 0;
         this.deck = new Deck();
         this.deckSize = deckSize;
         this.hand = new Hand();
@@ -64,6 +64,14 @@ public class Player {
         }
     }
 
+    public Integer getCurMana(){
+        return this.curMana;
+    }
+
+    public Integer getMaxMana(){
+        return this.maxMana;
+    }
+
     //HP
     public void takeDamage(Integer damage){
         System.out.println("Mendapat " + damage + " serangan");
@@ -81,5 +89,9 @@ public class Player {
         System.out.println("Name: " + this.name);
         System.out.println("HP: " + HP + "/80");
         showMana();
+    }
+
+    public Integer getHp(){
+        return this.HP;
     }
 }

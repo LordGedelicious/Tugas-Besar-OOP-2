@@ -17,10 +17,7 @@ public class Hand{
     }
 
     public boolean isFull(){
-        if (inHand.size() == 5){
-            return true;
-        }
-        return false;
+        return inHand.size() == 5;
     }
 
     public int getSize() {
@@ -28,8 +25,7 @@ public class Hand{
     }
 
     public void addCard(Card s){
-        if (isFull()){
-            //getinput index
+        if (this.isFull()){
             removeCard(0);
         }
         inHand.add(s);
