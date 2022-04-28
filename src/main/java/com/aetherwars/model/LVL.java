@@ -1,7 +1,8 @@
 package com.aetherwars.model;
 
 public class LVL extends PermSpell {
-    private String direction; // up or down
+    public String direction; // up or down
+
     LVL(int iD, String Nama, String ImagePath, String Deskripsi, int Mana, TypeSpell tipe, String direction) {
         super(iD, Nama, ImagePath, Deskripsi, Mana, tipe);
         this.direction = direction;

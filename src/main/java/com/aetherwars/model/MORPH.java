@@ -3,9 +3,11 @@ package com.aetherwars.model;
 import java.util.*;
 
 public class MORPH extends PermSpell {
-    int id_swap_target;
+    public int id_swap_target;
+
     MORPH(int iD, String Nama, String ImagePath, String Deskripsi, int Mana, TypeSpell tipe, int id_swap_target) {
         super(iD, Nama, ImagePath, Deskripsi, Mana, tipe);
+        this.id_swap_target = id_swap_target;
     }
 
     @Override
