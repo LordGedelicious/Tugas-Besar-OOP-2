@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.application.Application;
 import javafx.scene.Group;
+import javafx.scene.layout.Pane;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
@@ -114,9 +115,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
     try {
       this.loadCards();
-    } catch (Exception e) {
-      //turn.setText("Failed to load cards: " + e);
-    }
+    } catch (Exception e) {}
 
     // Player untuk tes board 
     player1 = new Player("Steve", 40);
@@ -551,7 +550,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     drawMana3.setY(885);
 
     // Group setup
-    Group root = new Group();
+    //Group root = new Group();
+    Pane root = new Pane();
     root.getChildren().add(turn_text);
     root.getChildren().add(turn);
     root.getChildren().add(currentPlayer);
@@ -640,9 +640,6 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         }
         else{
           drawCard = player1.deck.showTopThreeCards();
-          //ntar pilih kartu
-          //get card dari deck sesuai dengan pilihan player
-          //kalo hand penuh yang paling kiri (index 0) buang
           Card kartu = player1.deck.getCard(0);
           player1.hand.addCard(kartu);
         }
@@ -659,7 +656,6 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         }
         else{
           drawCard = player2.deck.showTopThreeCards();
-          //ntar pilih kartu
           Card kartu = player2.deck.getCard(0);
           player2.hand.addCard(kartu);
         }
@@ -783,14 +779,14 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     if (drawCard.size() > idx) {
       card = drawCard.get(idx);
       if (board.Turn1) {
-        if (player1.hand.isFull()) {
-          player1.hand.removeCard(0);
-        }
+        // if (player1.hand.isFull()) {
+        //   player1.hand.removeCard(0);
+        // }
         player1.hand.addCard(card);
       } else {
-        if (player2.hand.isFull()) {
-          player2.hand.removeCard(0);
-        }
+        // if (player2.hand.isFull()) {
+        //   player2.hand.removeCard(0);
+        // }
         player2.hand.addCard(card);
       }
     }
