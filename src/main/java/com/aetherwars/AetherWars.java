@@ -130,18 +130,18 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     maxHp1.setX(100);
     maxHp1.setY(50);
 
-    nowHp1 = new Text(String.valueOf(player1.HP));
+    nowHp1 = new Text(String.valueOf(player1.getHp()));
     nowHp1.setX(85);
     nowHp1.setY(50);
 
     player1.increaseMana();
     player1.resetMana();
 
-    maxMana1 = new Text("/"+String.valueOf(player1.maxMana));
+    maxMana1 = new Text("/"+String.valueOf(player1.getMaxMana()));
     maxMana1.setX(100);
     maxMana1.setY(200);
 
-    curMana1 = new Text(String.valueOf(player1.curMana));
+    curMana1 = new Text(String.valueOf(player1.getCurMana()));
     curMana1.setX(87);
     curMana1.setY(200);
 
@@ -160,7 +160,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     maxHp2.setX(1180);
     maxHp2.setY(50);
 
-    nowHp2 = new Text(String.valueOf(player2.HP));
+    nowHp2 = new Text(String.valueOf(player2.getHp()));
     nowHp2.setX(1165);
     nowHp2.setY(50);
 
@@ -171,11 +171,11 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     playerName2.setX(1165);
     playerName2.setY(70);
 
-    maxMana2 = new Text("/"+String.valueOf(player2.maxMana));
+    maxMana2 = new Text("/"+String.valueOf(player2.getMaxMana()));
     maxMana2.setX(1180);
     maxMana2.setY(200);
 
-    curMana2 = new Text(String.valueOf(player2.curMana));
+    curMana2 = new Text(String.valueOf(player2.getCurMana()));
     curMana2.setX(1167);
     curMana2.setY(200);
 
@@ -435,12 +435,6 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     stage.setTitle("Minecraft: Aether Wars - Monangisbeneran");
     stage.setScene(scene);
     stage.show();
-
-    //this.loadCards();
-    //turn.setText(cLib.getCardByID(402).Nama);
-    //turn.setText(String.valueOf(characterCSVFile.exists()));
-    //turn.setText(String.valueOf(cLib.test));
-    //turn.setText(cLib.file.getPath());
   }
 
   public static void main(String[] args) {
@@ -456,8 +450,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         turn.setText(String.valueOf(ronde));
         player1.increaseMana();
         player1.resetMana();
-        curMana1.setText(String.valueOf(player1.curMana));
-        maxMana1.setText("/"+String.valueOf(player1.maxMana));
+        curMana1.setText(String.valueOf(player1.getCurMana()));
+        maxMana1.setText("/"+String.valueOf(player1.getMaxMana()));
         currentPlayer.setText(player1.getName());
 
         if (player1.deck.isEmpty()){
@@ -469,15 +463,16 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           //ntar pilih kartu
           //get card dari deck sesuai dengan pilihan player
           //kalo hand penuh yang paling kiri (index 0) buang
-
+          Card kartu = player1.deck.getCard(0);
+          player1.hand.addCard(kartu);
         }
       }
       else{
         if (!ronde.equals(0)){
           player2.increaseMana();
           player2.resetMana();
-          curMana2.setText(String.valueOf(player2.curMana));
-          maxMana2.setText("/"+String.valueOf(player2.maxMana));
+          curMana2.setText(String.valueOf(player2.getCurMana()));
+          maxMana2.setText("/"+String.valueOf(player2.getMaxMana()));
         }
         currentPlayer.setText(player2.getName());
         if (player2.deck.isEmpty()){
@@ -487,6 +482,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         else{
           List<Card> drawCard = player2.deck.showTopThreeCards();
           //ntar pilih kartu
+          Card kartu = player2.deck.getCard(0);
+          player2.hand.addCard(kartu);
         }
       }
       end.setFill(Color.BLACK);
