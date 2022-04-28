@@ -3,7 +3,7 @@ package com.aetherwars.model;
 import java.util.List;
 import java.util.ArrayList;
 
-public class SummonedChar {
+public class SummonedChar implements ISummoned {
     public Character c;
     public int Exp;
     public int Level;
