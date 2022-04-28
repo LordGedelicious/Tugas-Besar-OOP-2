@@ -20,6 +20,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import com.aetherwars.model.*;
 import com.aetherwars.model.Character;
 import com.aetherwars.util.CSVReader;
@@ -100,6 +102,17 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
   private static Pane tangan4 = new Pane();
   private static Pane tangan5 = new Pane();
 
+  private static Pane summoned1A = new Pane();
+  private static Pane summoned1B = new Pane();
+  private static Pane summoned1C = new Pane();
+  private static Pane summoned1D = new Pane();
+  private static Pane summoned1E = new Pane();
+  private static Pane summoned2A = new Pane();
+  private static Pane summoned2B = new Pane();
+  private static Pane summoned2C = new Pane();
+  private static Pane summoned2D = new Pane();
+  private static Pane summoned2E = new Pane();
+
   private static Board board;
 
   private static Player player1;
@@ -126,9 +139,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
       this.loadCards();
     } catch (Exception e) {}
 
-    // Player untuk tes board 
-    player1 = new Player("Steve", 60);
-    player2 = new Player("Alex", 40);
+    // Player untuk tes board
+    player1 = new Player("Steve", ThreadLocalRandom.current().nextInt(40, 60 + 1));
+    player2 = new Player("Alex", ThreadLocalRandom.current().nextInt(40, 60 + 1));
     player1.randomDeck(cLib);
     player2.randomDeck(cLib);
     board = new Board(player1, player2);
@@ -197,10 +210,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     image = new Image(getClass().getResourceAsStream(DEFAULT_IMG_PATH));
 
     setImageBattleground(1);
-    img1A.setX(225);
-    img1A.setY(100);
+    img1A.setX(25);
+    img1A.setY(25);
     img1A.setFitWidth(50);
-    img1A.setFitHeight(100);
+    img1A.setFitHeight(50);
     img1A.setOnMouseEntered(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
         if (board.Battleground1.ActiveCard.containsKey("A")) {
@@ -259,10 +272,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     });
 
     setImageBattleground(2);
-    img1B.setX(350);
-    img1B.setY(100);
+    img1B.setX(25);
+    img1B.setY(25);
     img1B.setFitWidth(50);
-    img1B.setFitHeight(100);
+    img1B.setFitHeight(50);
     img1B.setOnMouseEntered(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
         if (board.Battleground1.ActiveCard.containsKey("B")) {
@@ -311,10 +324,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     });
 
     setImageBattleground(3);
-    img1C.setX(225);
-    img1C.setY(225);
+    img1C.setX(25);
+    img1C.setY(25);
     img1C.setFitWidth(50);
-    img1C.setFitHeight(100);
+    img1C.setFitHeight(50);
     img1C.setOnMouseEntered(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
         if (board.Battleground1.ActiveCard.containsKey("C")) {
@@ -357,10 +370,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     });
 
     setImageBattleground(4);
-    img1D.setX(350);
-    img1D.setY(225);
+    img1D.setX(25);
+    img1D.setY(25);
     img1D.setFitWidth(50);
-    img1D.setFitHeight(100);
+    img1D.setFitHeight(50);
     img1D.setOnMouseEntered(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
         if (board.Battleground1.ActiveCard.containsKey("D")) {
@@ -403,10 +416,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     });
 
     setImageBattleground(5);
-    img1E.setX(475);
-    img1E.setY(162.5);
+    img1E.setX(25);
+    img1E.setY(25);
     img1E.setFitWidth(50);
-    img1E.setFitHeight(100);
+    img1E.setFitHeight(50);
     img1E.setOnMouseEntered(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
         if (board.Battleground1.ActiveCard.containsKey("E")) {
@@ -449,10 +462,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     });
 
     setImageBattleground(6);
-    img2A.setX(1005);
-    img2A.setY(100);
+    img2A.setX(25);
+    img2A.setY(25);
     img2A.setFitWidth(50);
-    img2A.setFitHeight(100);
+    img2A.setFitHeight(50);
     img2A.setOnMouseEntered(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
         if (board.Battleground2.ActiveCard.containsKey("A")) {
@@ -495,10 +508,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     });
 
     setImageBattleground(7);
-    img2B.setX(880);
-    img2B.setY(100);
+    img2B.setX(25);
+    img2B.setY(25);
     img2B.setFitWidth(50);
-    img2B.setFitHeight(100);
+    img2B.setFitHeight(50);
     img2B.setOnMouseEntered(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
         if (board.Battleground2.ActiveCard.containsKey("B")) {
@@ -542,10 +555,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
 
     setImageBattleground(8);
-    img2C.setX(1005);
-    img2C.setY(225);
+    img2C.setX(25);
+    img2C.setY(25);
     img2C.setFitWidth(50);
-    img2C.setFitHeight(100);
+    img2C.setFitHeight(50);
     img2C.setOnMouseEntered(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
         if (board.Battleground2.ActiveCard.containsKey("C")) {
@@ -588,10 +601,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     });
 
     setImageBattleground(9);
-    img2D.setX(880);
-    img2D.setY(225);
+    img2D.setX(25);
+    img2D.setY(25);
     img2D.setFitWidth(50);
-    img2D.setFitHeight(100);
+    img2D.setFitHeight(50);
     img2D.setOnMouseEntered(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
         if (board.Battleground2.ActiveCard.containsKey("D")) {
@@ -634,10 +647,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     });
 
     setImageBattleground(10);
-    img2E.setX(755);
-    img2E.setY(162.5);
+    img2E.setX(25);
+    img2E.setY(25);
     img2E.setFitWidth(50);
-    img2E.setFitHeight(100);
+    img2E.setFitHeight(50);
     img2E.setOnMouseEntered(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
         if (board.Battleground2.ActiveCard.containsKey("E")) {
@@ -993,16 +1006,6 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     root.getChildren().add(end);
     root.getChildren().add(next);
 
-    root.getChildren().add(hand1);
-    root.getChildren().add(hand2);
-    root.getChildren().add(hand3);
-    root.getChildren().add(hand4);
-    root.getChildren().add(hand5);
-    root.getChildren().add(handMana1);
-    root.getChildren().add(handMana2);
-    root.getChildren().add(handMana3);
-    root.getChildren().add(handMana4);
-    root.getChildren().add(handMana5);
     root.getChildren().add(handHover);
     root.getChildren().add(handDetail);
     root.getChildren().add(handDesc);
@@ -1113,6 +1116,178 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     root.getChildren().add(tangan4);
     root.getChildren().add(tangan5);
 
+    summoned1A.setStyle("-fx-background-color: gray;");
+    summoned1A.setPrefHeight(100.0);
+    summoned1A.setPrefWidth(100.0);
+    summoned1A.setLayoutX(225);
+    summoned1A.setLayoutY(100);
+    summoned1A.getChildren().add(img1A);
+
+    summoned1B.setStyle("-fx-background-color: gray;");
+    summoned1B.setPrefHeight(100.0);
+    summoned1B.setPrefWidth(100.0);
+    summoned1B.setLayoutX(325);
+    summoned1B.setLayoutY(100);
+    summoned1B.getChildren().add(img1B);
+
+    summoned1C.setStyle("-fx-background-color: gray;");
+    summoned1C.setPrefHeight(100.0);
+    summoned1C.setPrefWidth(100.0);
+    summoned1C.setLayoutX(225);
+    summoned1C.setLayoutY(200);
+    summoned1C.getChildren().add(img1C);
+
+    summoned1D.setStyle("-fx-background-color: gray;");
+    summoned1D.setPrefHeight(100.0);
+    summoned1D.setPrefWidth(100.0);
+    summoned1D.setLayoutX(325);
+    summoned1D.setLayoutY(200);
+    summoned1D.getChildren().add(img1D);
+
+    summoned1E.setStyle("-fx-background-color: gray;");
+    summoned1E.setPrefHeight(100.0);
+    summoned1E.setPrefWidth(100.0);
+    summoned1E.setLayoutX(425);
+    summoned1E.setLayoutY(150);
+    summoned1E.getChildren().add(img1E);
+
+    summoned1A.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.Battleground1.ActiveCard.containsKey("A") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK) && board.Turn1){
+          resetSelectBG();
+          summoned1A.setStyle("-fx-background-color: yellow;");
+        }
+      }
+    });
+
+    summoned1B.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.Battleground1.ActiveCard.containsKey("B") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK && board.Turn1)){
+          resetSelectBG();
+          summoned1B.setStyle("-fx-background-color: yellow;");
+        }
+      }
+    });
+
+    summoned1C.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.Battleground1.ActiveCard.containsKey("C") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK && board.Turn1)){
+          resetSelectBG();
+          summoned1C.setStyle("-fx-background-color: yellow;");
+        }
+      }
+    });
+
+    summoned1D.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.Battleground1.ActiveCard.containsKey("D") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK && board.Turn1)){
+          resetSelectBG();
+          summoned1D.setStyle("-fx-background-color: yellow;");
+        }
+      }
+    });
+
+    summoned1E.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.Battleground1.ActiveCard.containsKey("E") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK && board.Turn1)){
+          resetSelectBG();
+          summoned1E.setStyle("-fx-background-color: yellow;");
+        }
+      }
+    });
+
+    root.getChildren().add(summoned1A);
+    root.getChildren().add(summoned1B);
+    root.getChildren().add(summoned1C);
+    root.getChildren().add(summoned1D);
+    root.getChildren().add(summoned1E);
+
+    summoned2A.setStyle("-fx-background-color: gray;");
+    summoned2A.setPrefHeight(100.0);
+    summoned2A.setPrefWidth(100.0);
+    summoned2A.setLayoutX(950);
+    summoned2A.setLayoutY(100);
+    summoned2A.getChildren().add(img2A);
+
+    summoned2B.setStyle("-fx-background-color: gray;");
+    summoned2B.setPrefHeight(100.0);
+    summoned2B.setPrefWidth(100.0);
+    summoned2B.setLayoutX(850);
+    summoned2B.setLayoutY(100);
+    summoned2B.getChildren().add(img2B);
+
+    summoned2C.setStyle("-fx-background-color: gray;");
+    summoned2C.setPrefHeight(100.0);
+    summoned2C.setPrefWidth(100.0);
+    summoned2C.setLayoutX(950);
+    summoned2C.setLayoutY(200);
+    summoned2C.getChildren().add(img2C);
+
+    summoned2D.setStyle("-fx-background-color: gray;");
+    summoned2D.setPrefHeight(100.0);
+    summoned2D.setPrefWidth(100.0);
+    summoned2D.setLayoutX(850);
+    summoned2D.setLayoutY(200);
+    summoned2D.getChildren().add(img2D);
+
+    summoned2E.setStyle("-fx-background-color: gray;");
+    summoned2E.setPrefHeight(100.0);
+    summoned2E.setPrefWidth(100.0);
+    summoned2E.setLayoutX(750);
+    summoned2E.setLayoutY(150);
+    summoned2E.getChildren().add(img2E);
+
+    summoned2A.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.Battleground2.ActiveCard.containsKey("A") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK) && board.Turn2){
+          resetSelectBG();
+          summoned2A.setStyle("-fx-background-color: yellow;");
+        }
+      }
+    });
+
+    summoned2B.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.Battleground2.ActiveCard.containsKey("B") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK) && board.Turn2){
+          resetSelectBG();
+          summoned2B.setStyle("-fx-background-color: yellow;");
+        }
+      }
+    });
+
+    summoned2C.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.Battleground2.ActiveCard.containsKey("C") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK) && board.Turn2){
+          resetSelectBG();
+          summoned2C.setStyle("-fx-background-color: yellow;");
+        }
+      }
+    });
+
+    summoned2D.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.Battleground2.ActiveCard.containsKey("D") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK) && board.Turn2){
+          resetSelectBG();
+          summoned2D.setStyle("-fx-background-color: yellow;");
+        }
+      }
+    });
+
+    summoned2E.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (board.Battleground2.ActiveCard.containsKey("E") && (board.getPhase() == TypePhase.PLANNING || board.getPhase() == TypePhase.ATTACK) && board.Turn2){
+          resetSelectBG();
+          summoned2E.setStyle("-fx-background-color: yellow;");
+        }
+      }
+    });
+
+    root.getChildren().add(summoned2A);
+    root.getChildren().add(summoned2B);
+    root.getChildren().add(summoned2C);
+    root.getChildren().add(summoned2D);
+    root.getChildren().add(summoned2E);
+
     Scene scene = new Scene(root, 1280, 950);
 
     stage.setTitle("Minecraft: Aether Wars - Monangisbeneran");
@@ -1155,12 +1330,17 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         end.setFill(Color.BLACK);
       } else if (board.getPhase() == TypePhase.PLANNING) { //PLAN
         plan.setFill(Color.ORANGE);
+        resetSelect();
+        resetSelectBG();
         draw.setFill(Color.BLACK);
       } else if (board.getPhase() == TypePhase.ATTACK) { //ATTACK
         attack.setFill(Color.ORANGE);
+        resetSelect();
+        resetSelectBG();
         plan.setFill(Color.BLACK);
       } else { //END
         end.setFill(Color.ORANGE);
+        resetSelectBG();
         attack.setFill(Color.BLACK);
       }
       turn.setText(Integer.toString(board.getRound()));      
@@ -1402,5 +1582,18 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     player.deck.returnCard(pos);
     curDeck.setText(String.valueOf(player.curDeckSize));
     player.deck.shuffleCards();
+  }
+
+  public void resetSelectBG(){
+    summoned1A.setStyle("-fx-background-color: gray;");
+    summoned1B.setStyle("-fx-background-color: gray;");
+    summoned1C.setStyle("-fx-background-color: gray;");
+    summoned1D.setStyle("-fx-background-color: gray;");
+    summoned1E.setStyle("-fx-background-color: gray;");
+    summoned2A.setStyle("-fx-background-color: gray;");
+    summoned2B.setStyle("-fx-background-color: gray;");
+    summoned2C.setStyle("-fx-background-color: gray;");
+    summoned2D.setStyle("-fx-background-color: gray;");
+    summoned2E.setStyle("-fx-background-color: gray;");
   }
 }
