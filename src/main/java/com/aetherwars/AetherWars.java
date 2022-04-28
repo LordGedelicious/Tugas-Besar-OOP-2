@@ -326,16 +326,16 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     hand1.setY(10);
     hand1.setFitWidth(50);
     hand1.setFitHeight(100);
-    hand1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-      public void handle(MouseEvent event) {
-        if (board.Turn1 && player1.hand.getSize() > 0) {
-          card = player1.hand.getCard(0);
-          image = new Image(getClass().getResourceAsStream(card.ImagePath));
-          handHover.setImage(image);
-          updateDetailHand();
-        }
-      }
-    });
+    // hand1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+    //   public void handle(MouseEvent event) {
+    //     if (board.Turn1 && player1.hand.getSize() > 0) {
+    //       card = player1.hand.getCard(0);
+    //       image = new Image(getClass().getResourceAsStream(card.ImagePath));
+    //       handHover.setImage(image);
+    //       updateDetailHand();
+    //     }
+    //   }
+    // });
     hand1.setOnMouseClicked(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
         if (board.getPhase() == TypePhase.PLANNING) {
@@ -361,16 +361,16 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     hand2.setY(10);
     hand2.setFitWidth(50);
     hand2.setFitHeight(100);
-    hand2.setOnMouseEntered(new EventHandler<MouseEvent>() {
-      public void handle(MouseEvent event) {
-        if (board.Turn1 && player1.hand.getSize() > 1) {
-          card = player1.hand.getCard(1);
-          image = new Image(getClass().getResourceAsStream(card.ImagePath));
-          handHover.setImage(image);
-          updateDetailHand();
-        }
-      }
-    });
+    // hand2.setOnMouseEntered(new EventHandler<MouseEvent>() {
+    //   public void handle(MouseEvent event) {
+    //     if (board.Turn1 && player1.hand.getSize() > 1) {
+    //       card = player1.hand.getCard(1);
+    //       image = new Image(getClass().getResourceAsStream(card.ImagePath));
+    //       handHover.setImage(image);
+    //       updateDetailHand();
+    //     }
+    //   }
+    // });
     hand2.setOnMouseClicked(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
         if (board.getPhase() == TypePhase.PLANNING) {
@@ -396,16 +396,16 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     hand3.setY(10);
     hand3.setFitWidth(50);
     hand3.setFitHeight(100);
-    hand3.setOnMouseEntered(new EventHandler<MouseEvent>() {
-      public void handle(MouseEvent event) {
-        if (board.Turn1 && player1.hand.getSize() > 2) {
-          card = player1.hand.getCard(2);
-          image = new Image(getClass().getResourceAsStream(card.ImagePath));
-          handHover.setImage(image);
-          updateDetailHand();
-        }
-      }
-    });
+    // hand3.setOnMouseEntered(new EventHandler<MouseEvent>() {
+    //   public void handle(MouseEvent event) {
+    //     if (board.Turn1 && player1.hand.getSize() > 2) {
+    //       card = player1.hand.getCard(2);
+    //       image = new Image(getClass().getResourceAsStream(card.ImagePath));
+    //       handHover.setImage(image);
+    //       updateDetailHand();
+    //     }
+    //   }
+    // });
     hand3.setOnMouseClicked(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
         if (board.getPhase() == TypePhase.PLANNING) {
@@ -431,16 +431,16 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     hand4.setY(10);
     hand4.setFitWidth(50);
     hand4.setFitHeight(100);
-    hand4.setOnMouseEntered(new EventHandler<MouseEvent>() {
-      public void handle(MouseEvent event) {
-        if (board.Turn1 && player1.hand.getSize() > 3) {
-          card = player1.hand.getCard(3);
-          image = new Image(getClass().getResourceAsStream(card.ImagePath));
-          handHover.setImage(image);
-          updateDetailHand();
-        }
-      }
-    });
+    // hand4.setOnMouseEntered(new EventHandler<MouseEvent>() {
+    //   public void handle(MouseEvent event) {
+    //     if (board.Turn1 && player1.hand.getSize() > 3) {
+    //       card = player1.hand.getCard(3);
+    //       image = new Image(getClass().getResourceAsStream(card.ImagePath));
+    //       handHover.setImage(image);
+    //       updateDetailHand();
+    //     }
+    //   }
+    // });
     hand4.setOnMouseClicked(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
         if (board.getPhase() == TypePhase.PLANNING) {
@@ -465,16 +465,16 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     hand5.setY(10);
     hand5.setFitWidth(50);
     hand5.setFitHeight(100);
-    hand5.setOnMouseEntered(new EventHandler<MouseEvent>() {
-      public void handle(MouseEvent event) {
-        if (board.Turn1 && player1.hand.getSize() > 4) {
-          card = player1.hand.getCard(4);
-          image = new Image(getClass().getResourceAsStream(card.ImagePath));
-          handHover.setImage(image);
-          updateDetailHand();
-        }
-      }
-    });
+    // hand5.setOnMouseEntered(new EventHandler<MouseEvent>() {
+    //   public void handle(MouseEvent event) {
+    //     if (board.Turn1 && player1.hand.getSize() > 4) {
+    //       card = player1.hand.getCard(4);
+    //       image = new Image(getClass().getResourceAsStream(card.ImagePath));
+    //       handHover.setImage(image);
+    //       updateDetailHand();
+    //     }
+    //   }
+    // });
     hand1.setOnMouseClicked(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
         if (board.getPhase() == TypePhase.PLANNING) {
@@ -491,6 +491,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     // handMana5.setY(625);
     handMana5.setX(15);
     handMana5.setY(125);
+
+    setHover(player1);
 
     setImageHand(0);
     handHover.setX(650);
@@ -860,6 +862,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           currentPlayer.setText(player1.getName());
           resetGuiHand(player1);
           getDrawGUI(player1);
+          setHover(player1);
           if (player1.deck.isEmpty()){
             //player pertama kalah
             System.out.println("Player 1 kalah");
@@ -876,6 +879,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           currentPlayer.setText(player2.getName());
           resetGuiHand(player2);
           getDrawGUI(player2);
+          setHover(player2);
           if (player2.deck.isEmpty()){
             //player pertama kalah
             System.out.println("Player 2 kalah");
@@ -1044,5 +1048,64 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
       setManaHand(i+1, "Mana " + Integer.toString(player.deck.getCard(i).Mana));
       i++;
     }
+  }
+
+  public void setHover(Player player){
+    hand1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (player.hand.getSize() > 0) {
+          card = player.hand.getCard(0);
+          image = new Image(getClass().getResourceAsStream(card.ImagePath));
+          handHover.setImage(image);
+          updateDetailHand();
+        }
+      }
+    });
+
+    hand2.setOnMouseEntered(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (player.hand.getSize() > 1) {
+          card = player.hand.getCard(1);
+          image = new Image(getClass().getResourceAsStream(card.ImagePath));
+          handHover.setImage(image);
+          updateDetailHand();
+        }
+      }
+    });
+
+
+    hand3.setOnMouseEntered(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (player.hand.getSize() > 2) {
+          card = player.hand.getCard(2);
+          image = new Image(getClass().getResourceAsStream(card.ImagePath));
+          handHover.setImage(image);
+          updateDetailHand();
+        }
+      }
+    });
+
+    hand4.setOnMouseEntered(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (player.hand.getSize() > 3) {
+          card = player.hand.getCard(3);
+          image = new Image(getClass().getResourceAsStream(card.ImagePath));
+          handHover.setImage(image);
+          updateDetailHand();
+        }
+      }
+    });
+
+    hand5.setOnMouseEntered(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (player.hand.getSize() > 4) {
+          card = player.hand.getCard(4);
+          image = new Image(getClass().getResourceAsStream(card.ImagePath));
+          handHover.setImage(image);
+          updateDetailHand();
+        }
+      }
+    });
+
   }
 }
