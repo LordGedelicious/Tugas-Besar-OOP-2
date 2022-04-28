@@ -10,6 +10,7 @@ public class Player {
     private Integer curMana;
     public Deck deck;
     public Integer deckSize;
+    public Integer curDeckSize;
     public Hand hand;
 
     public Player(String name, Integer deckSize){
@@ -19,6 +20,7 @@ public class Player {
         this.curMana = 0;
         this.deck = new Deck();
         this.deckSize = deckSize;
+        this.curDeckSize = deckSize;
         this.hand = new Hand();
     }
 
@@ -35,6 +37,7 @@ public class Player {
     public void initiateHand(){
         this.deck.shuffleCards();
         this.hand.getThreeFirst(deck);
+        this.curDeckSize -= 3;
     }
 
     public String getName() {
