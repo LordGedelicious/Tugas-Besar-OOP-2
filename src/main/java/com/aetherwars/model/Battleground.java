@@ -3,7 +3,7 @@ package com.aetherwars.model;
 import java.util.*;
 
 public class Battleground{
-    private HashMap<String, SummonedChar> ActiveCard;
+    public HashMap<String, SummonedChar> ActiveCard;
 
     public Battleground(){
         ActiveCard = new HashMap<String, SummonedChar>();
