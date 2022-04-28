@@ -67,6 +67,10 @@ public class Player {
         }
     }
 
+    public boolean isEmptyMana() {
+        return (this.curMana == 0);
+    }
+
     public Integer reduceMana(Integer mana) {
         this.curMana -= mana;
         return this.curMana;

@@ -57,6 +57,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
   private static ImageView img2D = new ImageView();
   private static ImageView img2E = new ImageView();
 
+  private static Button addExp;
   private static Button deleteCard;
 
   private static Text draw;
@@ -124,6 +125,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
   private static Integer ronde = 0;
   private static boolean isDrawed = false;
+  private static String key;
 
   public void loadCards() throws IOException, URISyntaxException {
     cLib = new CardLibrary();
@@ -154,7 +156,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     turn_text.setY(50);
 
     currentPlayer = new Text(player1.getName());
-    currentPlayer.setX(610);
+    currentPlayer.setX(600);
     currentPlayer.setY(100);
 
     turn = new Text(String.valueOf(ronde));
@@ -269,6 +271,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                 resetSelect();
                 card = DEFAULT_CARD;
               }
+            } else {
+              if (board.Turn1 && board.Battleground1.ActiveCard.containsKey("A")) {
+                key = "A";
+              }
             }
           }
         } else if (board.getPhase() == TypePhase.ATTACK) {
@@ -340,6 +346,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                 }
                 resetSelect();
                 card = DEFAULT_CARD;
+              }
+            } else {
+              if (board.Turn1 && board.Battleground1.ActiveCard.containsKey("B")) {
+                key = "B";
               }
             }
           }
@@ -413,6 +423,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                 resetSelect();
                 card = DEFAULT_CARD;
               }
+            } else {
+              if (board.Turn1 && board.Battleground1.ActiveCard.containsKey("C")) {
+                key = "C";
+              }
             }
           }
         } else if (board.getPhase() == TypePhase.ATTACK) {
@@ -484,6 +498,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                 }
                 resetSelect();
                 card = DEFAULT_CARD;
+              }
+            } else {
+              if (board.Turn1 && board.Battleground1.ActiveCard.containsKey("D")) {
+                key = "D";
               }
             }
           }
@@ -557,6 +575,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                 resetSelect();
                 card = DEFAULT_CARD;
               }
+            } else {
+              if (board.Turn1 && board.Battleground1.ActiveCard.containsKey("E")) {
+                key = "E";
+              }
             }
           }
         } else if (board.getPhase() == TypePhase.ATTACK) {
@@ -628,6 +650,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                 }
                 resetSelect();
                 card = DEFAULT_CARD;
+              }
+            } else {
+              if (board.Turn2 && board.Battleground2.ActiveCard.containsKey("A")) {
+                key = "A";
               }
             }
           }
@@ -701,6 +727,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                 resetSelect();
                 card = DEFAULT_CARD;
               }
+            } else {
+              if (board.Turn2 && board.Battleground2.ActiveCard.containsKey("B")) {
+                key = "B";
+              }
             }
           }
         } else if (board.getPhase() == TypePhase.ATTACK) {
@@ -772,6 +802,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                 }
                 resetSelect();
                 card = DEFAULT_CARD;
+              }
+            } else {
+              if (board.Turn2 && board.Battleground2.ActiveCard.containsKey("C")) {
+                key = "C";
               }
             }
           }
@@ -845,6 +879,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                 resetSelect();
                 card = DEFAULT_CARD;
               }
+            } else {
+              if (board.Turn2 && board.Battleground2.ActiveCard.containsKey("D")) {
+                key = "D";
+              }
             }
           }
         } else if (board.getPhase() == TypePhase.ATTACK) {
@@ -895,6 +933,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
                   resetSelect();
                   card = DEFAULT_CARD;
+                }
+              } else {
+                if (board.Turn2 && board.Battleground2.ActiveCard.containsKey("E")) {
+                  key = "E";
                 }
               }
             }
@@ -954,6 +996,29 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     next.setLayoutY(380);
     next.setOnAction(this);
 
+    // Add exp setup 
+    addExp = new Button("Add Exp");
+    addExp.setVisible(false);
+    addExp.setLayoutX(585);
+    addExp.setLayoutY(275);
+    addExp.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (key != null ) {
+          if (board.Turn1 && !player1.isEmptyMana()) {
+            board.Battleground1.getChar(key).addExp(1);;
+            summon = board.Battleground1.getChar(key);
+            updateDetailBattleground();
+            curMana.setText(Integer.toString(player1.reduceMana(1)));
+          } else if (board.Turn2 && !player2.isEmptyMana()) {
+            board.Battleground2.getChar(key).addExp(1);
+            summon = board.Battleground2.getChar(key);
+            updateDetailBattleground();
+            curMana.setText(Integer.toString(player1.reduceMana(1)));
+          }
+        }
+      }
+    });
+    
     // Delete card setup
     deleteCard = new Button("Delete Card");
     deleteCard.setVisible(false);
@@ -963,9 +1028,29 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
       public void handle(MouseEvent event) {
         if (!card.getClass().equals(Card.class)) {
           if (board.Turn1) {
-
+            player1.hand.inHand.remove(card);
+            resetGuiHand(player1);
           } else {
-
+            player2.hand.inHand.remove(card);
+            resetGuiHand(player2);
+          }
+          card = DEFAULT_CARD;
+          image = new Image(getClass().getResourceAsStream(DEFAULT_IMG_PATH));
+          handHover.setImage(image);
+          updateDetailHand();
+        } else {
+          if (key != null) {
+            image = new Image(getClass().getResourceAsStream(DEFAULT_IMG_PATH));
+            if (board.Turn1) {
+              board.Battleground1.removeChar(key);
+              setImageBattleground(getIdxFromKey(key));
+            } else {
+              board.Battleground2.removeChar(key);
+              setImageBattleground(getIdxFromKey(key) + 5);
+            }
+            key = null;
+            handHover.setImage(image);
+            updateDetailHand();
           }
         }
       }
@@ -1251,6 +1336,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     root.getChildren().add(img2D);
     root.getChildren().add(img2E);
 
+    root.getChildren().add(addExp);
     root.getChildren().add(deleteCard);
 
     root.getChildren().add(draw);
@@ -1634,12 +1720,15 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         end.setFill(Color.BLACK);
       } else if (board.getPhase() == TypePhase.PLANNING) { //PLAN
         card = DEFAULT_CARD;
+        key = null;
+        addExp.setVisible(true);
         deleteCard.setVisible(true);
         plan.setFill(Color.ORANGE);
         resetSelect();
         resetSelectBG();
         draw.setFill(Color.BLACK);
       } else if (board.getPhase() == TypePhase.ATTACK) { //ATTACK
+        addExp.setVisible(false);
         deleteCard.setVisible(false);
         attack.setFill(Color.ORANGE);
         resetSelect();
@@ -1652,6 +1741,21 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
       }
       turn.setText(Integer.toString(board.getRound()));      
     }
+  }
+
+  public static int getIdxFromKey(String key) {
+    if (key == "A") {
+      return 1;
+    } else if (key == "B") {
+      return 2;
+    } else if (key == "C") {
+      return 3;
+    } else if (key == "D") {
+      return 4;
+    } else if (key == "E") {
+      return 5;
+    }
+    return 0;
   }
 
   public static void setImageBattleground(int idx_card) {
@@ -1752,6 +1856,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
       swap = (SWAP) card;
       handDetail.setText(swap.Nama + "\nATK <-> HP");
       handDesc.setText(swap.Deskripsi);
+    } else {
+      handDetail.setText("");
+      handDesc.setText("");
     }
   }
 
