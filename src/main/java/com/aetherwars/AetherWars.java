@@ -821,6 +821,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     if (isDrawed) {
       board.nextPhase();
       if (board.getPhase() == TypePhase.DRAW) {//DRAW
+        resetSelect();
         draw.setFill(Color.ORANGE);
         if (board.Turn1){
           ronde++;
@@ -837,11 +838,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           }
           else{
             drawCard = player1.deck.showTopThreeCards();
-            //ntar pilih kartu
-            //get card dari deck sesuai dengan pilihan player
-            //kalo hand penuh yang paling kiri (index 0) buang
-            Card kartu = player1.deck.getCard(0);
-            player1.hand.addCard(kartu);
+            // Card kartu = player1.deck.getCard(0);
+            // player1.hand.addCard(kartu);
           }
         }
         else{
@@ -856,9 +854,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           }
           else{
             drawCard = player2.deck.showTopThreeCards();
-            //ntar pilih kartu
-            Card kartu = player2.deck.getCard(0);
-            player2.hand.addCard(kartu);
+            // Card kartu = player2.deck.getCard(0);
+            // player2.hand.addCard(kartu);
           }
         }
         end.setFill(Color.BLACK);
