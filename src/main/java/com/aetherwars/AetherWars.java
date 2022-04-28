@@ -31,6 +31,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
   private static final String SWAP_CSV_FILE_PATH = "card/data/spell_swap.csv";
   private static final String LVL_CSV_FILE_PATH = "card/data/spell_lvl.csv";
   private static final String DEFAULT_IMG_PATH = "card/image/Default.png";
+  private static final Card DEFAULT_CARD = new Card(0, "-", "-", "-", 0);
 
   private static CardLibrary cLib;
 
@@ -52,6 +53,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
   private static ImageView img2C = new ImageView();
   private static ImageView img2D = new ImageView();
   private static ImageView img2E = new ImageView();
+
+  private static Button deleteCard;
 
   private static Text draw;
   private static Text plan;
@@ -215,36 +218,43 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         if (board.getPhase() == TypePhase.PLANNING) {
           if (card.getClass().equals(Character.class)) { 
             if (board.Turn1) {
-              if (!board.Battleground1.ActiveCard.containsKey("A")) {
-                summon = new SummonedChar((Character) card);
-                try {
-                  board.Battleground1.addCard(summon, "A");
-                } catch (Exception e) {
-                  // pass
+              if (card.Mana <= player1.getCurMana()) {
+                if (!board.Battleground1.ActiveCard.containsKey("A")) {
+                  summon = new SummonedChar((Character) card);
+                  try {
+                    board.Battleground1.addCard(summon, "A");
+                  } catch (Exception e) {
+                    // pass
+                  }
+                  image = new Image(getClass().getResourceAsStream(card.ImagePath));
+                  img1A.setImage(image);
+                  player1.hand.inHand.remove(card);
+                  resetGuiHand(player1);
+                  curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
+                  resetSelect();
+                  card = DEFAULT_CARD;
                 }
-                image = new Image(getClass().getResourceAsStream(card.ImagePath));
-                img1A.setImage(image);
-                player1.hand.inHand.remove(card);
-                resetGuiHand(player1);
-                resetSelect();
               }
             }
           } else {
-            if (board.Battleground1.ActiveCard.containsKey("A")) {
-              summon = board.Battleground1.getChar("A");
-              Spell s = (Spell) card;
-              s.setUser(summon);
-              s.use();
-              summon = s.getUser();
-              updateDetailBattleground();
-              if (board.Turn1) {
-                player1.hand.inHand.remove(card);
-                resetGuiHand(player1);
-              } else {
-                player2.hand.inHand.remove(card);
-                resetGuiHand(player2);
+            if (!card.getClass().equals(Card.class)) {
+              if (board.Battleground1.ActiveCard.containsKey("A")) {
+                summon = board.Battleground1.getChar("A");
+                Spell s = (Spell) card;
+                s.setUser(summon);
+                s.use();
+                summon = s.getUser();
+                updateDetailBattleground();
+                if (board.Turn1) {
+                  player1.hand.inHand.remove(card);
+                  resetGuiHand(player1);
+                } else {
+                  player2.hand.inHand.remove(card);
+                  resetGuiHand(player2);
+                }
+                resetSelect();
+                card = DEFAULT_CARD;
               }
-              resetSelect();
             }
           }
         } else if (board.getPhase() == TypePhase.ATTACK) {
@@ -280,36 +290,43 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         if (board.getPhase() == TypePhase.PLANNING) {
           if (card.getClass().equals(Character.class)) { 
             if (board.Turn1) {
-              if (!board.Battleground1.ActiveCard.containsKey("B")) {
-                summon = new SummonedChar((Character) card);
-                try {
-                  board.Battleground1.addCard(summon, "B");
-                } catch (Exception e) {
-                  // pass
+              if (card.Mana <= player1.getCurMana()) {
+                if (!board.Battleground1.ActiveCard.containsKey("B")) {
+                  summon = new SummonedChar((Character) card);
+                  try {
+                    board.Battleground1.addCard(summon, "B");
+                  } catch (Exception e) {
+                    // pass
+                  }
+                  image = new Image(getClass().getResourceAsStream(card.ImagePath));
+                  img1B.setImage(image);
+                  player1.hand.inHand.remove(card);
+                  resetGuiHand(player1);
+                  curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
+                  resetSelect();
+                  card = DEFAULT_CARD;
                 }
-                image = new Image(getClass().getResourceAsStream(card.ImagePath));
-                img1B.setImage(image);
-                player1.hand.inHand.remove(card);
-                resetGuiHand(player1);
-                resetSelect();
               }
             }
           } else {
-            if (board.Battleground1.ActiveCard.containsKey("B")) {
-              summon = board.Battleground1.getChar("B");
-              Spell s = (Spell) card;
-              s.setUser(summon);
-              s.use();
-              summon = s.getUser();
-              updateDetailBattleground();
-              if (board.Turn1) {
-                player1.hand.inHand.remove(card);
-                resetGuiHand(player1);
-              } else {
-                player2.hand.inHand.remove(card);
-                resetGuiHand(player2);
+            if (!card.getClass().equals(Card.class)) {
+              if (board.Battleground1.ActiveCard.containsKey("B")) {
+                summon = board.Battleground1.getChar("B");
+                Spell s = (Spell) card;
+                s.setUser(summon);
+                s.use();
+                summon = s.getUser();
+                updateDetailBattleground();
+                if (board.Turn1) {
+                  player1.hand.inHand.remove(card);
+                  resetGuiHand(player1);
+                } else {
+                  player2.hand.inHand.remove(card);
+                  resetGuiHand(player2);
+                }
+                resetSelect();
+                card = DEFAULT_CARD;
               }
-              resetSelect();
             }
           }
         } else if (board.getPhase() == TypePhase.ATTACK) {
@@ -345,36 +362,43 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         if (board.getPhase() == TypePhase.PLANNING) {
           if (card.getClass().equals(Character.class)) { 
             if (board.Turn1) {
-              if (!board.Battleground1.ActiveCard.containsKey("C")) {
-                summon = new SummonedChar((Character) card);
-                try {
-                  board.Battleground1.addCard(summon, "C");
-                } catch (Exception e) {
-                  // pass
+              if (card.Mana <= player1.getCurMana()) {
+                if (!board.Battleground1.ActiveCard.containsKey("C")) {
+                  summon = new SummonedChar((Character) card);
+                  try {
+                    board.Battleground1.addCard(summon, "C");
+                  } catch (Exception e) {
+                    // pass
+                  }
+                  image = new Image(getClass().getResourceAsStream(card.ImagePath));
+                  img1C.setImage(image);
+                  player1.hand.inHand.remove(card);
+                  resetGuiHand(player1);
+                  curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
+                  resetSelect();
+                  card = DEFAULT_CARD;
                 }
-                image = new Image(getClass().getResourceAsStream(card.ImagePath));
-                img1C.setImage(image);
-                player1.hand.inHand.remove(card);
-                resetGuiHand(player1);
-                resetSelect();
               }
             }
           } else {
-            if (board.Battleground1.ActiveCard.containsKey("C")) {
-              summon = board.Battleground1.getChar("C");
-              Spell s = (Spell) card;
-              s.setUser(summon);
-              s.use();
-              summon = s.getUser();
-              updateDetailBattleground();
-              if (board.Turn1) {
-                player1.hand.inHand.remove(card);
-                resetGuiHand(player1);
-              } else {
-                player2.hand.inHand.remove(card);
-                resetGuiHand(player2);
+            if (!card.getClass().equals(Card.class)) {
+              if (board.Battleground1.ActiveCard.containsKey("C")) {
+                summon = board.Battleground1.getChar("C");
+                Spell s = (Spell) card;
+                s.setUser(summon);
+                s.use();
+                summon = s.getUser();
+                updateDetailBattleground();
+                if (board.Turn1) {
+                  player1.hand.inHand.remove(card);
+                  resetGuiHand(player1);
+                } else {
+                  player2.hand.inHand.remove(card);
+                  resetGuiHand(player2);
+                }
+                resetSelect();
+                card = DEFAULT_CARD;
               }
-              resetSelect();
             }
           }
         } else if (board.getPhase() == TypePhase.ATTACK) {
@@ -410,36 +434,43 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         if (board.getPhase() == TypePhase.PLANNING) {
           if (card.getClass().equals(Character.class)) { 
             if (board.Turn1) {
-              if (!board.Battleground1.ActiveCard.containsKey("D")) {
-                summon = new SummonedChar((Character) card);
-                try {
-                  board.Battleground1.addCard(summon, "D");
-                } catch (Exception e) {
-                  // pass
+              if (card.Mana <= player1.getCurMana()) {
+                if (!board.Battleground1.ActiveCard.containsKey("D")) {
+                  summon = new SummonedChar((Character) card);
+                  try {
+                    board.Battleground1.addCard(summon, "D");
+                  } catch (Exception e) {
+                    // pass
+                  }
+                  image = new Image(getClass().getResourceAsStream(card.ImagePath));
+                  img1D.setImage(image);
+                  player1.hand.inHand.remove(card);
+                  resetGuiHand(player1);
+                  curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
+                  resetSelect();
+                  card = DEFAULT_CARD;
                 }
-                image = new Image(getClass().getResourceAsStream(card.ImagePath));
-                img1D.setImage(image);
-                player1.hand.inHand.remove(card);
-                resetGuiHand(player1);
-                resetSelect();
               }
             }
           } else {
-            if (board.Battleground1.ActiveCard.containsKey("D")) {
-              summon = board.Battleground1.getChar("D");
-              Spell s = (Spell) card;
-              s.setUser(summon);
-              s.use();
-              summon = s.getUser();
-              updateDetailBattleground();
-              if (board.Turn1) {
-                player1.hand.inHand.remove(card);
-                resetGuiHand(player1);
-              } else {
-                player2.hand.inHand.remove(card);
-                resetGuiHand(player2);
+            if (!card.getClass().equals(Card.class)) {
+              if (board.Battleground1.ActiveCard.containsKey("D")) {
+                summon = board.Battleground1.getChar("D");
+                Spell s = (Spell) card;
+                s.setUser(summon);
+                s.use();
+                summon = s.getUser();
+                updateDetailBattleground();
+                if (board.Turn1) {
+                  player1.hand.inHand.remove(card);
+                  resetGuiHand(player1);
+                } else {
+                  player2.hand.inHand.remove(card);
+                  resetGuiHand(player2);
+                }
+                resetSelect();
+                card = DEFAULT_CARD;
               }
-              resetSelect();
             }
           }
         }else if (board.getPhase() == TypePhase.ATTACK) {
@@ -475,36 +506,43 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         if (board.getPhase() == TypePhase.PLANNING) {
           if (card.getClass().equals(Character.class)) { 
             if (board.Turn1) {
-              if (!board.Battleground1.ActiveCard.containsKey("E")) {
-                summon = new SummonedChar((Character) card);
-                try {
-                  board.Battleground1.addCard(summon, "E");
-                } catch (Exception e) {
-                  // pass
+              if (card.Mana <= player1.getCurMana()) {
+                if (!board.Battleground1.ActiveCard.containsKey("E")) {
+                  summon = new SummonedChar((Character) card);
+                  try {
+                    board.Battleground1.addCard(summon, "E");
+                  } catch (Exception e) {
+                    // pass
+                  }
+                  image = new Image(getClass().getResourceAsStream(card.ImagePath));
+                  img1E.setImage(image);
+                  player1.hand.inHand.remove(card);
+                  resetGuiHand(player1);
+                  curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
+                  resetSelect();
+                  card = DEFAULT_CARD;
                 }
-                image = new Image(getClass().getResourceAsStream(card.ImagePath));
-                img1E.setImage(image);
-                player1.hand.inHand.remove(card);
-                resetGuiHand(player1);
-                resetSelect();
               }
             }
           } else {
-            if (board.Battleground1.ActiveCard.containsKey("E")) {
-              summon = board.Battleground1.getChar("E");
-              Spell s = (Spell) card;
-              s.setUser(summon);
-              s.use();
-              summon = s.getUser();
-              updateDetailBattleground();
-              if (board.Turn1) {
-                player1.hand.inHand.remove(card);
-                resetGuiHand(player1);
-              } else {
-                player2.hand.inHand.remove(card);
-                resetGuiHand(player2);
+            if (!card.getClass().equals(Card.class)) {
+              if (board.Battleground1.ActiveCard.containsKey("E")) {
+                summon = board.Battleground1.getChar("E");
+                Spell s = (Spell) card;
+                s.setUser(summon);
+                s.use();
+                summon = s.getUser();
+                updateDetailBattleground();
+                if (board.Turn1) {
+                  player1.hand.inHand.remove(card);
+                  resetGuiHand(player1);
+                } else {
+                  player2.hand.inHand.remove(card);
+                  resetGuiHand(player2);
+                }
+                resetSelect();
+                card = DEFAULT_CARD;
               }
-              resetSelect();
             }
           }
         } else if (board.getPhase() == TypePhase.ATTACK) {
@@ -540,36 +578,43 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         if (board.getPhase() == TypePhase.PLANNING) {
           if (card.getClass().equals(Character.class)) { 
             if (board.Turn2) {
-              if (!board.Battleground2.ActiveCard.containsKey("A")) {
-                summon = new SummonedChar((Character) card);
-                try {
-                  board.Battleground2.addCard(summon, "A");
-                } catch (Exception e) {
-                  // pass
+              if (card.Mana <= player2.getCurMana()) {
+                if (!board.Battleground2.ActiveCard.containsKey("A")) {
+                  summon = new SummonedChar((Character) card);
+                  try {
+                    board.Battleground2.addCard(summon, "A");
+                  } catch (Exception e) {
+                    // pass
+                  }
+                  image = new Image(getClass().getResourceAsStream(card.ImagePath));
+                  img2A.setImage(image);
+                  player2.hand.inHand.remove(card);
+                  resetGuiHand(player2);
+                  curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
+                  resetSelect();
+                  card = DEFAULT_CARD;
                 }
-                image = new Image(getClass().getResourceAsStream(card.ImagePath));
-                img2A.setImage(image);
-                player2.hand.inHand.remove(card);
-                resetGuiHand(player2);
-                resetSelect();
               }
             }
           } else {
-            if (board.Battleground2.ActiveCard.containsKey("A")) {
-              summon = board.Battleground2.getChar("A");
-              Spell s = (Spell) card;
-              s.setUser(summon);
-              s.use();
-              summon = s.getUser();
-              updateDetailBattleground();
-              if (board.Turn1) {
-                player1.hand.inHand.remove(card);
-                resetGuiHand(player1);
-              } else {
-                player2.hand.inHand.remove(card);
-                resetGuiHand(player2);
+            if (!card.getClass().equals(Card.class)) {
+              if (board.Battleground2.ActiveCard.containsKey("A")) {
+                summon = board.Battleground2.getChar("A");
+                Spell s = (Spell) card;
+                s.setUser(summon);
+                s.use();
+                summon = s.getUser();
+                updateDetailBattleground();
+                if (board.Turn1) {
+                  player1.hand.inHand.remove(card);
+                  resetGuiHand(player1);
+                } else {
+                  player2.hand.inHand.remove(card);
+                  resetGuiHand(player2);
+                }
+                resetSelect();
+                card = DEFAULT_CARD;
               }
-              resetSelect();
             }
           }
         } else if (board.getPhase() == TypePhase.ATTACK) {
@@ -605,36 +650,43 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         if (board.getPhase() == TypePhase.PLANNING) {
           if (card.getClass().equals(Character.class)) { 
             if (board.Turn2) {
-              if (!board.Battleground2.ActiveCard.containsKey("B")) {
-                summon = new SummonedChar((Character) card);
-                try {
-                  board.Battleground2.addCard(summon, "B");
-                } catch (Exception e) {
-                  // pass
+              if (card.Mana <= player2.getCurMana()) {
+                if (!board.Battleground2.ActiveCard.containsKey("B")) {
+                  summon = new SummonedChar((Character) card);
+                  try {
+                    board.Battleground2.addCard(summon, "B");
+                  } catch (Exception e) {
+                    // pass
+                  }
+                  image = new Image(getClass().getResourceAsStream(card.ImagePath));
+                  img2B.setImage(image);
+                  player2.hand.inHand.remove(card);
+                  resetGuiHand(player2);
+                  curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
+                  resetSelect();
+                  card = DEFAULT_CARD;
                 }
-                image = new Image(getClass().getResourceAsStream(card.ImagePath));
-                img2B.setImage(image);
-                player2.hand.inHand.remove(card);
-                resetGuiHand(player2);
-                resetSelect();
               }
             }
           } else {
-            if (board.Battleground2.ActiveCard.containsKey("B")) {
-              summon = board.Battleground2.getChar("B");
-              Spell s = (Spell) card;
-              s.setUser(summon);
-              s.use();
-              summon = s.getUser();
-              updateDetailBattleground();
-              if (board.Turn1) {
-                player1.hand.inHand.remove(card);
-                resetGuiHand(player1);
-              } else {
-                player2.hand.inHand.remove(card);
-                resetGuiHand(player2);
+            if (!card.getClass().equals(Card.class)) {
+              if (board.Battleground2.ActiveCard.containsKey("B")) {
+                summon = board.Battleground2.getChar("B");
+                Spell s = (Spell) card;
+                s.setUser(summon);
+                s.use();
+                summon = s.getUser();
+                updateDetailBattleground();
+                if (board.Turn1) {
+                  player1.hand.inHand.remove(card);
+                  resetGuiHand(player1);
+                } else {
+                  player2.hand.inHand.remove(card);
+                  resetGuiHand(player2);
+                }
+                resetSelect();
+                card = DEFAULT_CARD;
               }
-              resetSelect();
             }
           }
         } else if (board.getPhase() == TypePhase.ATTACK) {
@@ -670,36 +722,43 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         if (board.getPhase() == TypePhase.PLANNING) {
           if (card.getClass().equals(Character.class)) { 
             if (board.Turn2) {
-              if (!board.Battleground2.ActiveCard.containsKey("C")) {
-                summon = new SummonedChar((Character) card);
-                try {
-                  board.Battleground2.addCard(summon, "C");
-                } catch (Exception e) {
-                  // pass
+              if (card.Mana <= player2.getCurMana()) {
+                if (!board.Battleground2.ActiveCard.containsKey("C")) {
+                  summon = new SummonedChar((Character) card);
+                  try {
+                    board.Battleground2.addCard(summon, "C");
+                  } catch (Exception e) {
+                    // pass
+                  }
+                  image = new Image(getClass().getResourceAsStream(card.ImagePath));
+                  img2C.setImage(image);
+                  player2.hand.inHand.remove(card);
+                  resetGuiHand(player2);
+                  curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
+                  resetSelect();
+                  card = DEFAULT_CARD;
                 }
-                image = new Image(getClass().getResourceAsStream(card.ImagePath));
-                img2C.setImage(image);
-                player2.hand.inHand.remove(card);
-                resetGuiHand(player2);
-                resetSelect();
               }
             }
           } else {
-            if (board.Battleground2.ActiveCard.containsKey("C")) {
-              summon = board.Battleground2.getChar("C");
-              Spell s = (Spell) card;
-              s.setUser(summon);
-              s.use();
-              summon = s.getUser();
-              updateDetailBattleground();
-              if (board.Turn1) {
-                player1.hand.inHand.remove(card);
-                resetGuiHand(player1);
-              } else {
-                player2.hand.inHand.remove(card);
-                resetGuiHand(player2);
+            if (!card.getClass().equals(Card.class)) {
+              if (board.Battleground2.ActiveCard.containsKey("C")) {
+                summon = board.Battleground2.getChar("C");
+                Spell s = (Spell) card;
+                s.setUser(summon);
+                s.use();
+                summon = s.getUser();
+                updateDetailBattleground();
+                if (board.Turn1) {
+                  player1.hand.inHand.remove(card);
+                  resetGuiHand(player1);
+                } else {
+                  player2.hand.inHand.remove(card);
+                  resetGuiHand(player2);
+                }
+                resetSelect();
+                card = DEFAULT_CARD;
               }
-              resetSelect();
             }
           }
         } else if (board.getPhase() == TypePhase.ATTACK) {
@@ -735,36 +794,43 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         if (board.getPhase() == TypePhase.PLANNING) {
           if (card.getClass().equals(Character.class)) { 
             if (board.Turn2) {
-              if (!board.Battleground2.ActiveCard.containsKey("D")) {
-                summon = new SummonedChar((Character) card);
-                try {
-                  board.Battleground2.addCard(summon, "D");
-                } catch (Exception e) {
-                  // pass
+              if (card.Mana <= player2.getCurMana()) {
+                if (!board.Battleground2.ActiveCard.containsKey("D")) {
+                  summon = new SummonedChar((Character) card);
+                  try {
+                    board.Battleground2.addCard(summon, "D");
+                  } catch (Exception e) {
+                    // pass
+                  }
+                  image = new Image(getClass().getResourceAsStream(card.ImagePath));
+                  img2D.setImage(image);
+                  player2.hand.inHand.remove(card);
+                  resetGuiHand(player2);
+                  curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
+                  resetSelect();
+                  card = DEFAULT_CARD;
                 }
-                image = new Image(getClass().getResourceAsStream(card.ImagePath));
-                img2D.setImage(image);
-                player2.hand.inHand.remove(card);
-                resetGuiHand(player2);
-                resetSelect();
               }
             }
           } else {
-            if (board.Battleground2.ActiveCard.containsKey("D")) {
-              summon = board.Battleground2.getChar("D");
-              Spell s = (Spell) card;
-              s.setUser(summon);
-              s.use();
-              summon = s.getUser();
-              updateDetailBattleground();
-              if (board.Turn1) {
-                player1.hand.inHand.remove(card);
-                resetGuiHand(player1);
-              } else {
-                player2.hand.inHand.remove(card);
-                resetGuiHand(player2);
+            if (!card.getClass().equals(Card.class)) {
+              if (board.Battleground2.ActiveCard.containsKey("D")) {
+                summon = board.Battleground2.getChar("D");
+                Spell s = (Spell) card;
+                s.setUser(summon);
+                s.use();
+                summon = s.getUser();
+                updateDetailBattleground();
+                if (board.Turn1) {
+                  player1.hand.inHand.remove(card);
+                  resetGuiHand(player1);
+                } else {
+                  player2.hand.inHand.remove(card);
+                  resetGuiHand(player2);
+                }
+                resetSelect();
+                card = DEFAULT_CARD;
               }
-              resetSelect();
             }
           }
         } else if (board.getPhase() == TypePhase.ATTACK) {
@@ -800,36 +866,43 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         if (board.getPhase() == TypePhase.PLANNING) {
           if (card.getClass().equals(Character.class)) { 
             if (board.Turn2) {
-              if (!board.Battleground2.ActiveCard.containsKey("E")) {
-                summon = new SummonedChar((Character) card);
-                try {
-                  board.Battleground2.addCard(summon, "E");
-                } catch (Exception e) {
-                  // pass
+              if (card.Mana <= player2.getCurMana()) {
+                if (!board.Battleground2.ActiveCard.containsKey("E")) {
+                  summon = new SummonedChar((Character) card);
+                  try {
+                    board.Battleground2.addCard(summon, "E");
+                  } catch (Exception e) {
+                    // pass
+                  }
+                  image = new Image(getClass().getResourceAsStream(card.ImagePath));
+                  img2E.setImage(image);
+                  player2.hand.inHand.remove(card);
+                  resetGuiHand(player2);
+                  curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
+                  resetSelect();
+                  card = DEFAULT_CARD;
                 }
-                image = new Image(getClass().getResourceAsStream(card.ImagePath));
-                img2E.setImage(image);
-                player2.hand.inHand.remove(card);
-                resetGuiHand(player2);
-                resetSelect();
               }
             }
           } else {
-            if (board.Battleground2.ActiveCard.containsKey("E")) {
-              summon = board.Battleground2.getChar("E");
-              Spell s = (Spell) card;
-              s.setUser(summon);
-              s.use();
-              summon = s.getUser();
-              updateDetailBattleground();
-              if (board.Turn1) {
-                player1.hand.inHand.remove(card);
-                resetGuiHand(player1);
-              } else {
-                player2.hand.inHand.remove(card);
-                resetGuiHand(player2);
+            if (!card.getClass().equals(Card.class)) {
+              if (board.Battleground2.ActiveCard.containsKey("E")) {
+                summon = board.Battleground2.getChar("E");
+                Spell s = (Spell) card;
+                s.setUser(summon);
+                s.use();
+                summon = s.getUser();
+                updateDetailBattleground();
+                if (board.Turn1) {
+                  player1.hand.inHand.remove(card);
+                  resetGuiHand(player1);
+                } else {
+                  player2.hand.inHand.remove(card);
+                  resetGuiHand(player2);
+                }
+                resetSelect();
+                card = DEFAULT_CARD;
               }
-              resetSelect();
             }
           }
         } else if (board.getPhase() == TypePhase.ATTACK) {
@@ -866,6 +939,23 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     next.setLayoutX(1100);
     next.setLayoutY(380);
     next.setOnAction(this);
+
+    // Delete card setup
+    deleteCard = new Button("Delete Card");
+    deleteCard.setVisible(false);
+    deleteCard.setLayoutX(575);
+    deleteCard.setLayoutY(325);
+    deleteCard.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (!card.getClass().equals(Card.class)) {
+          if (board.Turn1) {
+
+          } else {
+
+          }
+        }
+      }
+    });
 
     // Hand setup
     image = new Image(getClass().getResourceAsStream(player1.hand.getCard(0).ImagePath));
@@ -1147,6 +1237,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     root.getChildren().add(img2D);
     root.getChildren().add(img2E);
 
+    root.getChildren().add(deleteCard);
+
     root.getChildren().add(draw);
     root.getChildren().add(plan);
     root.getChildren().add(attack);
@@ -1312,11 +1404,15 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             drawCard = player2.deck.showTopThreeCards();
           }
         }
+        isDrawed = false;
         end.setFill(Color.BLACK);
       } else if (board.getPhase() == TypePhase.PLANNING) { //PLAN
+        card = DEFAULT_CARD;
+        deleteCard.setVisible(true);
         plan.setFill(Color.ORANGE);
         draw.setFill(Color.BLACK);
       } else if (board.getPhase() == TypePhase.ATTACK) { //ATTACK
+        deleteCard.setVisible(false);
         attack.setFill(Color.ORANGE);
         plan.setFill(Color.BLACK);
       } else { //END

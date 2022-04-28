@@ -67,6 +67,11 @@ public class Player {
         }
     }
 
+    public Integer reduceMana(Integer mana) {
+        this.curMana -= mana;
+        return this.curMana;
+    }
+
     public Integer getCurMana(){
         return this.curMana;
     }
