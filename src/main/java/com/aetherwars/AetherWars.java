@@ -108,13 +108,6 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     File ptnCSVFile = new File(getClass().getResource(PTN_CSV_FILE_PATH).toURI());
     File swapCSVFile = new File(getClass().getResource(SWAP_CSV_FILE_PATH).toURI());
     cLib.fillLibrary(characterCSVFile, lvlCSVFile, morphCSVFile, ptnCSVFile, swapCSVFile);
-    // CSVReader characterReader = new CSVReader(characterCSVFile, "\t");
-    // characterReader.setSkipHeader(true);
-    // List<String[]> characterRows = characterReader.read();
-    // for (String[] row : characterRows) {
-    //   // Character c = new Character(row[1], row[3], TypeChar.valueOf(row[2]));
-    //   // System.out.println(c);
-    // }
   }
 
   @Override
