@@ -377,7 +377,15 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
               resetSelect();
             }
           }
-        } 
+        } else if (board.getPhase() == TypePhase.ATTACK) {
+          if (board.Turn1) {
+            summon = board.Battleground1.getChar("C");
+          } else if (board.Turn2) {
+            if (!summon.alreadyAttack) {
+              summon.attackCharacter(board.Battleground1.getChar("C"));
+            }
+          }
+        }
       }
     });
 
@@ -432,6 +440,14 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                 resetGuiHand(player2);
               }
               resetSelect();
+            }
+          }
+        }else if (board.getPhase() == TypePhase.ATTACK) {
+          if (board.Turn1) {
+            summon = board.Battleground1.getChar("D");
+          } else if (board.Turn2) {
+            if (!summon.alreadyAttack) {
+              summon.attackCharacter(board.Battleground1.getChar("D"));
             }
           }
         }
@@ -491,6 +507,14 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
               resetSelect();
             }
           }
+        } else if (board.getPhase() == TypePhase.ATTACK) {
+          if (board.Turn1) {
+            summon = board.Battleground1.getChar("E");
+          } else if (board.Turn2) {
+            if (!summon.alreadyAttack) {
+              summon.attackCharacter(board.Battleground1.getChar("E"));
+            }
+          }
         }
       }
     });
@@ -546,6 +570,14 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                 resetGuiHand(player2);
               }
               resetSelect();
+            }
+          }
+        } else if (board.getPhase() == TypePhase.ATTACK) {
+          if (board.Turn2) {
+            summon = board.Battleground2.getChar("A");
+          } else if (board.Turn1) {
+            if (!summon.alreadyAttack) {
+              summon.attackCharacter(board.Battleground2.getChar("A"));
             }
           }
         }
@@ -605,6 +637,14 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
               resetSelect();
             }
           }
+        } else if (board.getPhase() == TypePhase.ATTACK) {
+          if (board.Turn2) {
+            summon = board.Battleground2.getChar("B");
+          } else if (board.Turn1) {
+            if (!summon.alreadyAttack) {
+              summon.attackCharacter(board.Battleground2.getChar("B"));
+            }
+          }
         }
       }
     });
@@ -660,6 +700,14 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                 resetGuiHand(player2);
               }
               resetSelect();
+            }
+          }
+        } else if (board.getPhase() == TypePhase.ATTACK) {
+          if (board.Turn2) {
+            summon = board.Battleground2.getChar("C");
+          } else if (board.Turn1) {
+            if (!summon.alreadyAttack) {
+              summon.attackCharacter(board.Battleground2.getChar("C"));
             }
           }
         }
@@ -719,6 +767,14 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
               resetSelect();
             }
           }
+        } else if (board.getPhase() == TypePhase.ATTACK) {
+          if (board.Turn2) {
+            summon = board.Battleground2.getChar("D");
+          } else if (board.Turn1) {
+            if (!summon.alreadyAttack) {
+              summon.attackCharacter(board.Battleground2.getChar("D"));
+            }
+          }
         }
       }
     });
@@ -774,6 +830,14 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                 resetGuiHand(player2);
               }
               resetSelect();
+            }
+          }
+        } else if (board.getPhase() == TypePhase.ATTACK) {
+          if (board.Turn2) {
+            summon = board.Battleground2.getChar("E");
+          } else if (board.Turn1) {
+            if (!summon.alreadyAttack) {
+              summon.attackCharacter(board.Battleground2.getChar("E"));
             }
           }
         }
