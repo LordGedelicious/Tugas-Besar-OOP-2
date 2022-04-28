@@ -348,8 +348,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
       }
     });
     handMana1 = new Text("Mana " + Integer.toString(player1.hand.getCard(0).Mana));
-    handMana1.setX(100);
-    handMana1.setY(625);
+    // handMana1.setX(100);
+    // handMana1.setY(625);
+    handMana1.setX(15);
+    handMana1.setY(125);
 
     image = new Image(getClass().getResourceAsStream(player1.hand.getCard(1).ImagePath));
     setImageHand(2);
@@ -381,8 +383,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
       }
     });
     handMana2 = new Text("Mana " + Integer.toString(player1.hand.getCard(1).Mana));
-    handMana2.setX(200);
-    handMana2.setY(625);
+    // handMana2.setX(200);
+    // handMana2.setY(625);
+    handMana2.setX(15);
+    handMana2.setY(125);
 
     image = new Image(getClass().getResourceAsStream(player1.hand.getCard(2).ImagePath));
     setImageHand(3);
@@ -414,8 +418,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
       }
     });
     handMana3 = new Text("Mana " + Integer.toString(player1.hand.getCard(2).Mana));
-    handMana3.setX(300);
-    handMana3.setY(625);
+    // handMana3.setX(300);
+    // handMana3.setY(625);
+    handMana3.setX(15);
+    handMana3.setY(125);
 
     image = new Image(getClass().getResourceAsStream(DEFAULT_IMG_PATH));
     setImageHand(4);
@@ -447,8 +453,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
       }
     });
     handMana4 = new Text();
-    handMana4.setX(400);
-    handMana4.setY(625);
+    // handMana4.setX(400);
+    // handMana4.setY(625);
+    handMana4.setX(15);
+    handMana4.setY(125);
 
     setImageHand(5);
     // hand5.setX(500);
@@ -479,8 +487,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
       }
     });
     handMana5 = new Text();
-    handMana5.setX(500);
-    handMana5.setY(625);
+    // handMana5.setX(500);
+    // handMana5.setY(625);
+    handMana5.setX(15);
+    handMana5.setY(125);
 
     setImageHand(0);
     handHover.setX(650);
@@ -732,6 +742,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     tangan1.setLayoutX(90);
     tangan1.setLayoutY(500);
     tangan1.getChildren().add(hand1);
+    tangan1.getChildren().add(handMana1);
 
     tangan2.setStyle("-fx-background-color: gray;");
     tangan2.setPrefHeight(150.0);
@@ -739,6 +750,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     tangan2.setLayoutX(190);
     tangan2.setLayoutY(500);
     tangan2.getChildren().add(hand2);
+    tangan2.getChildren().add(handMana2);
 
     tangan3.setStyle("-fx-background-color: gray;");
     tangan3.setPrefHeight(150.0);
@@ -746,6 +758,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     tangan3.setLayoutX(290);
     tangan3.setLayoutY(500);
     tangan3.getChildren().add(hand3);
+    tangan3.getChildren().add(handMana3);
 
     tangan4.setStyle("-fx-background-color: gray;");
     tangan4.setPrefHeight(150.0);
@@ -753,6 +766,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     tangan4.setLayoutX(390);
     tangan4.setLayoutY(500);
     tangan4.getChildren().add(hand4);
+    tangan4.getChildren().add(handMana4);
 
     tangan5.setStyle("-fx-background-color: gray;");
     tangan5.setPrefHeight(150.0);
@@ -760,25 +774,50 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     tangan5.setLayoutX(490);
     tangan5.setLayoutY(500);
     tangan5.getChildren().add(hand5);
+    tangan5.getChildren().add(handMana5);
 
     hand1.setOnMouseClicked(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
-        resetSelect();
-        tangan1.setStyle("-fx-background-color: yellow;");
+        if (!handMana1.getText().equals("")){
+          resetSelect();
+          tangan1.setStyle("-fx-background-color: yellow;");
+        }
       }
     });
 
     hand2.setOnMouseClicked(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
-        resetSelect();
-        tangan2.setStyle("-fx-background-color: yellow;");
+        if (!handMana2.getText().equals("")){
+          resetSelect();
+          tangan2.setStyle("-fx-background-color: yellow;");
+        }
       }
     });
 
     hand3.setOnMouseClicked(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
-        resetSelect();
-        tangan3.setStyle("-fx-background-color: yellow;");
+        if (!handMana3.getText().equals("")){
+          resetSelect();
+          tangan3.setStyle("-fx-background-color: yellow;");
+        }
+      }
+    });
+
+    hand4.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (!handMana4.getText().equals("")){
+          resetSelect();
+          tangan4.setStyle("-fx-background-color: yellow;");
+        }
+      }
+    });
+
+    hand5.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (!handMana5.getText().equals("")){
+          resetSelect();
+          tangan5.setStyle("-fx-background-color: yellow;");
+        }
       }
     });
 
@@ -803,6 +842,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     if (isDrawed) {
       board.nextPhase();
       if (board.getPhase() == TypePhase.DRAW) {//DRAW
+        resetSelect();
         draw.setFill(Color.ORANGE);
         if (board.Turn1){
           ronde++;
@@ -819,11 +859,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           }
           else{
             drawCard = player1.deck.showTopThreeCards();
-            //ntar pilih kartu
-            //get card dari deck sesuai dengan pilihan player
-            //kalo hand penuh yang paling kiri (index 0) buang
-            Card kartu = player1.deck.getCard(0);
-            player1.hand.addCard(kartu);
+            // Card kartu = player1.deck.getCard(0);
+            // player1.hand.addCard(kartu);
           }
         }
         else{
@@ -838,9 +875,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           }
           else{
             drawCard = player2.deck.showTopThreeCards();
-            //ntar pilih kartu
-            Card kartu = player2.deck.getCard(0);
-            player2.hand.addCard(kartu);
+            // Card kartu = player2.deck.getCard(0);
+            // player2.hand.addCard(kartu);
           }
         }
         end.setFill(Color.BLACK);
