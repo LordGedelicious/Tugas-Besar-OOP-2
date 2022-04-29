@@ -195,13 +195,13 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     playerImage1.setY(162.5);
     playerImage1.setFitWidth(100);
     playerImage1.setFitHeight(100);
-    playerImage1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+    playerImage1.setOnMouseClicked(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
         if (board.getPhase() == TypePhase.ATTACK && board.Turn2 && board.Battleground1.ActiveCard.isEmpty()){
           defense = DEFAULT_SUM_CHAR;
           if (offense != null){
             offense.attackPlayer(player1);
-            nowHp2.setText(Integer.toString(player1.HP));
+            nowHp1.setText(Integer.toString(player1.HP));
             if (player1.getHp() <= 0){
               System.out.println("Pemain 2 menang");
             }
@@ -232,7 +232,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     playerImage2.setY(162.5);
     playerImage2.setFitWidth(100);
     playerImage2.setFitHeight(100);
-    playerImage2.setOnMouseEntered(new EventHandler<MouseEvent>() {
+    playerImage2.setOnMouseClicked(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
         if (board.getPhase() == TypePhase.ATTACK && board.Turn1 && board.Battleground2.ActiveCard.isEmpty()){
           defense = DEFAULT_SUM_CHAR;
