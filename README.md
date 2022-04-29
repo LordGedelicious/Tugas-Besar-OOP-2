@@ -17,7 +17,7 @@ You can explore more about gradle [here](https://guides.gradle.org/creating-new-
 
 As of the creation of this template, the assistant team used and tested the JDK 8 installation from OpenJDK and Amazon Corretto (since JavaFX is readily available on those installations). You can easily pick and install your desired JDK version and variant by doing it via an IDE like [IntelliJ IDEA](https://www.jetbrains.com/idea/)
 
-![alt text](https://github.com/LordGedelicious/Tugas-Besar-OOP-2/antarmuka.jpeg?raw=true)
+![alt text](https://github.com/LordGedelicious/Tugas-Besar-OOP-2/main/blob/antarmuka.jpeg?raw=true)
 
 ## Credit
 
