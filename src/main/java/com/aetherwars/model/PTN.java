@@ -22,14 +22,13 @@ public class PTN extends TempSpell {
         // { TODO }
 
         // Health : increase or reduce health temporarily
+        getUser().baseAtk += this.Attack;
+        getUser().baseHp += this.HP;
             
         // Add to active spell
         getUser().addSpell(this);
 
-        // if negative
-        if (this.HP < 0) {
-            getUser().baseHp -= this.HP;
-        }
+
 
         
     }

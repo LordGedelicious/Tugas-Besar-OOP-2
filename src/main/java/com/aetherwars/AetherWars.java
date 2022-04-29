@@ -278,6 +278,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                 if (board.Battleground1.ActiveCard.containsKey("A")) {
                   summon = board.Battleground1.getChar("A");
                   Spell s = (Spell) card;
+                  if (s.tipe == TypeSpell.MORPH) {
+                    MORPH m = (MORPH) s;
+                    m.setTarget((Character) cLib.getCardByID(m.id_swap_target));
+                  }
                   s.setUser(summon);
                   s.use();
                   summon = s.getUser();

@@ -121,6 +121,16 @@ public class SummonedChar implements ISummoned {
         int allyDmg = this.calcAttack(sc);
         int tempDmg;
 
+        this.baseHp -= enemyDmg;
+        sc.baseHp -= allyDmg;
+        if (this.checkDie()) {
+            sc.addExp(this.Level);
+        }
+        if (sc.checkDie()) {
+            this.addExp(sc.Level);
+        }
+        this.alreadyAttack = true;
+
         for (TempSpell ts : this.activeSpells) {
             if (ts instanceof PTN) {
             PTN temp_ptn = (PTN) ts;
@@ -150,16 +160,7 @@ public class SummonedChar implements ISummoned {
         }
         }
 
-        this.baseHp -= enemyDmg;
-        
-        sc.baseHp -= allyDmg;
-        if (this.checkDie()) {
-            sc.addExp(this.Level);
-        }
-        if (sc.checkDie()) {
-            this.addExp(sc.Level);
-        }
-        this.alreadyAttack = true;
+
 
 
 
