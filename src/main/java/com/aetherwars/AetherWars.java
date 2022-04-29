@@ -20,6 +20,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ButtonBar.ButtonData;
 
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.Map;
@@ -40,6 +43,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
   private static final SummonedChar DEFAULT_SUM_CHAR = new SummonedChar(DEFAULT_CHAR);
 
   private static CardLibrary cLib;
+
+  private static Alert alert;
+  private static ButtonType buttontype;
 
   private static Text turn;
   private static Text currentPlayer;
@@ -157,6 +163,12 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     player2.randomDeck(cLib);
     board = new Board(player1, player2);
 
+    // Alert setup
+    alert = new Alert(Alert.AlertType.NONE);
+    alert.setTitle("Winner Confirmation");
+    buttontype = new ButtonType("Congrats", ButtonData.OK_DONE);
+    alert.getDialogPane().getButtonTypes().add(buttontype);
+
     // Player setup
     Text turn_text = new Text("Turn");
     turn_text.setX(600);
@@ -204,7 +216,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             offense.attackPlayer(player1);
             nowHp1.setText(Integer.toString(player1.HP));
             if (player1.getHp() <= 0){
-              System.out.println("Pemain 2 menang");
+              alert.setContentText("Player 2 is winner");
+              alert.showAndWait();
             }
             board.Battleground2.setAlreadyAttack(offense.defense, true);
             resetATKBGColor();
@@ -241,7 +254,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             offense.attackPlayer(player2);
             nowHp2.setText(Integer.toString(player2.HP));
             if (player2.getHp() <= 0){
-              System.out.println("Pemain 1 menang");
+              alert.setContentText("Player 1 is winner");
+              alert.showAndWait();
             }
             board.Battleground1.setAlreadyAttack(offense.defense, true);
             resetATKBGColor();
@@ -323,7 +337,6 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
               }
             } else {
               if (board.Turn1 && board.Battleground1.ActiveCard.containsKey("A")) {
-                card = DEFAULT_CARD;
                 key = "A";
               }
             }
@@ -340,7 +353,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     offense.attackPlayer(player2);
                     nowHp2.setText(Integer.toString(player2.HP));
                     if (player2.getHp() <= 0){
-                      System.out.println("Pemain 1 menang");
+                      alert.setContentText("Player 1 is winner");
+                      alert.showAndWait();
                     }
                   }else{
                     offense.attackCharacter(defense);
@@ -447,7 +461,6 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
               }
             } else {
               if (board.Turn1 && board.Battleground1.ActiveCard.containsKey("B")) {
-                card = DEFAULT_CARD;
                 key = "B";
               }
             }
@@ -464,7 +477,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     offense.attackPlayer(player2);
                     nowHp2.setText(Integer.toString(player2.HP));
                     if (player2.getHp() <= 0){
-                      System.out.println("Pemain 1 menang");
+                      alert.setContentText("Player 1 is winner");
+                      alert.showAndWait();
                     }
                   }else{
                     offense.attackCharacter(defense);
@@ -571,7 +585,6 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
               }
             } else {
               if (board.Turn1 && board.Battleground1.ActiveCard.containsKey("C")) {
-                card = DEFAULT_CARD;
                 key = "C";
               }
             }
@@ -588,7 +601,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     offense.attackPlayer(player2);
                     nowHp2.setText(Integer.toString(player2.HP));
                     if (player2.getHp() <= 0){
-                      System.out.println("Pemain 1 menang");
+                      alert.setContentText("Player 1 is winner");
+                      alert.showAndWait();
                     }
                   }else{
                     offense.attackCharacter(defense);
@@ -695,7 +709,6 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
               }
             } else {
               if (board.Turn1 && board.Battleground1.ActiveCard.containsKey("D")) {
-                card = DEFAULT_CARD;
                 key = "D";
               }
             }
@@ -712,7 +725,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     offense.attackPlayer(player2);
                     nowHp2.setText(Integer.toString(player2.HP));
                     if (player2.getHp() <= 0){
-                      System.out.println("Pemain 1 menang");
+                      alert.setContentText("Player 1 is winner");
+                      alert.showAndWait();
                     }
                   }else{
                     offense.attackCharacter(defense);
@@ -819,7 +833,6 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
               }
             } else {
               if (board.Turn1 && board.Battleground1.ActiveCard.containsKey("E")) {
-                card = DEFAULT_CARD;
                 key = "E";
               }
             }
@@ -836,7 +849,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     offense.attackPlayer(player2);
                     nowHp2.setText(Integer.toString(player2.HP));
                     if (player2.getHp() <= 0){
-                      System.out.println("Pemain 1 menang");
+                      alert.setContentText("Player 1 is winner");
+                      alert.showAndWait();
                     }
                   }else{
                     offense.attackCharacter(defense);
@@ -943,7 +957,6 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
               }
             } else {
               if (board.Turn2 && board.Battleground2.ActiveCard.containsKey("A")) {
-                card = DEFAULT_CARD;
                 key = "A";
               }
             }
@@ -960,7 +973,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     offense.attackPlayer(player1);
                     nowHp1.setText(Integer.toString(player1.HP));
                     if (player1.getHp() <= 0){
-                      System.out.println("Pemain 2 menang");
+                      alert.setContentText("Player 2 is winner");
+                      alert.showAndWait();
                     }
                   }else{
                     offense.attackCharacter(defense);
@@ -1067,7 +1081,6 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
               }
             } else {
               if (board.Turn2 && board.Battleground2.ActiveCard.containsKey("B")) {
-                card = DEFAULT_CARD;
                 key = "B";
               }
             }
@@ -1084,7 +1097,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     offense.attackPlayer(player1);
                     nowHp1.setText(Integer.toString(player1.HP));
                     if (player1.getHp() <= 0){
-                      System.out.println("Pemain 2 menang");
+                      alert.setContentText("Player 2 is winner");
+                      alert.showAndWait();
                     }
                   }else{
                     offense.attackCharacter(defense);
@@ -1191,7 +1205,6 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
               }
             } else {
               if (board.Turn2 && board.Battleground2.ActiveCard.containsKey("C")) {
-                card = DEFAULT_CARD;
                 key = "C";
               }
             }
@@ -1208,7 +1221,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     offense.attackPlayer(player1);
                     nowHp1.setText(Integer.toString(player1.HP));
                     if (player1.getHp() <= 0){
-                      System.out.println("Pemain 2 menang");
+                      alert.setContentText("Player 2 is winner");
+                      alert.showAndWait();
                     }
                   }else{
                     offense.attackCharacter(defense);
@@ -1315,7 +1329,6 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
               }
             } else {
               if (board.Turn2 && board.Battleground2.ActiveCard.containsKey("D")) {
-                card = DEFAULT_CARD;
                 key = "D";
               }
             }
@@ -1332,7 +1345,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     offense.attackPlayer(player1);
                     nowHp1.setText(Integer.toString(player1.HP));
                     if (player1.getHp() <= 0){
-                      System.out.println("Pemain 2 menang");
+                      alert.setContentText("Player 2 is winner");
+                      alert.showAndWait();
                     }
                   }else{
                     offense.attackCharacter(defense);
@@ -1414,7 +1428,6 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                 }
               } else {
                 if (board.Turn2 && board.Battleground2.ActiveCard.containsKey("E")) {
-                  card = DEFAULT_CARD;
                   key = "E";
                 }
               }
@@ -1456,7 +1469,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     offense.attackPlayer(player1);
                     nowHp1.setText(Integer.toString(player1.HP));
                     if (player1.getHp() <= 0){
-                      System.out.println("Pemain 2 menang");
+                      alert.setContentText("Player 2 is winner");
+                      alert.showAndWait();
                     }
                   }else{
                     offense.attackCharacter(defense);
@@ -2257,9 +2271,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           reduceSpellDuration();
           turn.setText(String.valueOf(ronde));
           startOfDraw(player1);
-          if (player1.deck.isEmpty()){
+          if (player1.curDeckSize == 0){
             //player pertama kalah
-            System.out.println("Player 1 kalah");
+            alert.setContentText("Player 2 is winner");
+            alert.showAndWait();
           }
           else{
             drawCard = player1.deck.showTopThreeCards();
@@ -2267,9 +2282,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         }
         else{
           startOfDraw(player2);
-          if (player2.deck.isEmpty()){
+          if (player2.curDeckSize == 0){
             //player pertama kalah
-            System.out.println("Player 2 kalah");
+            alert.setContentText("Player 1 is winner");
+            alert.showAndWait();
           }
           else{
             drawCard = player2.deck.showTopThreeCards();
