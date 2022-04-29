@@ -2471,10 +2471,17 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
   public void getDrawGUI(Player player){
     int i = 0;
-    while (i < Math.min(3,player.deckSize)){
-      image = new Image(getClass().getResourceAsStream(player.deck.getCard(i).ImagePath));
-      setImageDraw(i+1);
-      setManaDraw(i+1, "Mana " + Integer.toString(player.deck.getCard(i).Mana));
+    while (i < 3){
+      if (i < player.curDeckSize){
+        image = new Image(getClass().getResourceAsStream(player.deck.getCard(i).ImagePath));
+        setImageDraw(i+1);
+        setManaDraw(i+1, "Mana " + Integer.toString(player.deck.getCard(i).Mana));
+      }
+      else{
+        image = new Image(getClass().getResourceAsStream(DEFAULT_IMG_PATH));
+        setImageDraw(i+1);
+        setManaDraw(i+1, "");
+      }
       i++;
     }
     drawText.setText("PICK A CARD");
