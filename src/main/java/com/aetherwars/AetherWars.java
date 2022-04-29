@@ -150,7 +150,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     } catch (Exception e) {}
 
     // Player untuk tes board
-    player1 = new Player("Steve", ThreadLocalRandom.current().nextInt(40, 60 + 1));
+    //player1 = new Player("Steve", ThreadLocalRandom.current().nextInt(40, 60 + 1));
+    player1 = new Player("Steve", 7);
     player2 = new Player("Alex", ThreadLocalRandom.current().nextInt(40, 60 + 1));
     player1.randomDeck(cLib);
     player2.randomDeck(cLib);
@@ -2470,7 +2471,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
   public void getDrawGUI(Player player){
     int i = 0;
-    while (i<3){
+    while (i < Math.min(3,player.deckSize)){
       image = new Image(getClass().getResourceAsStream(player.deck.getCard(i).ImagePath));
       setImageDraw(i+1);
       setManaDraw(i+1, "Mana " + Integer.toString(player.deck.getCard(i).Mana));
