@@ -5,7 +5,7 @@ import java.io.File;
 
 public class Player {
     private String name;
-    private Integer HP;
+    public Integer HP;
     private Integer maxMana;
     private Integer curMana;
     public Deck deck;

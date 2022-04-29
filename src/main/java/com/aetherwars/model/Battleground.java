@@ -43,4 +43,12 @@ public class Battleground{
             System.out.println(set.getKey() + "= " + set.getValue().c.Nama);
         }
     }
+
+    public void setAlreadyAttack(String pos){
+        this.ActiveCard.get(pos).alreadyAttack = true;
+    }
+
+    public boolean checkAlreadyAttacked(String pos){
+        return this.ActiveCard.get(pos).alreadyAttack;
+    }
 }
