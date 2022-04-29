@@ -49,8 +49,13 @@ public class Deck {
     public List<Card> showTopThreeCards() {
         List<Card> shownCards = new ArrayList<>();
         Integer tersisa = Math.min(currentSize, 3);
-        for (int i = 0; i < tersisa; i++) {
-            shownCards.add(this.cards.get(i));
+        Integer i = 0;
+        while (tersisa > 0){
+            if (this.cards.get(i) != null){
+                shownCards.add(this.cards.get(i));
+                tersisa -= 1;
+            }
+            i++;
         }
         return shownCards;
     }
