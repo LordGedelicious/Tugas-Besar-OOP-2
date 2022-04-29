@@ -62,16 +62,22 @@ public class SummonedChar implements ISummoned {
     public void levelUp() {
         if (this.Level < this.max_level) {
             this.Level += 1;
-            this.baseAtk += c.getAttackUp();
-            this.baseHp += c.getHealthUp();
+            this.max_Atk += c.getAttackUp();
+            this.max_Hp += c.getHealthUp();
+            this.baseAtk = this.max_Atk;
+            this.baseHp = this.max_Hp;
         }
     }
 
     public void levelDown() {
         if (this.Level > 1) {
             this.Level -= 1;
-            this.baseAtk -= c.getAttackUp();
-            this.baseHp -= c.getHealthUp();
+            this.max_Atk -= c.getAttackUp();
+            this.max_Hp -= c.getHealthUp();
+            this.baseAtk = this.max_Atk;
+            if (this.baseHp > this.max_Hp) {
+                this.baseHp = this.max_Hp;
+            }
         }
     }
 

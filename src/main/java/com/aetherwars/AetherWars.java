@@ -322,6 +322,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
               }
             } else {
               if (board.Turn1 && board.Battleground1.ActiveCard.containsKey("A")) {
+                card = DEFAULT_CARD;
                 key = "A";
               }
             }
@@ -445,6 +446,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
               }
             } else {
               if (board.Turn1 && board.Battleground1.ActiveCard.containsKey("B")) {
+                card = DEFAULT_CARD;
                 key = "B";
               }
             }
@@ -568,6 +570,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
               }
             } else {
               if (board.Turn1 && board.Battleground1.ActiveCard.containsKey("C")) {
+                card = DEFAULT_CARD;
                 key = "C";
               }
             }
@@ -691,6 +694,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
               }
             } else {
               if (board.Turn1 && board.Battleground1.ActiveCard.containsKey("D")) {
+                card = DEFAULT_CARD;
                 key = "D";
               }
             }
@@ -814,6 +818,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
               }
             } else {
               if (board.Turn1 && board.Battleground1.ActiveCard.containsKey("E")) {
+                card = DEFAULT_CARD;
                 key = "E";
               }
             }
@@ -937,6 +942,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
               }
             } else {
               if (board.Turn2 && board.Battleground2.ActiveCard.containsKey("A")) {
+                card = DEFAULT_CARD;
                 key = "A";
               }
             }
@@ -1060,6 +1066,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
               }
             } else {
               if (board.Turn2 && board.Battleground2.ActiveCard.containsKey("B")) {
+                card = DEFAULT_CARD;
                 key = "B";
               }
             }
@@ -1183,6 +1190,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
               }
             } else {
               if (board.Turn2 && board.Battleground2.ActiveCard.containsKey("C")) {
+                card = DEFAULT_CARD;
                 key = "C";
               }
             }
@@ -1306,6 +1314,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
               }
             } else {
               if (board.Turn2 && board.Battleground2.ActiveCard.containsKey("D")) {
+                card = DEFAULT_CARD;
                 key = "D";
               }
             }
@@ -1404,6 +1413,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                 }
               } else {
                 if (board.Turn2 && board.Battleground2.ActiveCard.containsKey("E")) {
+                  card = DEFAULT_CARD;
                   key = "E";
                 }
               }
