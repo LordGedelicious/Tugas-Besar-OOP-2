@@ -1831,7 +1831,6 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     drawMana3.setY(885);
 
     // Group setup
-    //Group root = new Group();
     Pane root = new Pane();
     root.getChildren().add(turn_text);
     root.getChildren().add(turn);
@@ -2019,7 +2018,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           else if (board.getPhase() == TypePhase.ATTACK){
             resetSelectBG1();
           }
-          summoned1A.setStyle("-fx-background-color: yellow;");
+          if (!board.Battleground1.checkAlreadyAttacked("A")){
+            summoned1A.setStyle("-fx-background-color: yellow;");
+          }
         }
       }
     });
@@ -2033,7 +2034,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           else if (board.getPhase() == TypePhase.ATTACK){
             resetSelectBG1();
           }
-          summoned1B.setStyle("-fx-background-color: yellow;");
+          if (!board.Battleground1.checkAlreadyAttacked("B")){
+            summoned1B.setStyle("-fx-background-color: yellow;");
+          }
         }
       }
     });
@@ -2047,7 +2050,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           else if (board.getPhase() == TypePhase.ATTACK){
             resetSelectBG1();
           }
-          summoned1C.setStyle("-fx-background-color: yellow;");
+          if (!board.Battleground1.checkAlreadyAttacked("C")){
+            summoned1C.setStyle("-fx-background-color: yellow;");
+          }
         }
       }
     });
@@ -2061,7 +2066,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           else if (board.getPhase() == TypePhase.ATTACK){
             resetSelectBG1();
           }
-          summoned1D.setStyle("-fx-background-color: yellow;");
+          if (!board.Battleground1.checkAlreadyAttacked("D")){
+            summoned1D.setStyle("-fx-background-color: yellow;");
+          }
         }
       }
     });
@@ -2075,7 +2082,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           else if (board.getPhase() == TypePhase.ATTACK){
             resetSelectBG1();
           }
-          summoned1E.setStyle("-fx-background-color: yellow;");
+          if (!board.Battleground1.checkAlreadyAttacked("E")){
+            summoned1E.setStyle("-fx-background-color: yellow;");
+          }
         }
       }
     });
@@ -2130,7 +2139,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           else if (board.getPhase() == TypePhase.ATTACK){
             resetSelectBG2();
           }
-          summoned2A.setStyle("-fx-background-color: yellow;");
+          if (!board.Battleground2.checkAlreadyAttacked("A")){
+            summoned2A.setStyle("-fx-background-color: yellow;");
+          }
         }
       }
     });
@@ -2144,7 +2155,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           else if (board.getPhase() == TypePhase.ATTACK){
             resetSelectBG2();
           }
-          summoned2B.setStyle("-fx-background-color: yellow;");
+          if (!board.Battleground2.checkAlreadyAttacked("B")){
+            summoned2B.setStyle("-fx-background-color: yellow;");
         }
       }
     });
@@ -2158,7 +2170,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           else if (board.getPhase() == TypePhase.ATTACK){
             resetSelectBG2();
           }
-          summoned2C.setStyle("-fx-background-color: yellow;");
+          if (!board.Battleground2.checkAlreadyAttacked("C")){
+            summoned2C.setStyle("-fx-background-color: yellow;");
         }
       }
     });
@@ -2172,7 +2185,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           else if (board.getPhase() == TypePhase.ATTACK){
             resetSelectBG2();
           }
-          summoned2D.setStyle("-fx-background-color: yellow;");
+          if (!board.Battleground2.checkAlreadyAttacked("D")){
+            summoned2D.setStyle("-fx-background-color: yellow;");
         }
       }
     });
@@ -2186,7 +2200,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           else if (board.getPhase() == TypePhase.ATTACK){
             resetSelectBG2();
           }
-          summoned2E.setStyle("-fx-background-color: yellow;");
+          if (!board.Battleground2.checkAlreadyAttacked("E")){
+            summoned2E.setStyle("-fx-background-color: yellow;");
         }
       }
     });
@@ -2216,6 +2231,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         draw.setFill(Color.ORANGE);
         if (board.Turn1){
           ronde++;
+          reduceSpellDuration();
           turn.setText(String.valueOf(ronde));
           startOfDraw(player1);
           if (player1.deck.isEmpty()){
@@ -2615,11 +2631,11 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
   }
 
   public void resetAlreadyAttack(){
-    for (Map.Entry<String, SummonedChar> set : board.Battleground1.ActiveCard.entrySet()) {
-      board.Battleground1.setAlreadyAttack(set.getKey(), false);
+    for (String key : board.Battleground1.ActiveCard.keySet()) {
+      board.Battleground1.setAlreadyAttack(key, false);
     }
-    for (Map.Entry<String, SummonedChar> set : board.Battleground2.ActiveCard.entrySet()) {
-      board.Battleground2.setAlreadyAttack(set.getKey(), false);
+    for (String key : board.Battleground2.ActiveCard.keySet()) {
+      board.Battleground2.setAlreadyAttack(key, false);
     }
   }
 
@@ -2699,6 +2715,15 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     } else {
       image = new Image(getClass().getResourceAsStream(DEFAULT_IMG_PATH));
       setImageBattleground(10);
+    }
+  }
+
+  public void reduceSpellDuration(){
+    for (String key : board.Battleground1.ActiveCard.keySet()){
+      board.Battleground1.getChar(key).DecreaseSpellDuration();
+    }
+    for (String key : board.Battleground2.ActiveCard.keySet()){
+      board.Battleground2.getChar(key).DecreaseSpellDuration();
     }
   }
 }
