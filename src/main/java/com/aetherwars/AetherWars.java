@@ -289,6 +289,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
                   resetSelect();
                   card = DEFAULT_CARD;
+                  key = "A";
                 }
               }
             }
@@ -316,6 +317,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
                   resetSelect();
                   card = DEFAULT_CARD;
+                  key = "A";
                 }
               }
             } else {
@@ -414,6 +416,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
                   resetSelect();
                   card = DEFAULT_CARD;
+                  key = "B";
                 }
               }
             }
@@ -437,6 +440,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
                   resetSelect();
                   card = DEFAULT_CARD;
+                  key = "B";
                 }
               }
             } else {
@@ -535,6 +539,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
                   resetSelect();
                   card = DEFAULT_CARD;
+                  key = "C";
                 }
               }
             }
@@ -558,6 +563,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
                   resetSelect();
                   card = DEFAULT_CARD;
+                  key = "C";
                 }
               }
             } else {
@@ -656,6 +662,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
                   resetSelect();
                   card = DEFAULT_CARD;
+                  key = "D";
                 }
               }
             }
@@ -679,6 +686,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
                   resetSelect();
                   card = DEFAULT_CARD;
+                  key = "D";
                 }
               }
             } else {
@@ -777,6 +785,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
                   resetSelect();
                   card = DEFAULT_CARD;
+                  key = "E";
                 }
               }
             }
@@ -800,6 +809,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
                   resetSelect();
                   card = DEFAULT_CARD;
+                  key = "E";
                 }
               }
             } else {
@@ -898,6 +908,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
                   resetSelect();
                   card = DEFAULT_CARD;
+                  key = "A";
                 }
               }
             }
@@ -921,6 +932,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
                   resetSelect();
                   card = DEFAULT_CARD;
+                  key = "A";
                 }
               }
             } else {
@@ -1019,6 +1031,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
                   resetSelect();
                   card = DEFAULT_CARD;
+                  key = "B";
                 }
               }
             }
@@ -1042,6 +1055,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
                   resetSelect();
                   card = DEFAULT_CARD;
+                  key = "B";
                 }
               }
             } else {
@@ -1140,6 +1154,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
                   resetSelect();
                   card = DEFAULT_CARD;
+                  key = "C";
                 }
               }
             }
@@ -1163,6 +1178,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
                   resetSelect();
                   card = DEFAULT_CARD;
+                  key = "C";
                 }
               }
             } else {
@@ -1261,6 +1277,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
                   resetSelect();
                   card = DEFAULT_CARD;
+                  key = "D";
                 }
               }
             }
@@ -1284,6 +1301,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
                   resetSelect();
                   card = DEFAULT_CARD;
+                  key = "D";
                 }
               }
             } else {
@@ -1382,6 +1400,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
                   resetSelect();
                   card = DEFAULT_CARD;
+                  key = "E";
                 }
               } else {
                 if (board.Turn2 && board.Battleground2.ActiveCard.containsKey("E")) {
@@ -1409,6 +1428,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
                   resetSelect();
                   card = DEFAULT_CARD;
+                  key = "E";
                 }
               }
             }
@@ -1532,6 +1552,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           image = new Image(getClass().getResourceAsStream(DEFAULT_IMG_PATH));
           handHover.setImage(image);
           updateDetailHand();
+          resetSelect();
         } else {
           if (key != null) {
             image = new Image(getClass().getResourceAsStream(DEFAULT_IMG_PATH));
@@ -1545,6 +1566,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             key = null;
             handHover.setImage(image);
             updateDetailHand();
+            resetSelectBG();
           }
         }
       }
@@ -1564,6 +1586,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             card = player1.hand.getCard(0);
             image = new Image(getClass().getResourceAsStream(card.ImagePath));
             handHover.setImage(image);
+            key = null;
           }
         }
       }
@@ -1585,6 +1608,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             card = player1.hand.getCard(1);
             image = new Image(getClass().getResourceAsStream(card.ImagePath));
             handHover.setImage(image);
+            key = null;
           }
         }
       }
@@ -1606,6 +1630,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             card = player1.hand.getCard(2);
             image = new Image(getClass().getResourceAsStream(card.ImagePath));
             handHover.setImage(image);
+            key = null;
           }
         }
       }
@@ -1627,6 +1652,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             card = player1.hand.getCard(3);
             image = new Image(getClass().getResourceAsStream(card.ImagePath));
             handHover.setImage(image);
+            key = null;
           }
         }
       }
@@ -1640,13 +1666,14 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     hand5.setY(10);
     hand5.setFitWidth(50);
     hand5.setFitHeight(100);
-    hand1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+    hand5.setOnMouseClicked(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
         if (board.getPhase() == TypePhase.PLANNING) {
           if (board.Turn1 && player1.hand.getSize() > 4) {
             card = player1.hand.getCard(4);
             image = new Image(getClass().getResourceAsStream(card.ImagePath));
             handHover.setImage(image);
+            key = null;
           }
         }
       }
