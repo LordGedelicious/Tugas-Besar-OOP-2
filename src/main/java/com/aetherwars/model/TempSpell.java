@@ -14,12 +14,6 @@ public class TempSpell extends Spell {
     }
     public void DecreaseDuration() {
         this.duration -= 1;
-        if (this.duration < 0) {
-            // remove from active spell
-            getUser().removeSpell(this);
-            // revert
-            revert();
-        }
     }
     public void revert() {
 
