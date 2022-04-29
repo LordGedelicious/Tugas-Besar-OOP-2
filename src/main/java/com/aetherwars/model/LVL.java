@@ -19,7 +19,7 @@ public class LVL extends PermSpell {
     @Override
     public void use() {
         // level up
-        if (direction == "UP") {
+        if (direction.equals("UP")) {
             this.getUser().levelUp();
         }
         // level down

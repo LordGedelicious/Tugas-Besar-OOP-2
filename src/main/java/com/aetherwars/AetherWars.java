@@ -326,7 +326,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   }
                   s.setUser(summon);
                   if (s.tipe == TypeSpell.LVL){
-                    s.setManaLvl();
+                    LVL l = (LVL) s;
+                    l.setManaLVL();
                   }
                   s.use();
                   summon = s.getUser();
@@ -474,7 +475,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   }
                   s.setUser(summon);
                   if (s.tipe == TypeSpell.LVL){
-                    s.setManaLvl();
+                    LVL l = (LVL) s;
+                    l.setManaLVL();
                   }
                   s.use();
                   summon = s.getUser();
@@ -622,7 +624,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   }
                   s.setUser(summon);
                   if (s.tipe == TypeSpell.LVL){
-                    s.setManaLvl();
+                    LVL l = (LVL) s;
+                    l.setManaLVL();
                   }
                   s.use();
                   summon = s.getUser();
@@ -770,7 +773,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   }
                   s.setUser(summon);
                   if (s.tipe == TypeSpell.LVL){
-                    s.setManaLvl();
+                    LVL l = (LVL) s;
+                    l.setManaLVL();
                   }
                   s.use();
                   summon = s.getUser();
@@ -918,7 +922,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   }
                   s.setUser(summon);
                   if (s.tipe == TypeSpell.LVL){
-                    s.setManaLvl();
+                    LVL l = (LVL) s;
+                    l.setManaLVL();
                   }
                   s.use();
                   summon = s.getUser();
@@ -1066,7 +1071,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   }
                   s.setUser(summon);
                   if (s.tipe == TypeSpell.LVL){
-                    s.setManaLvl();
+                    LVL l = (LVL) s;
+                    l.setManaLVL();
                   }
                   s.use();
                   summon = s.getUser();
@@ -1214,7 +1220,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   }
                   s.setUser(summon);
                   if (s.tipe == TypeSpell.LVL){
-                    s.setManaLvl();
+                    LVL l = (LVL) s;
+                    l.setManaLVL();
                   }
                   s.use();
                   summon = s.getUser();
@@ -1362,7 +1369,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   }
                   s.setUser(summon);
                   if (s.tipe == TypeSpell.LVL){
-                    s.setManaLvl();
+                    LVL l = (LVL) s;
+                    l.setManaLVL();
                   }
                   s.use();
                   summon = s.getUser();
@@ -1510,7 +1518,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   }
                   s.setUser(summon);
                   if (s.tipe == TypeSpell.LVL){
-                    s.setManaLvl();
+                    LVL l = (LVL) s;
+                    l.setManaLVL();
                   }
                   s.use();
                   summon = s.getUser();
@@ -1658,7 +1667,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   }
                   s.setUser(summon);
                   if (s.tipe == TypeSpell.LVL){
-                    s.setManaLvl();
+                    LVL l = (LVL) s;
+                    l.setManaLVL();
                   }
                   s.use();
                   summon = s.getUser();

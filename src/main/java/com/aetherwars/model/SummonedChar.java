@@ -45,7 +45,6 @@ public class SummonedChar implements ISummoned {
         // automate level up
             while (this.Exp >= this.Exp_need) {
                 this.Exp -= Exp_need;
-                this.Exp_need += 2;
                 this.levelUp();
             }
         }
@@ -66,6 +65,7 @@ public class SummonedChar implements ISummoned {
             this.max_Hp += c.getHealthUp();
             this.baseAtk = this.max_Atk;
             this.baseHp = this.max_Hp;
+            this.Exp_need += 2;
         }
     }
 
@@ -78,7 +78,6 @@ public class SummonedChar implements ISummoned {
             if (this.baseHp > this.max_Hp) {
                 this.baseHp = this.max_Hp;
             }
-            this.Exp = 0;
             this.Exp_need -= 2;
         }
     }
