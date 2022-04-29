@@ -465,9 +465,14 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                 if (board.Battleground1.ActiveCard.containsKey("B")) {
                   summon = board.Battleground1.getChar("B");
                   Spell s = (Spell) card;
+                  if (s.tipe == TypeSpell.MORPH) {
+                    MORPH m = (MORPH) s;
+                    m.setTarget((Character) cLib.getCardByID(m.id_swap_target));
+                  }
                   s.setUser(summon);
                   s.use();
                   summon = s.getUser();
+                  resetGUIBattleGroundOnChar();
                   updateDetailBattleground();
                   if (board.Turn1) {
                     player1.hand.inHand.remove(card);
@@ -605,9 +610,14 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                 if (board.Battleground1.ActiveCard.containsKey("C")) {
                   summon = board.Battleground1.getChar("C");
                   Spell s = (Spell) card;
+                  if (s.tipe == TypeSpell.MORPH) {
+                    MORPH m = (MORPH) s;
+                    m.setTarget((Character) cLib.getCardByID(m.id_swap_target));
+                  }
                   s.setUser(summon);
                   s.use();
                   summon = s.getUser();
+                  resetGUIBattleGroundOnChar();
                   updateDetailBattleground();
                   if (board.Turn1) {
                     player1.hand.inHand.remove(card);
@@ -745,9 +755,14 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                 if (board.Battleground1.ActiveCard.containsKey("D")) {
                   summon = board.Battleground1.getChar("D");
                   Spell s = (Spell) card;
+                  if (s.tipe == TypeSpell.MORPH) {
+                    MORPH m = (MORPH) s;
+                    m.setTarget((Character) cLib.getCardByID(m.id_swap_target));
+                  }
                   s.setUser(summon);
                   s.use();
                   summon = s.getUser();
+                  resetGUIBattleGroundOnChar();
                   updateDetailBattleground();
                   if (board.Turn1) {
                     player1.hand.inHand.remove(card);
@@ -885,9 +900,14 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                 if (board.Battleground1.ActiveCard.containsKey("E")) {
                   summon = board.Battleground1.getChar("E");
                   Spell s = (Spell) card;
+                  if (s.tipe == TypeSpell.MORPH) {
+                    MORPH m = (MORPH) s;
+                    m.setTarget((Character) cLib.getCardByID(m.id_swap_target));
+                  }
                   s.setUser(summon);
                   s.use();
                   summon = s.getUser();
+                  resetGUIBattleGroundOnChar();
                   updateDetailBattleground();
                   if (board.Turn1) {
                     player1.hand.inHand.remove(card);
@@ -1025,9 +1045,14 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                 if (board.Battleground2.ActiveCard.containsKey("A")) {
                   summon = board.Battleground2.getChar("A");
                   Spell s = (Spell) card;
+                  if (s.tipe == TypeSpell.MORPH) {
+                    MORPH m = (MORPH) s;
+                    m.setTarget((Character) cLib.getCardByID(m.id_swap_target));
+                  }
                   s.setUser(summon);
                   s.use();
                   summon = s.getUser();
+                  resetGUIBattleGroundOnChar();
                   updateDetailBattleground();
                   if (board.Turn1) {
                     player1.hand.inHand.remove(card);
@@ -1165,9 +1190,14 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                 if (board.Battleground2.ActiveCard.containsKey("B")) {
                   summon = board.Battleground2.getChar("B");
                   Spell s = (Spell) card;
+                  if (s.tipe == TypeSpell.MORPH) {
+                    MORPH m = (MORPH) s;
+                    m.setTarget((Character) cLib.getCardByID(m.id_swap_target));
+                  }
                   s.setUser(summon);
                   s.use();
                   summon = s.getUser();
+                  resetGUIBattleGroundOnChar();
                   updateDetailBattleground();
                   if (board.Turn1) {
                     player1.hand.inHand.remove(card);
@@ -1305,9 +1335,14 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                 if (board.Battleground2.ActiveCard.containsKey("C")) {
                   summon = board.Battleground2.getChar("C");
                   Spell s = (Spell) card;
+                  if (s.tipe == TypeSpell.MORPH) {
+                    MORPH m = (MORPH) s;
+                    m.setTarget((Character) cLib.getCardByID(m.id_swap_target));
+                  }
                   s.setUser(summon);
                   s.use();
                   summon = s.getUser();
+                  resetGUIBattleGroundOnChar();
                   updateDetailBattleground();
                   if (board.Turn1) {
                     player1.hand.inHand.remove(card);
@@ -1445,9 +1480,14 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                 if (board.Battleground2.ActiveCard.containsKey("D")) {
                   summon = board.Battleground2.getChar("D");
                   Spell s = (Spell) card;
+                  if (s.tipe == TypeSpell.MORPH) {
+                    MORPH m = (MORPH) s;
+                    m.setTarget((Character) cLib.getCardByID(m.id_swap_target));
+                  }
                   s.setUser(summon);
                   s.use();
                   summon = s.getUser();
+                  resetGUIBattleGroundOnChar();
                   updateDetailBattleground();
                   if (board.Turn1) {
                     player1.hand.inHand.remove(card);
@@ -1585,9 +1625,14 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                 if (board.Battleground2.ActiveCard.containsKey("E")) {
                   summon = board.Battleground2.getChar("E");
                   Spell s = (Spell) card;
+                  if (s.tipe == TypeSpell.MORPH) {
+                    MORPH m = (MORPH) s;
+                    m.setTarget((Character) cLib.getCardByID(m.id_swap_target));
+                  }
                   s.setUser(summon);
                   s.use();
                   summon = s.getUser();
+                  resetGUIBattleGroundOnChar();
                   updateDetailBattleground();
                   if (board.Turn1) {
                     player1.hand.inHand.remove(card);
