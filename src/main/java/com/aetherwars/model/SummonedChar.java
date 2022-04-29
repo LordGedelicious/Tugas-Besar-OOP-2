@@ -78,6 +78,8 @@ public class SummonedChar implements ISummoned {
             if (this.baseHp > this.max_Hp) {
                 this.baseHp = this.max_Hp;
             }
+            this.Exp = 0;
+            this.Exp_need -= 2;
         }
     }
 
