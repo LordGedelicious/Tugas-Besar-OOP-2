@@ -1813,7 +1813,6 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
         }
       }
     });
-
     draw3.setOnMouseClicked(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
         clickOnDraw(2);
@@ -2346,6 +2345,16 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     } 
   }
 
+  public static void setManaDraw(int idx_draw, String text) {    
+    if (idx_draw == 1) {
+      drawMana1.setText(text);
+    } else if (idx_draw == 2) {
+      drawMana2.setText(text);
+    } else if (idx_draw == 3) {
+      drawMana3.setText(text);
+    } 
+  }
+
   public static void setDefaultDraw() {
     while (drawCard.size() != 0) {
       drawCard.remove(0);
@@ -2434,9 +2443,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     while (i<3){
       image = new Image(getClass().getResourceAsStream(player.deck.getCard(i).ImagePath));
       setImageDraw(i+1);
-      setManaHand(i+1, "Mana " + Integer.toString(player.deck.getCard(i).Mana));
+      setManaDraw(i+1, "Mana " + Integer.toString(player.deck.getCard(i).Mana));
       i++;
     }
+    drawText.setText("PICK A CARD");
   }
 
   public void setHover(Player player){
