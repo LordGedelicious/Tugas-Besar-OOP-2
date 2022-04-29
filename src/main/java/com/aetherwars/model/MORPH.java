@@ -2,8 +2,6 @@ package com.aetherwars.model;
 
 import java.util.*;
 
-import com.aetherwars.AetherWars;
-
 public class MORPH extends PermSpell {
     public int id_swap_target;
     public Character char_swap_target;
