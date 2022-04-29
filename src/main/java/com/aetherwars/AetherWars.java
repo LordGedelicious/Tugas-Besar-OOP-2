@@ -2167,6 +2167,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           }
           if (!board.Battleground2.checkAlreadyAttacked("B")){
             summoned2B.setStyle("-fx-background-color: yellow;");
+          }
         }
       }
     });
@@ -2182,6 +2183,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           }
           if (!board.Battleground2.checkAlreadyAttacked("C")){
             summoned2C.setStyle("-fx-background-color: yellow;");
+          }
         }
       }
     });
@@ -2197,6 +2199,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           }
           if (!board.Battleground2.checkAlreadyAttacked("D")){
             summoned2D.setStyle("-fx-background-color: yellow;");
+          }
         }
       }
     });
@@ -2212,6 +2215,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           }
           if (!board.Battleground2.checkAlreadyAttacked("E")){
             summoned2E.setStyle("-fx-background-color: yellow;");
+          }
         }
       }
     });
