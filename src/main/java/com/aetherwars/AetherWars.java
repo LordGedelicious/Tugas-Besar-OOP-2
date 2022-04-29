@@ -1758,7 +1758,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             board.Battleground2.getChar(key).addExp(1);
             summon = board.Battleground2.getChar(key);
             updateDetailBattleground();
-            curMana.setText(Integer.toString(player1.reduceMana(1)));
+            curMana.setText(Integer.toString(player2.reduceMana(1)));
           }
         }
       }
