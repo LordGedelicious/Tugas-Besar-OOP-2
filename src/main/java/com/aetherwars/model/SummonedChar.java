@@ -15,6 +15,7 @@ public class SummonedChar implements ISummoned {
     public int max_Hp;
     public boolean alreadyAttack;
     public List<TempSpell> activeSpells;
+    public String defense = "-";
 
     public SummonedChar(Character c) {
         this.c = c;
@@ -208,5 +209,9 @@ public class SummonedChar implements ISummoned {
         for (TempSpell ts : activeSpells) {
             ts.DecreaseDuration();
         }
+    }
+
+    public void setDefense(String pos){
+        this.defense = pos;
     }
 }

@@ -44,11 +44,15 @@ public class Battleground{
         }
     }
 
-    public void setAlreadyAttack(String pos){
-        this.ActiveCard.get(pos).alreadyAttack = true;
+    public void setAlreadyAttack(String pos, boolean attacked){
+        this.ActiveCard.get(pos).alreadyAttack = attacked;
     }
 
     public boolean checkAlreadyAttacked(String pos){
         return this.ActiveCard.get(pos).alreadyAttack;
+    }
+
+    public String getImagePath(String pos){
+        return this.ActiveCard.get(pos).c.ImagePath;
     }
 }

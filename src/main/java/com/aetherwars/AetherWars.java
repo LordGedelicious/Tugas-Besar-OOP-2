@@ -199,6 +199,16 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
       public void handle(MouseEvent event) {
         if (board.getPhase() == TypePhase.ATTACK && board.Turn2 && board.Battleground1.ActiveCard.isEmpty()){
           defense = DEFAULT_SUM_CHAR;
+          if (offense != null){
+            offense.attackPlayer(player1);
+            nowHp2.setText(Integer.toString(player1.HP));
+            if (player1.getHp() <= 0){
+              System.out.println("Pemain 2 menang");
+            }
+            board.Battleground2.setAlreadyAttack(offense.defense, true);
+            resetATKBGColor();
+            resetOffenseDefense();
+          }
         }
       }
     });
@@ -226,6 +236,16 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
       public void handle(MouseEvent event) {
         if (board.getPhase() == TypePhase.ATTACK && board.Turn1 && board.Battleground2.ActiveCard.isEmpty()){
           defense = DEFAULT_SUM_CHAR;
+          if (offense != null){
+            offense.attackPlayer(player2);
+            nowHp2.setText(Integer.toString(player2.HP));
+            if (player2.getHp() <= 0){
+              System.out.println("Pemain 1 menang");
+            }
+            board.Battleground1.setAlreadyAttack(offense.defense, true);
+            resetATKBGColor();
+            resetOffenseDefense();
+          }
         }
       }
     });
@@ -309,13 +329,25 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             if (board.Battleground1.ActiveCard.containsKey("A")){
               if (!board.Battleground1.checkAlreadyAttacked("A")){
                 offense = board.Battleground1.getChar("A");
+                offense.setDefense("A");
                 if (defense != null){ 
-                  board.Battleground1.setAlreadyAttack("A");
+                  board.Battleground1.setAlreadyAttack("A",true);
                   if (defense == DEFAULT_SUM_CHAR){
-                    player2.takeDamage(offense.c.getAttack());
+                    offense.attackPlayer(player2);
                     nowHp2.setText(Integer.toString(player2.HP));
+                    if (player2.getHp() <= 0){
+                      System.out.println("Pemain 1 menang");
+                    }
                   }else{
                     offense.attackCharacter(defense);
+                    defense.attackCharacter(offense);
+                    if (offense.checkDie()){
+                      board.Battleground1.removeChar("A");
+                    } 
+                    if (defense.checkDie()){
+                      board.Battleground2.removeChar(defense.defense);
+                    }
+                    resetGUIBattleGroundOnChar();
                   }
                   resetATKBGColor();
                   resetOffenseDefense();
@@ -325,8 +357,18 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           } else if (board.Turn2) {
             if (board.Battleground1.ActiveCard.containsKey("A")){
               defense = board.Battleground1.getChar("A");
+              defense.setDefense("A");
               if (offense != null && offense != DEFAULT_SUM_CHAR){
                 offense.attackCharacter(defense);
+                defense.attackCharacter(offense);
+                board.Battleground2.setAlreadyAttack(offense.defense, true);
+                if (offense.checkDie()){
+                  board.Battleground2.removeChar(offense.defense);
+                } 
+                if (defense.checkDie()){
+                  board.Battleground1.removeChar("A");
+                }
+                resetGUIBattleGroundOnChar();
                 resetATKBGColor();
                 resetOffenseDefense();
               }
@@ -408,13 +450,25 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             if (board.Battleground1.ActiveCard.containsKey("B")){
               if (!board.Battleground1.checkAlreadyAttacked("B")){
                 offense = board.Battleground1.getChar("B");
+                offense.setDefense("B");
                 if (defense != null){ 
-                  board.Battleground1.setAlreadyAttack("B");
+                  board.Battleground1.setAlreadyAttack("B",true);
                   if (defense == DEFAULT_SUM_CHAR){
-                    player2.takeDamage(offense.c.getAttack());
+                    offense.attackPlayer(player2);
                     nowHp2.setText(Integer.toString(player2.HP));
+                    if (player2.getHp() <= 0){
+                      System.out.println("Pemain 1 menang");
+                    }
                   }else{
                     offense.attackCharacter(defense);
+                    defense.attackCharacter(offense);
+                    if (offense.checkDie()){
+                      board.Battleground1.removeChar("B");
+                    } 
+                    if (defense.checkDie()){
+                      board.Battleground2.removeChar(defense.defense);
+                    }
+                    resetGUIBattleGroundOnChar();
                   }
                   resetATKBGColor();
                   resetOffenseDefense();
@@ -424,8 +478,18 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           } else if (board.Turn2) {
             if (board.Battleground1.ActiveCard.containsKey("B")){
               defense = board.Battleground1.getChar("B");
+              defense.setDefense("B");
               if (offense != null && offense != DEFAULT_SUM_CHAR){
+                board.Battleground2.setAlreadyAttack(offense.defense, true);
                 offense.attackCharacter(defense);
+                defense.attackCharacter(offense);
+                if (offense.checkDie()){
+                  board.Battleground2.removeChar(offense.defense);
+                } 
+                if (defense.checkDie()){
+                  board.Battleground1.removeChar("B");
+                }
+                resetGUIBattleGroundOnChar();
                 resetATKBGColor();
                 resetOffenseDefense();
               }
@@ -507,13 +571,25 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             if (board.Battleground1.ActiveCard.containsKey("C")){
               if (!board.Battleground1.checkAlreadyAttacked("C")){
                 offense = board.Battleground1.getChar("C");
+                offense.setDefense("C");
                 if (defense != null){ 
-                  board.Battleground1.setAlreadyAttack("C");
+                  board.Battleground1.setAlreadyAttack("C",true);
                   if (defense == DEFAULT_SUM_CHAR){
-                    player2.takeDamage(offense.c.getAttack());
+                    offense.attackPlayer(player2);
                     nowHp2.setText(Integer.toString(player2.HP));
+                    if (player2.getHp() <= 0){
+                      System.out.println("Pemain 1 menang");
+                    }
                   }else{
                     offense.attackCharacter(defense);
+                    defense.attackCharacter(offense);
+                    if (offense.checkDie()){
+                      board.Battleground1.removeChar("C");
+                    } 
+                    if (defense.checkDie()){
+                      board.Battleground2.removeChar(defense.defense);
+                    }
+                    resetGUIBattleGroundOnChar();
                   }
                   resetATKBGColor();
                   resetOffenseDefense();
@@ -523,8 +599,18 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           } else if (board.Turn2) {
             if (board.Battleground1.ActiveCard.containsKey("C")){
               defense = board.Battleground1.getChar("C");
+              defense.setDefense("C");
               if (offense != null && offense != DEFAULT_SUM_CHAR){
+                board.Battleground2.setAlreadyAttack(offense.defense, true);
                 offense.attackCharacter(defense);
+                defense.attackCharacter(offense);
+                if (offense.checkDie()){
+                  board.Battleground2.removeChar(offense.defense);
+                } 
+                if (defense.checkDie()){
+                  board.Battleground1.removeChar("C");
+                }
+                resetGUIBattleGroundOnChar();
                 resetATKBGColor();
                 resetOffenseDefense();
               }
@@ -605,15 +691,26 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           if (board.Turn1) {
             if (board.Battleground1.ActiveCard.containsKey("D")){
               if (!board.Battleground1.checkAlreadyAttacked("D")){
-                board.Battleground1.setAlreadyAttack("D");
+                offense = board.Battleground1.getChar("D");
+                offense.setDefense("D");
                 if (defense != null){ 
-                  board.Battleground1.ActiveCard.get("D").alreadyAttack = true;
-                  System.out.println(board.Battleground1.ActiveCard.get("D").alreadyAttack);
+                  board.Battleground1.setAlreadyAttack("D",true);
                   if (defense == DEFAULT_SUM_CHAR){
-                    player2.takeDamage(offense.c.getAttack());
+                    offense.attackPlayer(player2);
                     nowHp2.setText(Integer.toString(player2.HP));
+                    if (player2.getHp() <= 0){
+                      System.out.println("Pemain 1 menang");
+                    }
                   }else{
                     offense.attackCharacter(defense);
+                    defense.attackCharacter(offense);
+                    if (offense.checkDie()){
+                      board.Battleground1.removeChar("D");
+                    } 
+                    if (defense.checkDie()){
+                      board.Battleground2.removeChar(defense.defense);
+                    }
+                    resetGUIBattleGroundOnChar();
                   }
                   resetATKBGColor();
                   resetOffenseDefense();
@@ -623,8 +720,18 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           } else if (board.Turn2) {
             if (board.Battleground1.ActiveCard.containsKey("D")){
               defense = board.Battleground1.getChar("D");
+              defense.setDefense("D");
               if (offense != null && offense != DEFAULT_SUM_CHAR){
+                board.Battleground2.setAlreadyAttack(offense.defense, true);
                 offense.attackCharacter(defense);
+                defense.attackCharacter(offense);
+                if (offense.checkDie()){
+                  board.Battleground2.removeChar(offense.defense);
+                } 
+                if (defense.checkDie()){
+                  board.Battleground1.removeChar("D");
+                }
+                resetGUIBattleGroundOnChar();
                 resetATKBGColor();
                 resetOffenseDefense();
               }
@@ -706,13 +813,25 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             if (board.Battleground1.ActiveCard.containsKey("E")){
               if (!board.Battleground1.checkAlreadyAttacked("E")){
                 offense = board.Battleground1.getChar("E");
+                offense.setDefense("E");
                 if (defense != null){ 
-                  board.Battleground1.setAlreadyAttack("E");
+                  board.Battleground1.setAlreadyAttack("E",true);
                   if (defense == DEFAULT_SUM_CHAR){
-                    player2.takeDamage(offense.c.getAttack());
+                    offense.attackPlayer(player2);
                     nowHp2.setText(Integer.toString(player2.HP));
+                    if (player2.getHp() <= 0){
+                      System.out.println("Pemain 1 menang");
+                    }
                   }else{
                     offense.attackCharacter(defense);
+                    defense.attackCharacter(offense);
+                    if (offense.checkDie()){
+                      board.Battleground1.removeChar("E");
+                    } 
+                    if (defense.checkDie()){
+                      board.Battleground2.removeChar(defense.defense);
+                    }
+                    resetGUIBattleGroundOnChar();
                   }
                   resetATKBGColor();
                   resetOffenseDefense();
@@ -722,8 +841,18 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           } else if (board.Turn2) {
             if (board.Battleground1.ActiveCard.containsKey("E")){
               defense = board.Battleground1.getChar("E");
+              defense.setDefense("E");
               if (offense != null && offense != DEFAULT_SUM_CHAR){
+                board.Battleground2.setAlreadyAttack(offense.defense, true);
                 offense.attackCharacter(defense);
+                defense.attackCharacter(offense);
+                if (offense.checkDie()){
+                  board.Battleground2.removeChar(offense.defense);
+                } 
+                if (defense.checkDie()){
+                  board.Battleground1.removeChar("E");
+                }
+                resetGUIBattleGroundOnChar();
                 resetATKBGColor();
                 resetOffenseDefense();
               }
@@ -805,13 +934,25 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             if (board.Battleground2.ActiveCard.containsKey("A")){
               if (!board.Battleground2.checkAlreadyAttacked("A")){
                 offense = board.Battleground2.getChar("A");
+                offense.setDefense("A");
                 if (defense != null){ 
-                  board.Battleground2.setAlreadyAttack("A");
+                  board.Battleground2.setAlreadyAttack("A",true);
                   if (defense == DEFAULT_SUM_CHAR){
-                    player1.takeDamage(offense.c.getAttack());
-                    nowHp2.setText(Integer.toString(player1.HP));
+                    offense.attackPlayer(player1);
+                    nowHp1.setText(Integer.toString(player1.HP));
+                    if (player1.getHp() <= 0){
+                      System.out.println("Pemain 2 menang");
+                    }
                   }else{
                     offense.attackCharacter(defense);
+                    defense.attackCharacter(offense);
+                    if (offense.checkDie()){
+                      board.Battleground2.removeChar("A");
+                    } 
+                    if (defense.checkDie()){
+                      board.Battleground1.removeChar(defense.defense);
+                    }
+                    resetGUIBattleGroundOnChar();
                   }
                   resetATKBGColor();
                   resetOffenseDefense();
@@ -821,8 +962,18 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           } else if (board.Turn1) {
             if (board.Battleground2.ActiveCard.containsKey("A")){
               defense = board.Battleground2.getChar("A");
+              defense.setDefense("A");
               if (offense != null && offense != DEFAULT_SUM_CHAR){
+                board.Battleground1.setAlreadyAttack(offense.defense, true);
                 offense.attackCharacter(defense);
+                defense.attackCharacter(offense);
+                if (offense.checkDie()){
+                  board.Battleground1.removeChar(offense.defense);
+                } 
+                if (defense.checkDie()){
+                  board.Battleground2.removeChar("A");
+                }
+                resetGUIBattleGroundOnChar();
                 resetATKBGColor();
                 resetOffenseDefense();
               }
@@ -904,13 +1055,25 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             if (board.Battleground2.ActiveCard.containsKey("B")){
               if (!board.Battleground2.checkAlreadyAttacked("B")){
                 offense = board.Battleground2.getChar("B");
+                offense.setDefense("B");
                 if (defense != null){ 
-                  board.Battleground2.setAlreadyAttack("B");
+                  board.Battleground2.setAlreadyAttack("B",true);
                   if (defense == DEFAULT_SUM_CHAR){
-                    player1.takeDamage(offense.c.getAttack());
-                    nowHp2.setText(Integer.toString(player1.HP));
+                    offense.attackPlayer(player1);
+                    nowHp1.setText(Integer.toString(player1.HP));
+                    if (player1.getHp() <= 0){
+                      System.out.println("Pemain 2 menang");
+                    }
                   }else{
                     offense.attackCharacter(defense);
+                    defense.attackCharacter(offense);
+                    if (offense.checkDie()){
+                      board.Battleground2.removeChar("B");
+                    } 
+                    if (defense.checkDie()){
+                      board.Battleground1.removeChar(defense.defense);
+                    }
+                    resetGUIBattleGroundOnChar();
                   }
                   resetATKBGColor();
                   resetOffenseDefense();
@@ -920,8 +1083,18 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           } else if (board.Turn1) {
             if (board.Battleground2.ActiveCard.containsKey("B")){
               defense = board.Battleground2.getChar("B");
+              defense.setDefense("B");
               if (offense != null && offense != DEFAULT_SUM_CHAR){
+                board.Battleground1.setAlreadyAttack(offense.defense, true);
                 offense.attackCharacter(defense);
+                defense.attackCharacter(offense);
+                if (offense.checkDie()){
+                  board.Battleground1.removeChar(offense.defense);
+                } 
+                if (defense.checkDie()){
+                  board.Battleground2.removeChar("B");
+                }
+                resetGUIBattleGroundOnChar();
                 resetATKBGColor();
                 resetOffenseDefense();
               }
@@ -1003,13 +1176,25 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             if (board.Battleground2.ActiveCard.containsKey("C")){
               if (!board.Battleground2.checkAlreadyAttacked("C")){
                 offense = board.Battleground2.getChar("C");
+                offense.setDefense("C");
                 if (defense != null){ 
-                  board.Battleground2.setAlreadyAttack("C");
+                  board.Battleground2.setAlreadyAttack("C",true);
                   if (defense == DEFAULT_SUM_CHAR){
-                    player1.takeDamage(offense.c.getAttack());
-                    nowHp2.setText(Integer.toString(player1.HP));
+                    offense.attackPlayer(player1);
+                    nowHp1.setText(Integer.toString(player1.HP));
+                    if (player1.getHp() <= 0){
+                      System.out.println("Pemain 2 menang");
+                    }
                   }else{
                     offense.attackCharacter(defense);
+                    defense.attackCharacter(offense);
+                    if (offense.checkDie()){
+                      board.Battleground2.removeChar("C");
+                    } 
+                    if (defense.checkDie()){
+                      board.Battleground1.removeChar(defense.defense);
+                    }
+                    resetGUIBattleGroundOnChar();
                   }
                   resetATKBGColor();
                   resetOffenseDefense();
@@ -1019,8 +1204,18 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           } else if (board.Turn1) {
             if (board.Battleground2.ActiveCard.containsKey("C")){
               defense = board.Battleground2.getChar("C");
+              defense.setDefense("C");
               if (offense != null && offense != DEFAULT_SUM_CHAR){
+                board.Battleground1.setAlreadyAttack(offense.defense, true);
                 offense.attackCharacter(defense);
+                defense.attackCharacter(offense);
+                if (offense.checkDie()){
+                  board.Battleground1.removeChar(offense.defense);
+                } 
+                if (defense.checkDie()){
+                  board.Battleground2.removeChar("C");
+                }
+                resetGUIBattleGroundOnChar();
                 resetATKBGColor();
                 resetOffenseDefense();
               }
@@ -1102,13 +1297,25 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             if (board.Battleground2.ActiveCard.containsKey("D")){
               if (!board.Battleground2.checkAlreadyAttacked("D")){
                 offense = board.Battleground2.getChar("D");
+                offense.setDefense("D");
                 if (defense != null){ 
-                  board.Battleground2.setAlreadyAttack("D");
+                  board.Battleground2.setAlreadyAttack("D",true);
                   if (defense == DEFAULT_SUM_CHAR){
-                    player1.takeDamage(offense.c.getAttack());
-                    nowHp2.setText(Integer.toString(player1.HP));
+                    offense.attackPlayer(player1);
+                    nowHp1.setText(Integer.toString(player1.HP));
+                    if (player1.getHp() <= 0){
+                      System.out.println("Pemain 2 menang");
+                    }
                   }else{
                     offense.attackCharacter(defense);
+                    defense.attackCharacter(offense);
+                    if (offense.checkDie()){
+                      board.Battleground2.removeChar("D");
+                    } 
+                    if (defense.checkDie()){
+                      board.Battleground1.removeChar(defense.defense);
+                    }
+                    resetGUIBattleGroundOnChar();
                   }
                   resetATKBGColor();
                   resetOffenseDefense();
@@ -1118,8 +1325,18 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           } else if (board.Turn1) {
             if (board.Battleground2.ActiveCard.containsKey("D")){
               defense = board.Battleground2.getChar("D");
+              defense.setDefense("D");
               if (offense != null && offense != DEFAULT_SUM_CHAR){
+                board.Battleground1.setAlreadyAttack(offense.defense, true);
                 offense.attackCharacter(defense);
+                defense.attackCharacter(offense);
+                if (offense.checkDie()){
+                  board.Battleground1.removeChar(offense.defense);
+                } 
+                if (defense.checkDie()){
+                  board.Battleground2.removeChar("D");
+                }
+                resetGUIBattleGroundOnChar();
                 resetATKBGColor();
                 resetOffenseDefense();
               }
@@ -1201,13 +1418,25 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             if (board.Battleground2.ActiveCard.containsKey("E")){
               if (!board.Battleground2.checkAlreadyAttacked("E")){
                 offense = board.Battleground2.getChar("E");
+                offense.setDefense("E");
                 if (defense != null){ 
-                  board.Battleground2.setAlreadyAttack("E");
+                  board.Battleground2.setAlreadyAttack("E",true);
                   if (defense == DEFAULT_SUM_CHAR){
-                    player1.takeDamage(offense.c.getAttack());
-                    nowHp2.setText(Integer.toString(player1.HP));
+                    offense.attackPlayer(player1);
+                    nowHp1.setText(Integer.toString(player1.HP));
+                    if (player1.getHp() <= 0){
+                      System.out.println("Pemain 2 menang");
+                    }
                   }else{
                     offense.attackCharacter(defense);
+                    defense.attackCharacter(offense);
+                    if (offense.checkDie()){
+                      board.Battleground2.removeChar("E");
+                    } 
+                    if (defense.checkDie()){
+                      board.Battleground1.removeChar(defense.defense);
+                    }
+                    resetGUIBattleGroundOnChar();
                   }
                   resetATKBGColor();
                   resetOffenseDefense();
@@ -1217,8 +1446,18 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
           } else if (board.Turn1) {
             if (board.Battleground2.ActiveCard.containsKey("E")){
               defense = board.Battleground2.getChar("E");
+              defense.setDefense("E");
               if (offense != null && offense != DEFAULT_SUM_CHAR){
+                board.Battleground1.setAlreadyAttack(offense.defense, true);
                 offense.attackCharacter(defense);
+                defense.attackCharacter(offense);
+                if (offense.checkDie()){
+                  board.Battleground1.removeChar(offense.defense);
+                } 
+                if (defense.checkDie()){
+                  board.Battleground2.removeChar("E");
+                }
+                resetGUIBattleGroundOnChar();
                 resetATKBGColor();
                 resetOffenseDefense();
               }
@@ -2282,56 +2521,56 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
   }
 
   public void resetATKBGColor(){
-    for (Map.Entry<String, SummonedChar> set : board.Battleground1.ActiveCard.entrySet()) {
-      if (board.Battleground1.getChar(set.getKey()).alreadyAttack == false){
-        if (set.getKey() == "A"){
+    for (String key : board.Battleground1.ActiveCard.keySet()) {
+      if (!board.Battleground1.checkAlreadyAttacked(key)){
+        if (key == "A"){
           summoned1A.setStyle("-fx-background-color: gray;");
-        } else if (set.getKey() == "B"){
+        } else if (key == "B"){
           summoned1B.setStyle("-fx-background-color: gray;");
-        } else if (set.getKey() == "C"){
+        } else if (key == "C"){
           summoned1C.setStyle("-fx-background-color: gray;");
-        } else if (set.getKey() == "D"){
+        } else if (key == "D"){
           summoned1D.setStyle("-fx-background-color: gray;");
-        } else if (set.getKey() == "E"){
+        } else if (key == "E"){
           summoned1E.setStyle("-fx-background-color: gray;");
         }
       } else {
-        if (set.getKey() == "A"){
+        if (key == "A"){
           summoned1A.setStyle("-fx-background-color: red;");
-        } else if (set.getKey() == "B"){
+        } else if (key == "B"){
           summoned1B.setStyle("-fx-background-color: red;");
-        } else if (set.getKey() == "C"){
+        } else if (key == "C"){
           summoned1C.setStyle("-fx-background-color: red;");
-        } else if (set.getKey() == "D"){
+        } else if (key == "D"){
           summoned1D.setStyle("-fx-background-color: red;");
-        } else if (set.getKey() == "E"){
+        } else if (key == "E"){
           summoned1E.setStyle("-fx-background-color: red;");
         }
       }
     }
-    for (Map.Entry<String, SummonedChar> set : board.Battleground2.ActiveCard.entrySet()) {
-      if (board.Battleground2.getChar(set.getKey()).alreadyAttack == false){
-        if (set.getKey() == "A"){
+    for (String key : board.Battleground2.ActiveCard.keySet()) {
+      if (!board.Battleground2.checkAlreadyAttacked(key)){
+        if (key == "A"){
           summoned2A.setStyle("-fx-background-color: gray;");
-        } else if (set.getKey() == "B"){
+        } else if (key == "B"){
           summoned2B.setStyle("-fx-background-color: gray;");
-        } else if (set.getKey() == "C"){
+        } else if (key == "C"){
           summoned2C.setStyle("-fx-background-color: gray;");
-        } else if (set.getKey() == "D"){
+        } else if (key == "D"){
           summoned2D.setStyle("-fx-background-color: gray;");
-        } else if (set.getKey() == "E"){
+        } else if (key == "E"){
           summoned2E.setStyle("-fx-background-color: gray;");
         }
       } else {
-        if (set.getKey() == "A"){
+        if (key == "A"){
           summoned2A.setStyle("-fx-background-color: red;");
-        } else if (set.getKey() == "B"){
+        } else if (key == "B"){
           summoned2B.setStyle("-fx-background-color: red;");
-        } else if (set.getKey() == "C"){
+        } else if (key == "C"){
           summoned2C.setStyle("-fx-background-color: red;");
-        } else if (set.getKey() == "D"){
+        } else if (key == "D"){
           summoned2D.setStyle("-fx-background-color: red;");
-        } else if (set.getKey() == "E"){
+        } else if (key == "E"){
           summoned2E.setStyle("-fx-background-color: red;");
         }
       }
@@ -2340,15 +2579,89 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
 
   public void resetAlreadyAttack(){
     for (Map.Entry<String, SummonedChar> set : board.Battleground1.ActiveCard.entrySet()) {
-      board.Battleground1.getChar(set.getKey()).alreadyAttack = false;
+      board.Battleground1.setAlreadyAttack(set.getKey(), false);
     }
     for (Map.Entry<String, SummonedChar> set : board.Battleground2.ActiveCard.entrySet()) {
-      board.Battleground2.getChar(set.getKey()).alreadyAttack = false;
+      board.Battleground2.setAlreadyAttack(set.getKey(), false);
     }
   }
 
   public void resetOffenseDefense(){
     offense = null;
     defense = null;
+  }
+
+  public void resetGUIBattleGroundOnChar(){
+    if (board.Battleground1.ActiveCard.containsKey("A")){
+      image = new Image(getClass().getResourceAsStream(board.Battleground1.getImagePath("A")));
+      setImageBattleground(1);
+    } else {
+      image = new Image(getClass().getResourceAsStream(DEFAULT_IMG_PATH));
+      setImageBattleground(1);
+    }
+    if (board.Battleground1.ActiveCard.containsKey("B")){
+      image = new Image(getClass().getResourceAsStream(board.Battleground1.getImagePath("B")));
+      setImageBattleground(2);
+    } else {
+      image = new Image(getClass().getResourceAsStream(DEFAULT_IMG_PATH));
+      setImageBattleground(2);
+    }
+    if (board.Battleground1.ActiveCard.containsKey("C")){
+      image = new Image(getClass().getResourceAsStream(board.Battleground1.getImagePath("C")));
+      setImageBattleground(3);
+    } else {
+      image = new Image(getClass().getResourceAsStream(DEFAULT_IMG_PATH));
+      setImageBattleground(3);
+    }
+    if (board.Battleground1.ActiveCard.containsKey("D")){
+      image = new Image(getClass().getResourceAsStream(board.Battleground1.getImagePath("D")));
+      setImageBattleground(4);
+    } else {
+      image = new Image(getClass().getResourceAsStream(DEFAULT_IMG_PATH));
+      setImageBattleground(4);
+    }
+    if (board.Battleground1.ActiveCard.containsKey("E")){
+      image = new Image(getClass().getResourceAsStream(board.Battleground1.getImagePath("E")));
+      setImageBattleground(5);
+    } else {
+      image = new Image(getClass().getResourceAsStream(DEFAULT_IMG_PATH));
+      setImageBattleground(5);
+    }
+
+    if (board.Battleground2.ActiveCard.containsKey("A")){
+      image = new Image(getClass().getResourceAsStream(board.Battleground2.getImagePath("A")));
+      setImageBattleground(6);
+    } else {
+      image = new Image(getClass().getResourceAsStream(DEFAULT_IMG_PATH));
+      setImageBattleground(6);
+    }
+    if (board.Battleground2.ActiveCard.containsKey("B")){
+      image = new Image(getClass().getResourceAsStream(board.Battleground2.getImagePath("B")));
+      setImageBattleground(7);
+    } else {
+      image = new Image(getClass().getResourceAsStream(DEFAULT_IMG_PATH));
+      setImageBattleground(7);
+    }
+    if (board.Battleground2.ActiveCard.containsKey("C")){
+      image = new Image(getClass().getResourceAsStream(board.Battleground2.getImagePath("C")));
+      setImageBattleground(8);
+    } else {
+      image = new Image(getClass().getResourceAsStream(DEFAULT_IMG_PATH));
+      setImageBattleground(8);
+    }
+    if (board.Battleground2.ActiveCard.containsKey("D")){
+      image = new Image(getClass().getResourceAsStream(board.Battleground2.getImagePath("D")));
+      setImageBattleground(9);
+    } else {
+      image = new Image(getClass().getResourceAsStream(DEFAULT_IMG_PATH));
+      setImageBattleground(9);
+    }
+    if (board.Battleground2.ActiveCard.containsKey("E")){
+      image = new Image(getClass().getResourceAsStream(board.Battleground2.getImagePath("E")));
+      setImageBattleground(10);
+    } else {
+      image = new Image(getClass().getResourceAsStream(DEFAULT_IMG_PATH));
+      setImageBattleground(10);
+    }
   }
 }
