@@ -126,3 +126,7 @@ What happen is when you use `./gradlew run`, it will start the main function in 
 For this app, the main function lives in `AetherWars.java`.
 
 You can explore more about gradle [here](https://guides.gradle.org/creating-new-gradle-builds/)
+
+## Screenshoot Aplikasi
+
+![alt text](https://github.com/LordGedelicious/Tugas-Besar-OOP-2/blob/main/antarmuka.jpeg?raw=true)
