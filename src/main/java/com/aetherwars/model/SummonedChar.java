@@ -212,8 +212,15 @@ public class SummonedChar implements ISummoned {
     }
 
     public void DecreaseSpellDuration() {
-        for (TempSpell ts : activeSpells) {
-            ts.DecreaseDuration();
+        for (int i = 0; i < activeSpells.size(); i++) {
+            activeSpells.get(i).DecreaseDuration();
+            if (activeSpells.get(i).duration < 0) {
+                // revert
+                activeSpells.get(i).revert();
+                // remove from active spell
+                activeSpells.remove(i);
+                i--;
+            }
         }
     }
 

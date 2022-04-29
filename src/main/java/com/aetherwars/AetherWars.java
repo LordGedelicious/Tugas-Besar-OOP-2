@@ -316,7 +316,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             }
           } else {
             if (!card.getClass().equals(Card.class)) {
-              if (card.Mana <= player1.getCurMana()){
+              if ((card.Mana <= player1.getCurMana() && board.Turn1) || (card.Mana <= player2.getCurMana() && board.Turn2)) {
                 if (board.Battleground1.ActiveCard.containsKey("A")) {
                   summon = board.Battleground1.getChar("A");
                   Spell s = (Spell) card;
@@ -327,6 +327,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                   s.setUser(summon);
                   s.use();
                   summon = s.getUser();
+                  resetGUIBattleGroundOnChar();
                   updateDetailBattleground();
                   if (board.Turn1) {
                     player1.hand.inHand.remove(card);
@@ -335,7 +336,11 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     player2.hand.inHand.remove(card);
                     resetGuiHand(player2);
                   }
-                  curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
+                  if (board.Turn1) {
+                    curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
+                  } else {
+                    curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
+                  }
                   resetSelect();
                   card = DEFAULT_CARD;
                   key = "A";
@@ -456,7 +461,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             }
           } else {
             if (!card.getClass().equals(Card.class)) {
-              if (card.Mana <= player1.getCurMana()){
+              if ((card.Mana <= player1.getCurMana() && board.Turn1) || (card.Mana <= player2.getCurMana() && board.Turn2)) {
                 if (board.Battleground1.ActiveCard.containsKey("B")) {
                   summon = board.Battleground1.getChar("B");
                   Spell s = (Spell) card;
@@ -471,7 +476,11 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     player2.hand.inHand.remove(card);
                     resetGuiHand(player2);
                   }
-                  curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
+                  if (board.Turn1) {
+                    curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
+                  } else {
+                    curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
+                  }
                   resetSelect();
                   card = DEFAULT_CARD;
                   key = "B";
@@ -592,7 +601,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             }
           } else {
             if (!card.getClass().equals(Card.class)) {
-              if (card.Mana <= player1.getCurMana()){
+              if ((card.Mana <= player1.getCurMana() && board.Turn1) || (card.Mana <= player2.getCurMana() && board.Turn2)) {
                 if (board.Battleground1.ActiveCard.containsKey("C")) {
                   summon = board.Battleground1.getChar("C");
                   Spell s = (Spell) card;
@@ -607,7 +616,11 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     player2.hand.inHand.remove(card);
                     resetGuiHand(player2);
                   }
-                  curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
+                  if (board.Turn1) {
+                    curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
+                  } else {
+                    curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
+                  }
                   resetSelect();
                   card = DEFAULT_CARD;
                   key = "C";
@@ -728,7 +741,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             }
           } else {
             if (!card.getClass().equals(Card.class)) {
-              if (card.Mana <= player1.getCurMana()) {
+              if ((card.Mana <= player1.getCurMana() && board.Turn1) || (card.Mana <= player2.getCurMana() && board.Turn2)) {
                 if (board.Battleground1.ActiveCard.containsKey("D")) {
                   summon = board.Battleground1.getChar("D");
                   Spell s = (Spell) card;
@@ -743,7 +756,11 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     player2.hand.inHand.remove(card);
                     resetGuiHand(player2);
                   }
-                  curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
+                  if (board.Turn1) {
+                    curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
+                  } else {
+                    curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
+                  }
                   resetSelect();
                   card = DEFAULT_CARD;
                   key = "D";
@@ -864,7 +881,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             }
           } else {
             if (!card.getClass().equals(Card.class)) {
-              if (card.Mana <= player1.getCurMana()) {
+              if ((card.Mana <= player1.getCurMana() && board.Turn1) || (card.Mana <= player2.getCurMana() && board.Turn2)) {
                 if (board.Battleground1.ActiveCard.containsKey("E")) {
                   summon = board.Battleground1.getChar("E");
                   Spell s = (Spell) card;
@@ -879,7 +896,11 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     player2.hand.inHand.remove(card);
                     resetGuiHand(player2);
                   }
-                  curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
+                  if (board.Turn1) {
+                    curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
+                  } else {
+                    curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
+                  }
                   resetSelect();
                   card = DEFAULT_CARD;
                   key = "E";
@@ -1000,7 +1021,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             }
           } else {
             if (!card.getClass().equals(Card.class)) {
-              if (card.Mana <= player2.getCurMana()) {
+              if ((card.Mana <= player1.getCurMana() && board.Turn1) || (card.Mana <= player2.getCurMana() && board.Turn2)) {
                 if (board.Battleground2.ActiveCard.containsKey("A")) {
                   summon = board.Battleground2.getChar("A");
                   Spell s = (Spell) card;
@@ -1015,7 +1036,11 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     player2.hand.inHand.remove(card);
                     resetGuiHand(player2);
                   }
-                  curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
+                  if (board.Turn1) {
+                    curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
+                  } else {
+                    curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
+                  }
                   resetSelect();
                   card = DEFAULT_CARD;
                   key = "A";
@@ -1136,7 +1161,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             }
           } else {
             if (!card.getClass().equals(Card.class)) {
-              if (card.Mana <= player2.getCurMana()) {
+              if ((card.Mana <= player1.getCurMana() && board.Turn1) || (card.Mana <= player2.getCurMana() && board.Turn2)) {
                 if (board.Battleground2.ActiveCard.containsKey("B")) {
                   summon = board.Battleground2.getChar("B");
                   Spell s = (Spell) card;
@@ -1151,7 +1176,11 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     player2.hand.inHand.remove(card);
                     resetGuiHand(player2);
                   }
-                  curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
+                  if (board.Turn1) {
+                    curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
+                  } else {
+                    curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
+                  }
                   resetSelect();
                   card = DEFAULT_CARD;
                   key = "B";
@@ -1272,7 +1301,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             }
           } else {
             if (!card.getClass().equals(Card.class)) {
-              if (card.Mana <= player2.getCurMana()) {
+              if ((card.Mana <= player1.getCurMana() && board.Turn1) || (card.Mana <= player2.getCurMana() && board.Turn2)) {
                 if (board.Battleground2.ActiveCard.containsKey("C")) {
                   summon = board.Battleground2.getChar("C");
                   Spell s = (Spell) card;
@@ -1287,7 +1316,11 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     player2.hand.inHand.remove(card);
                     resetGuiHand(player2);
                   }
-                  curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
+                  if (board.Turn1) {
+                    curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
+                  } else {
+                    curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
+                  }
                   resetSelect();
                   card = DEFAULT_CARD;
                   key = "C";
@@ -1408,7 +1441,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             }
           } else {
             if (!card.getClass().equals(Card.class)) {
-              if (card.Mana <= player2.getCurMana()) {
+              if ((card.Mana <= player1.getCurMana() && board.Turn1) || (card.Mana <= player2.getCurMana() && board.Turn2)) {
                 if (board.Battleground2.ActiveCard.containsKey("D")) {
                   summon = board.Battleground2.getChar("D");
                   Spell s = (Spell) card;
@@ -1423,7 +1456,11 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     player2.hand.inHand.remove(card);
                     resetGuiHand(player2);
                   }
-                  curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
+                  if (board.Turn1) {
+                    curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
+                  } else {
+                    curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
+                  }
                   resetSelect();
                   card = DEFAULT_CARD;
                   key = "D";
@@ -1544,7 +1581,7 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             }
           } else {
             if (!card.getClass().equals(Card.class)) {
-              if (card.Mana <= player2.getCurMana()) {
+              if ((card.Mana <= player1.getCurMana() && board.Turn1) || (card.Mana <= player2.getCurMana() && board.Turn2)) {
                 if (board.Battleground2.ActiveCard.containsKey("E")) {
                   summon = board.Battleground2.getChar("E");
                   Spell s = (Spell) card;
@@ -1559,7 +1596,11 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     player2.hand.inHand.remove(card);
                     resetGuiHand(player2);
                   }
-                  curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
+                  if (board.Turn1) {
+                    curMana.setText(Integer.toString(player1.reduceMana(card.Mana)));
+                  } else {
+                    curMana.setText(Integer.toString(player2.reduceMana(card.Mana)));
+                  }
                   resetSelect();
                   card = DEFAULT_CARD;
                   key = "E";
