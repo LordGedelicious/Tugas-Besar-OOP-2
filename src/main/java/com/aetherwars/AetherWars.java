@@ -150,8 +150,8 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     } catch (Exception e) {}
 
     // Player untuk tes board
-    //player1 = new Player("Steve", ThreadLocalRandom.current().nextInt(40, 60 + 1));
-    player1 = new Player("Steve", 7);
+    player1 = new Player("Steve", ThreadLocalRandom.current().nextInt(40, 60 + 1));
+    // player1 = new Player("Steve", 7);
     player2 = new Player("Alex", ThreadLocalRandom.current().nextInt(40, 60 + 1));
     player1.randomDeck(cLib);
     player2.randomDeck(cLib);
@@ -1742,6 +1742,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
     drawText.setY(800);
 
     drawCard = player1.deck.showTopThreeCards();
+    // System.out.println(drawCard.get(0).ImagePath);
+    // System.out.println(drawCard.get(1).ImagePath);
+    // System.out.println(drawCard.get(2).ImagePath);
     image = new Image(getClass().getResourceAsStream(drawCard.get(0).ImagePath));
     setImageDraw(1);
     draw1.setX(400);
@@ -2027,10 +2030,11 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             resetSelectBG();
           }
           else if (board.getPhase() == TypePhase.ATTACK){
-            resetSelectBG1();
-          }
-          if (!board.Battleground1.checkAlreadyAttacked("A")){
-            summoned1A.setStyle("-fx-background-color: yellow;");
+            // resetSelectBG1();
+            resetATKBGColor();
+            if (!board.Battleground1.checkAlreadyAttacked("A")){
+              summoned1A.setStyle("-fx-background-color: yellow;");
+            }
           }
         }
       }
@@ -2043,10 +2047,11 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             resetSelectBG();
           }
           else if (board.getPhase() == TypePhase.ATTACK){
-            resetSelectBG1();
-          }
-          if (!board.Battleground1.checkAlreadyAttacked("B")){
-            summoned1B.setStyle("-fx-background-color: yellow;");
+            // resetSelectBG1();
+            resetATKBGColor();
+            if (!board.Battleground1.checkAlreadyAttacked("B")){
+              summoned1B.setStyle("-fx-background-color: yellow;");
+            }
           }
         }
       }
@@ -2059,10 +2064,11 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             resetSelectBG();
           }
           else if (board.getPhase() == TypePhase.ATTACK){
-            resetSelectBG1();
-          }
-          if (!board.Battleground1.checkAlreadyAttacked("C")){
-            summoned1C.setStyle("-fx-background-color: yellow;");
+            //resetSelectBG1();
+            resetATKBGColor();
+            if (!board.Battleground1.checkAlreadyAttacked("C")){
+              summoned1C.setStyle("-fx-background-color: yellow;");
+            }
           }
         }
       }
@@ -2075,10 +2081,11 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             resetSelectBG();
           }
           else if (board.getPhase() == TypePhase.ATTACK){
-            resetSelectBG1();
-          }
-          if (!board.Battleground1.checkAlreadyAttacked("D")){
-            summoned1D.setStyle("-fx-background-color: yellow;");
+            //resetSelectBG1();
+            resetATKBGColor();
+            if (!board.Battleground1.checkAlreadyAttacked("D")){
+              summoned1D.setStyle("-fx-background-color: yellow;");
+            }
           }
         }
       }
@@ -2091,10 +2098,11 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             resetSelectBG();
           }
           else if (board.getPhase() == TypePhase.ATTACK){
-            resetSelectBG1();
-          }
-          if (!board.Battleground1.checkAlreadyAttacked("E")){
-            summoned1E.setStyle("-fx-background-color: yellow;");
+            // resetSelectBG1();
+            resetATKBGColor();
+            if (!board.Battleground1.checkAlreadyAttacked("E")){
+              summoned1E.setStyle("-fx-background-color: yellow;");
+            }
           }
         }
       }
@@ -2148,10 +2156,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             resetSelectBG();
           }
           else if (board.getPhase() == TypePhase.ATTACK){
-            resetSelectBG2();
-          }
-          if (!board.Battleground2.checkAlreadyAttacked("A")){
-            summoned2A.setStyle("-fx-background-color: yellow;");
+            resetATKBGColor();
+            if (!board.Battleground2.checkAlreadyAttacked("A")){
+              summoned2A.setStyle("-fx-background-color: yellow;");
+            }
           }
         }
       }
@@ -2164,10 +2172,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             resetSelectBG();
           }
           else if (board.getPhase() == TypePhase.ATTACK){
-            resetSelectBG2();
-          }
-          if (!board.Battleground2.checkAlreadyAttacked("B")){
-            summoned2B.setStyle("-fx-background-color: yellow;");
+            resetATKBGColor();
+            if (!board.Battleground2.checkAlreadyAttacked("B")){
+              summoned2B.setStyle("-fx-background-color: yellow;");
+            }
           }
         }
       }
@@ -2180,10 +2188,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             resetSelectBG();
           }
           else if (board.getPhase() == TypePhase.ATTACK){
-            resetSelectBG2();
-          }
-          if (!board.Battleground2.checkAlreadyAttacked("C")){
-            summoned2C.setStyle("-fx-background-color: yellow;");
+            resetATKBGColor();
+            if (!board.Battleground2.checkAlreadyAttacked("C")){
+              summoned2C.setStyle("-fx-background-color: yellow;");
+            }
           }
         }
       }
@@ -2196,10 +2204,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             resetSelectBG();
           }
           else if (board.getPhase() == TypePhase.ATTACK){
-            resetSelectBG2();
-          }
-          if (!board.Battleground2.checkAlreadyAttacked("D")){
-            summoned2D.setStyle("-fx-background-color: yellow;");
+            resetATKBGColor();
+            if (!board.Battleground2.checkAlreadyAttacked("D")){
+              summoned2D.setStyle("-fx-background-color: yellow;");
+            }
           }
         }
       }
@@ -2212,10 +2220,10 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
             resetSelectBG();
           }
           else if (board.getPhase() == TypePhase.ATTACK){
-            resetSelectBG2();
-          }
-          if (!board.Battleground2.checkAlreadyAttacked("E")){
-            summoned2E.setStyle("-fx-background-color: yellow;");
+            resetATKBGColor();
+            if (!board.Battleground2.checkAlreadyAttacked("E")){
+              summoned2E.setStyle("-fx-background-color: yellow;");
+            }
           }
         }
       }

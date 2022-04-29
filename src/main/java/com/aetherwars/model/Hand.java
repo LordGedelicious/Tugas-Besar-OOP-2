@@ -11,9 +11,15 @@ public class Hand{
     }
 
     public void getThreeFirst(Deck deck){
-        inHand.add(deck.returnCard(0));
-        inHand.add(deck.returnCard(1));
-        inHand.add(deck.returnCard(2));
+        int i = 3;
+        int j = 0;
+        while (i != 0){
+            if (deck.getCard(j) != null){
+                inHand.add(deck.returnCard(j));
+                i--;
+            }
+            j++;
+        }
     }
 
     public boolean isFull(){
