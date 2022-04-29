@@ -12,6 +12,10 @@ public class LVL extends PermSpell {
         return this.direction;
     }
 
+    public void setManaLVL(){
+        this.Mana = (int) Math.ceil(this.getUser().Level/2);
+    }
+
     @Override
     public void use() {
         // level up

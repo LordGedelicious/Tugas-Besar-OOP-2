@@ -325,6 +325,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     m.setTarget((Character) cLib.getCardByID(m.id_swap_target));
                   }
                   s.setUser(summon);
+                  if (s.tipe == TypeSpell.LVL){
+                    s.setManaLvl();
+                  }
                   s.use();
                   summon = s.getUser();
                   resetGUIBattleGroundOnChar();
@@ -470,6 +473,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     m.setTarget((Character) cLib.getCardByID(m.id_swap_target));
                   }
                   s.setUser(summon);
+                  if (s.tipe == TypeSpell.LVL){
+                    s.setManaLvl();
+                  }
                   s.use();
                   summon = s.getUser();
                   resetGUIBattleGroundOnChar();
@@ -615,6 +621,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     m.setTarget((Character) cLib.getCardByID(m.id_swap_target));
                   }
                   s.setUser(summon);
+                  if (s.tipe == TypeSpell.LVL){
+                    s.setManaLvl();
+                  }
                   s.use();
                   summon = s.getUser();
                   resetGUIBattleGroundOnChar();
@@ -760,6 +769,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     m.setTarget((Character) cLib.getCardByID(m.id_swap_target));
                   }
                   s.setUser(summon);
+                  if (s.tipe == TypeSpell.LVL){
+                    s.setManaLvl();
+                  }
                   s.use();
                   summon = s.getUser();
                   resetGUIBattleGroundOnChar();
@@ -905,6 +917,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     m.setTarget((Character) cLib.getCardByID(m.id_swap_target));
                   }
                   s.setUser(summon);
+                  if (s.tipe == TypeSpell.LVL){
+                    s.setManaLvl();
+                  }
                   s.use();
                   summon = s.getUser();
                   resetGUIBattleGroundOnChar();
@@ -1050,6 +1065,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     m.setTarget((Character) cLib.getCardByID(m.id_swap_target));
                   }
                   s.setUser(summon);
+                  if (s.tipe == TypeSpell.LVL){
+                    s.setManaLvl();
+                  }
                   s.use();
                   summon = s.getUser();
                   resetGUIBattleGroundOnChar();
@@ -1195,6 +1213,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     m.setTarget((Character) cLib.getCardByID(m.id_swap_target));
                   }
                   s.setUser(summon);
+                  if (s.tipe == TypeSpell.LVL){
+                    s.setManaLvl();
+                  }
                   s.use();
                   summon = s.getUser();
                   resetGUIBattleGroundOnChar();
@@ -1340,6 +1361,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     m.setTarget((Character) cLib.getCardByID(m.id_swap_target));
                   }
                   s.setUser(summon);
+                  if (s.tipe == TypeSpell.LVL){
+                    s.setManaLvl();
+                  }
                   s.use();
                   summon = s.getUser();
                   resetGUIBattleGroundOnChar();
@@ -1485,6 +1509,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     m.setTarget((Character) cLib.getCardByID(m.id_swap_target));
                   }
                   s.setUser(summon);
+                  if (s.tipe == TypeSpell.LVL){
+                    s.setManaLvl();
+                  }
                   s.use();
                   summon = s.getUser();
                   resetGUIBattleGroundOnChar();
@@ -1630,6 +1657,9 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
                     m.setTarget((Character) cLib.getCardByID(m.id_swap_target));
                   }
                   s.setUser(summon);
+                  if (s.tipe == TypeSpell.LVL){
+                    s.setManaLvl();
+                  }
                   s.use();
                   summon = s.getUser();
                   resetGUIBattleGroundOnChar();
