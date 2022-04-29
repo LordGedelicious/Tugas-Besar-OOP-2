@@ -2717,7 +2717,12 @@ public class AetherWars extends Application implements EventHandler<ActionEvent>
       if (i<player.hand.getSize()){
         image = new Image(getClass().getResourceAsStream(player.hand.getCard(i).ImagePath));
         setImageHand(i+1);
-        setManaHand(i+1, "Mana " + Integer.toString(player.hand.getCard(i).Mana));
+        if (player.hand.getCard(i).ID == 401 || player.hand.getCard(i).ID == 402){
+          setManaHand(i+1, "Mana???");
+        }
+        else{
+          setManaHand(i+1, "Mana " + Integer.toString(player.hand.getCard(i).Mana));
+        }
       }
       else{
         image = new Image(getClass().getResourceAsStream(DEFAULT_IMG_PATH));
